@@ -42,12 +42,19 @@ namespace PPEClientLourd
 
             if(matricule.Length != 0)
             {
-                OneVisiteur ov = new OneVisiteur(matricule);
+                OneVisiteur ov = new OneVisiteur(this._colMatricule, matricule);
                 ov.Show();
 
                 this.Hide();
 
             }
+        }
+
+        private void btn_retour_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            Home h = new Home(this._colMatricule, this._colNom);
         }
 
         private void AllVisiteurs_Load(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.compteRendusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créerUnCompteRenduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,17 +39,17 @@
             this.toutLesVisiteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chercherUnVisiteurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierLesInformationsDunVisiteurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUnVisiteurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.praticiensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.voirToutLesPraticiensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercherUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.médicamentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnMédicamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consulterLesMédicamentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consulterToutsLesMédicamentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seDéconnecterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterUnVisiteurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +64,7 @@
             this.seDéconnecterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(880, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(541, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,32 +76,32 @@
             this.voirUnCompteRenduToolStripMenuItem,
             this.modifierUnCompteRenduToolStripMenuItem});
             this.compteRendusToolStripMenuItem.Name = "compteRendusToolStripMenuItem";
-            this.compteRendusToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.compteRendusToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.compteRendusToolStripMenuItem.Text = "Compte rendus";
             // 
             // créerUnCompteRenduToolStripMenuItem
             // 
             this.créerUnCompteRenduToolStripMenuItem.Name = "créerUnCompteRenduToolStripMenuItem";
-            this.créerUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(266, 26);
+            this.créerUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.créerUnCompteRenduToolStripMenuItem.Text = "Créer un compte rendu";
             this.créerUnCompteRenduToolStripMenuItem.Click += new System.EventHandler(this.créerUnCompteRenduToolStripMenuItem_Click_1);
             // 
             // voirToutLesCompteRendusToolStripMenuItem
             // 
             this.voirToutLesCompteRendusToolStripMenuItem.Name = "voirToutLesCompteRendusToolStripMenuItem";
-            this.voirToutLesCompteRendusToolStripMenuItem.Size = new System.Drawing.Size(266, 26);
+            this.voirToutLesCompteRendusToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.voirToutLesCompteRendusToolStripMenuItem.Text = "Voir tout les compte rendus";
             // 
             // voirUnCompteRenduToolStripMenuItem
             // 
             this.voirUnCompteRenduToolStripMenuItem.Name = "voirUnCompteRenduToolStripMenuItem";
-            this.voirUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(266, 26);
+            this.voirUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.voirUnCompteRenduToolStripMenuItem.Text = "Voir un compte rendu";
             // 
             // modifierUnCompteRenduToolStripMenuItem
             // 
             this.modifierUnCompteRenduToolStripMenuItem.Name = "modifierUnCompteRenduToolStripMenuItem";
-            this.modifierUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(266, 26);
+            this.modifierUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.modifierUnCompteRenduToolStripMenuItem.Text = "Modifier un compte rendu";
             // 
             // visiteursToolStripMenuItem
@@ -112,27 +112,33 @@
             this.modifierLesInformationsDunVisiteurToolStripMenuItem,
             this.ajouterUnVisiteurToolStripMenuItem});
             this.visiteursToolStripMenuItem.Name = "visiteursToolStripMenuItem";
-            this.visiteursToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.visiteursToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.visiteursToolStripMenuItem.Text = "Visiteurs";
             // 
             // toutLesVisiteursToolStripMenuItem
             // 
             this.toutLesVisiteursToolStripMenuItem.Name = "toutLesVisiteursToolStripMenuItem";
-            this.toutLesVisiteursToolStripMenuItem.Size = new System.Drawing.Size(334, 26);
+            this.toutLesVisiteursToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.toutLesVisiteursToolStripMenuItem.Text = "Tout les visiteurs";
             this.toutLesVisiteursToolStripMenuItem.Click += new System.EventHandler(this.toutLesVisiteursToolStripMenuItem_Click);
             // 
             // chercherUnVisiteurToolStripMenuItem
             // 
             this.chercherUnVisiteurToolStripMenuItem.Name = "chercherUnVisiteurToolStripMenuItem";
-            this.chercherUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(334, 26);
+            this.chercherUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.chercherUnVisiteurToolStripMenuItem.Text = "Chercher un visiteur";
             // 
             // modifierLesInformationsDunVisiteurToolStripMenuItem
             // 
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Name = "modifierLesInformationsDunVisiteurToolStripMenuItem";
-            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Size = new System.Drawing.Size(334, 26);
+            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Text = "Modifier les informations d\'un visiteur";
+            // 
+            // ajouterUnVisiteurToolStripMenuItem
+            // 
+            this.ajouterUnVisiteurToolStripMenuItem.Name = "ajouterUnVisiteurToolStripMenuItem";
+            this.ajouterUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.ajouterUnVisiteurToolStripMenuItem.Text = "Ajouter un visiteur";
             // 
             // praticiensToolStripMenuItem
             // 
@@ -142,61 +148,20 @@
             this.ajouterUnPraticienToolStripMenuItem,
             this.modifierUnPraticienToolStripMenuItem});
             this.praticiensToolStripMenuItem.Name = "praticiensToolStripMenuItem";
-            this.praticiensToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.praticiensToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.praticiensToolStripMenuItem.Text = "Praticiens";
             // 
             // voirToutLesPraticiensToolStripMenuItem
             // 
             this.voirToutLesPraticiensToolStripMenuItem.Name = "voirToutLesPraticiensToolStripMenuItem";
-            this.voirToutLesPraticiensToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.voirToutLesPraticiensToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.voirToutLesPraticiensToolStripMenuItem.Text = "Voir tout les praticiens";
             // 
             // rechercherUnPraticienToolStripMenuItem
             // 
             this.rechercherUnPraticienToolStripMenuItem.Name = "rechercherUnPraticienToolStripMenuItem";
-            this.rechercherUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.rechercherUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.rechercherUnPraticienToolStripMenuItem.Text = "Rechercher un praticien";
-            // 
-            // médicamentsToolStripMenuItem
-            // 
-            this.médicamentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterUnMédicamentToolStripMenuItem,
-            this.consulterLesMédicamentsToolStripMenuItem,
-            this.consulterToutsLesMédicamentsToolStripMenuItem});
-            this.médicamentsToolStripMenuItem.Name = "médicamentsToolStripMenuItem";
-            this.médicamentsToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.médicamentsToolStripMenuItem.Text = "Médicaments";
-            // 
-            // ajouterUnMédicamentToolStripMenuItem
-            // 
-            this.ajouterUnMédicamentToolStripMenuItem.Name = "ajouterUnMédicamentToolStripMenuItem";
-            this.ajouterUnMédicamentToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
-            this.ajouterUnMédicamentToolStripMenuItem.Text = "Ajouter un médicament";
-            // 
-            // consulterLesMédicamentsToolStripMenuItem
-            // 
-            this.consulterLesMédicamentsToolStripMenuItem.Name = "consulterLesMédicamentsToolStripMenuItem";
-            this.consulterLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
-            this.consulterLesMédicamentsToolStripMenuItem.Text = "Consulter les médicaments";
-            // 
-            // consulterToutsLesMédicamentsToolStripMenuItem
-            // 
-            this.consulterToutsLesMédicamentsToolStripMenuItem.Name = "consulterToutsLesMédicamentsToolStripMenuItem";
-            this.consulterToutsLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
-            this.consulterToutsLesMédicamentsToolStripMenuItem.Text = "Consulter tous les médicaments";
-            // 
-            // seDéconnecterToolStripMenuItem
-            // 
-            this.seDéconnecterToolStripMenuItem.Name = "seDéconnecterToolStripMenuItem";
-            this.seDéconnecterToolStripMenuItem.Size = new System.Drawing.Size(123, 24);
-            this.seDéconnecterToolStripMenuItem.Text = "Se déconnecter";
-            this.seDéconnecterToolStripMenuItem.Click += new System.EventHandler(this.seDéconnecterToolStripMenuItem_Click);
-            // 
-            // ajouterUnVisiteurToolStripMenuItem
-            // 
-            this.ajouterUnVisiteurToolStripMenuItem.Name = "ajouterUnVisiteurToolStripMenuItem";
-            this.ajouterUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
-            this.ajouterUnVisiteurToolStripMenuItem.Text = "Ajouter un visiteur";
             // 
             // ajouterUnPraticienToolStripMenuItem
             // 
@@ -210,14 +175,50 @@
             this.modifierUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.modifierUnPraticienToolStripMenuItem.Text = "Modifier un praticien";
             // 
+            // médicamentsToolStripMenuItem
+            // 
+            this.médicamentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ajouterUnMédicamentToolStripMenuItem,
+            this.consulterLesMédicamentsToolStripMenuItem,
+            this.consulterToutsLesMédicamentsToolStripMenuItem});
+            this.médicamentsToolStripMenuItem.Name = "médicamentsToolStripMenuItem";
+            this.médicamentsToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.médicamentsToolStripMenuItem.Text = "Médicaments";
+            // 
+            // ajouterUnMédicamentToolStripMenuItem
+            // 
+            this.ajouterUnMédicamentToolStripMenuItem.Name = "ajouterUnMédicamentToolStripMenuItem";
+            this.ajouterUnMédicamentToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.ajouterUnMédicamentToolStripMenuItem.Text = "Ajouter un médicament";
+            // 
+            // consulterLesMédicamentsToolStripMenuItem
+            // 
+            this.consulterLesMédicamentsToolStripMenuItem.Name = "consulterLesMédicamentsToolStripMenuItem";
+            this.consulterLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.consulterLesMédicamentsToolStripMenuItem.Text = "Consulter les médicaments";
+            // 
+            // consulterToutsLesMédicamentsToolStripMenuItem
+            // 
+            this.consulterToutsLesMédicamentsToolStripMenuItem.Name = "consulterToutsLesMédicamentsToolStripMenuItem";
+            this.consulterToutsLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.consulterToutsLesMédicamentsToolStripMenuItem.Text = "Consulter tous les médicaments";
+            // 
+            // seDéconnecterToolStripMenuItem
+            // 
+            this.seDéconnecterToolStripMenuItem.Name = "seDéconnecterToolStripMenuItem";
+            this.seDéconnecterToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.seDéconnecterToolStripMenuItem.Text = "Se déconnecter";
+            this.seDéconnecterToolStripMenuItem.Click += new System.EventHandler(this.seDéconnecterToolStripMenuItem_Click);
+            // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 544);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(541, 345);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Home";
             this.Text = "Accueil";
             this.Load += new System.EventHandler(this.Home_Load);
