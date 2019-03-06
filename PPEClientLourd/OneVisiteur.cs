@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
-    public partial class Form1 : Form
+    public partial class OneVisiteur : Form
     {
-        public Form1()
+        private string _matricule;
+
+        public OneVisiteur(string matricule)
         {
             InitializeComponent();
+            this._matricule = matricule;
+        }
+
+        private void OneVisiteur_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

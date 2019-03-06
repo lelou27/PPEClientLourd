@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +47,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AllVisiteurs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AllVisiteurs.designer.cs">
+      <DependentUpon>AllVisiteurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connexion.designer.cs">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="curs.cs" />
+    <Compile Include="DetailsPatricien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsPatricien.designer.cs">
+      <DependentUpon>DetailsPatricien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OneVisiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OneVisiteur.designer.cs">
+      <DependentUpon>OneVisiteur.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rapportVisite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rapportVisite.designer.cs">
+      <DependentUpon>rapportVisite.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AllVisiteurs.resx">
+      <DependentUpon>AllVisiteurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connexion.resx">
+      <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsPatricien.resx">
+      <DependentUpon>DetailsPatricien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OneVisiteur.resx">
+      <DependentUpon>OneVisiteur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +110,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="rapportVisite.resx">
+      <DependentUpon>rapportVisite.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
