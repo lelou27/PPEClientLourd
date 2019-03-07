@@ -86,6 +86,12 @@
     <Compile Include="rapportVisite.designer.cs">
       <DependentUpon>rapportVisite.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchVisiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchVisiteur.Designer.cs">
+      <DependentUpon>SearchVisiteur.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AllVisiteurs.resx">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="rapportVisite.resx">
       <DependentUpon>rapportVisite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchVisiteur.resx">
+      <DependentUpon>SearchVisiteur.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
