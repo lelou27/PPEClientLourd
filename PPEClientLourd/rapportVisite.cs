@@ -75,6 +75,7 @@ namespace PPEClientLourd
                 AutreMotif.Visible = false;
                 textBox_AutreMotif.Visible = false;
             }
+            label_motifvisite.Text = "";
         }
 
 
@@ -82,9 +83,6 @@ namespace PPEClientLourd
         {
             Form.ActiveForm.Close();
 
-            Home homeForm = new Home(this._colMatricule, this._colNom);
-
-            homeForm.Show();
         }
 
         private void comboBox_Practiciens_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,14 +130,71 @@ namespace PPEClientLourd
 
             if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
             {
-                label_prodate.Text = "Veuillez choisir une date correcte";
+                label_datepro.Text = "Veuillez choisir une date correcte";
                 err++;
+            }
+
+            if (dateTimePicker_DateRap.Value > DateTime.Now)
+            {
+                label_DateRap.Text = "Veuillez choisir une date correcte";
+                err++;
+            }
+
+            if (comboBox_Motif == null || comboBox_Motif.Text == "")
+            {
+                label_motifvisite.Text = "Veuillez choisir un motif";
+                err++;
+            }
+
+            if (comboBox_Motif.Text == "Autre" && (textBox_AutreMotif.Text.Trim() == "" || textBox_AutreMotif.Text == null))
+            {
+                label_autremotif.Text = "Veuillez écrire un motif";
+                err++;
+            }
+
+            if (textBox_BilanRap.Text.Trim() == "" || textBox_BilanRap.Text == null)
+            {
+                label_bilan.Text = "Veuillez écrire un bilan";
+                err++;
+            }
+            string[,] echantillon = new string[dataGridView_echantillon.Rows.Count - 1, dataGridView_echantillon.Columns.Count];
+            
+            foreach (DataGridViewRow row in dataGridView_echantillon.Rows)
+            {
+                foreach (DataGridViewColumn col in dataGridView_echantillon.Columns)
+                {
+                    if (row.Index != dataGridView_echantillon.Rows.Count - 1)
+                    {
+                        echantillon[row.Index, col.Index] = dataGridView_echantillon.Rows[row.Index].Cells[col.Index].Value.ToString();
+                    }
+                }
             }
         }
 
         private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
         {
-            label_prodate.Text = "";
+            label_datepro.Text = "";
+        }
+
+        private void dateTimePicker_DateRap_ValueChanged(object sender, EventArgs e)
+        {
+            label_DateRap.Text = "";
+        }
+
+        private void textBox_AutreMotif_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_AutreMotif.Text.Trim() != "")
+            {
+                label_autremotif.Text = "";
+            }
+        }
+
+        private void textBox_BilanRap_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_BilanRap.Text.Trim() != "")
+            {
+                label_bilan.Text = "";
+            }
         }
     }
 }
