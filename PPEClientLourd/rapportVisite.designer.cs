@@ -54,6 +54,7 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_id_hidden = new System.Windows.Forms.Label();
             this.label_errPratricien = new System.Windows.Forms.Label();
+            this.label_prodate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -337,13 +338,23 @@
             // label_errPratricien
             // 
             this.label_errPratricien.AutoSize = true;
-            this.label_errPratricien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_errPratricien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_errPratricien.ForeColor = System.Drawing.Color.Red;
             this.label_errPratricien.Location = new System.Drawing.Point(20, 114);
             this.label_errPratricien.Name = "label_errPratricien";
-            this.label_errPratricien.Size = new System.Drawing.Size(54, 18);
+            this.label_errPratricien.Size = new System.Drawing.Size(0, 18);
             this.label_errPratricien.TabIndex = 29;
-            this.label_errPratricien.Text = "lmmm";
+            // 
+            // label_prodate
+            // 
+            this.label_prodate.AutoSize = true;
+            this.label_prodate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_prodate.ForeColor = System.Drawing.Color.Red;
+            this.label_prodate.Location = new System.Drawing.Point(492, 172);
+            this.label_prodate.Name = "label_prodate";
+            this.label_prodate.Size = new System.Drawing.Size(40, 18);
+            this.label_prodate.TabIndex = 30;
+            this.label_prodate.Text = "azea";
             // 
             // rapportVisite
             // 
@@ -351,6 +362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(163)))), ((int)(((byte)(235)))));
             this.ClientSize = new System.Drawing.Size(1235, 608);
+            this.Controls.Add(this.label_prodate);
             this.Controls.Add(this.label_errPratricien);
             this.Controls.Add(this.label_id_hidden);
             this.Controls.Add(this.dataGridView_echantillon);
@@ -413,6 +425,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Medicaments;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Label label_errPratricien;
+        private System.Windows.Forms.Label label_prodate;
     }
 }
 
