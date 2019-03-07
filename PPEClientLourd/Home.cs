@@ -103,7 +103,7 @@ namespace PPEClientLourd
             sv.Show();
         }
 
-        private void consultertouslesMédicamentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void consulterToutsLesMédicamentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Consulter_Tous_Medicaments ctm = new Consulter_Tous_Medicaments();
             ctm.Show();
