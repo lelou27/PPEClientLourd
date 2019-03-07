@@ -51,6 +51,8 @@ namespace PPEClientLourd
             if (this._role == "visiteur")
             {
                 ajouterUnVisiteurToolStripMenuItem.Visible = false;
+                toutLesVisiteursToolStripMenuItem.Visible = false;
+                chercherUnVisiteurToolStripMenuItem.Visible = false;
             }
         }
 
@@ -84,6 +86,10 @@ namespace PPEClientLourd
            
         }
 
-
+        private void chercherUnVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchVisiteur sv = new SearchVisiteur(this._colMatricule);
+            sv.Show();
+        }
     }
 }

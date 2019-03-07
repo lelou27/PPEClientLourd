@@ -118,26 +118,27 @@
             // toutLesVisiteursToolStripMenuItem
             // 
             this.toutLesVisiteursToolStripMenuItem.Name = "toutLesVisiteursToolStripMenuItem";
-            this.toutLesVisiteursToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.toutLesVisiteursToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.toutLesVisiteursToolStripMenuItem.Text = "Tout les visiteurs";
             this.toutLesVisiteursToolStripMenuItem.Click += new System.EventHandler(this.toutLesVisiteursToolStripMenuItem_Click);
             // 
             // chercherUnVisiteurToolStripMenuItem
             // 
             this.chercherUnVisiteurToolStripMenuItem.Name = "chercherUnVisiteurToolStripMenuItem";
-            this.chercherUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.chercherUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.chercherUnVisiteurToolStripMenuItem.Text = "Chercher un visiteur";
+            this.chercherUnVisiteurToolStripMenuItem.Click += new System.EventHandler(this.chercherUnVisiteurToolStripMenuItem_Click);
             // 
             // modifierLesInformationsDunVisiteurToolStripMenuItem
             // 
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Name = "modifierLesInformationsDunVisiteurToolStripMenuItem";
-            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
-            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Text = "Modifier les informations d\'un visiteur";
+            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Text = "Modifier mes informations";
             // 
             // ajouterUnVisiteurToolStripMenuItem
             // 
             this.ajouterUnVisiteurToolStripMenuItem.Name = "ajouterUnVisiteurToolStripMenuItem";
-            this.ajouterUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.ajouterUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.ajouterUnVisiteurToolStripMenuItem.Text = "Ajouter un visiteur";
             // 
             // praticiensToolStripMenuItem
