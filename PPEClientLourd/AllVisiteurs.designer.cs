@@ -33,6 +33,7 @@
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEmbauche = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_retour = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_visiteurs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,11 +75,22 @@
             this.DateEmbauche.Name = "DateEmbauche";
             this.DateEmbauche.ReadOnly = true;
             // 
+            // btn_retour
+            // 
+            this.btn_retour.Location = new System.Drawing.Point(447, 372);
+            this.btn_retour.Name = "btn_retour";
+            this.btn_retour.Size = new System.Drawing.Size(75, 23);
+            this.btn_retour.TabIndex = 1;
+            this.btn_retour.Text = "Retour";
+            this.btn_retour.UseVisualStyleBackColor = true;
+            this.btn_retour.Click += new System.EventHandler(this.btn_retour_Click);
+            // 
             // AllVisiteurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 366);
+            this.ClientSize = new System.Drawing.Size(534, 407);
+            this.Controls.Add(this.btn_retour);
             this.Controls.Add(this.dgv_visiteurs);
             this.Name = "AllVisiteurs";
             this.Text = "Visiteurs";
@@ -95,5 +107,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEmbauche;
+        private System.Windows.Forms.Button btn_retour;
     }
 }

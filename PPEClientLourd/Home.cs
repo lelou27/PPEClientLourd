@@ -62,8 +62,6 @@ namespace PPEClientLourd
         private void créerUnCompteRenduToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             rapportVisite rv = new rapportVisite(this._colNom, this._colMatricule);
-
-            this.Hide();
             rv.Show();
         }
 
@@ -77,18 +75,13 @@ namespace PPEClientLourd
 
         private void toutLesVisiteursToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-
             AllVisiteurs av = new AllVisiteurs(this._colNom, this._colMatricule);
             av.Show();
         }
 
         private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-
-            AllVisiteurs av = new AllVisiteurs(this._colNom, this._colMatricule);
-            av.Show();
+           
         }
 
 
