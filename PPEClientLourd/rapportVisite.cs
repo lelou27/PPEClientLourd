@@ -157,18 +157,46 @@ namespace PPEClientLourd
                 label_bilan.Text = "Veuillez écrire un bilan";
                 err++;
             }
-            string[,] echantillon = new string[dataGridView_echantillon.Rows.Count - 1, dataGridView_echantillon.Columns.Count];
-            
-            foreach (DataGridViewRow row in dataGridView_echantillon.Rows)
+
+            List<object[]> Result = dataGridView_echantillon.Rows.OfType<DataGridViewRow>().Select(
+            r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+
+            List<string> erreurs = new List<string>();
+            Dictionary<string, int> echantillons = new Dictionary<string, int>();
+
+            Result.RemoveAt(Result.Count - 1);
+
+            foreach (var Echan in Result)
             {
-                foreach (DataGridViewColumn col in dataGridView_echantillon.Columns)
+                object medoc = Echan.GetValue(0);
+                object nbMedoc = Echan.GetValue(1);
+                try
                 {
-                    if (row.Index != dataGridView_echantillon.Rows.Count - 1)
-                    {
-                        echantillon[row.Index, col.Index] = dataGridView_echantillon.Rows[row.Index].Cells[col.Index].Value.ToString();
-                    }
+                    Convert.ToInt32(nbMedoc.ToString().Trim());
+                    echantillons.Add(medoc.ToString(), Convert.ToInt32(nbMedoc.ToString().Trim()));
+                }
+                catch (Exception)
+                {
+                    erreurs.Add(medoc.ToString());
+                    err++;
                 }
             }
+            if (erreurs.Count != 0)
+            {
+                label_errEchan.Text = ErreurSaisieNbEchan(erreurs);
+            }
+        }
+
+        private string ErreurSaisieNbEchan(List<string> listErr)
+        {
+            string errResult = "";
+
+            foreach (var err in listErr)
+            {
+                errResult = listErr.IndexOf(err) == 0 ? "Vérifiez le nombre saisi pour le médicament : " + err : errResult + ", " + err;
+            }
+
+            return errResult;
         }
 
         private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
