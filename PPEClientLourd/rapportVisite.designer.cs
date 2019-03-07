@@ -43,18 +43,19 @@
             this.comboBox_Motif = new System.Windows.Forms.ComboBox();
             this.NewRDV = new System.Windows.Forms.Label();
             this.comboBox_NewRDV = new System.Windows.Forms.ComboBox();
-            this.button_precedent = new System.Windows.Forms.Button();
-            this.button_Suivant = new System.Windows.Forms.Button();
-            this.button_Nouveau = new System.Windows.Forms.Button();
+            this.button_Creer = new System.Windows.Forms.Button();
             this.button_Fermer = new System.Windows.Forms.Button();
             this.dateTimePicker_DateRap = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_DateProVisite = new System.Windows.Forms.DateTimePicker();
             this.dataGridView_echantillon = new System.Windows.Forms.DataGridView();
             this.Medicaments = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label_id_hidden = new System.Windows.Forms.Label();
             this.label_errPratricien = new System.Windows.Forms.Label();
-            this.label_prodate = new System.Windows.Forms.Label();
+            this.label_DateRap = new System.Windows.Forms.Label();
+            this.label_datepro = new System.Windows.Forms.Label();
+            this.label_motifvisite = new System.Windows.Forms.Label();
+            this.label_autremotif = new System.Windows.Forms.Label();
+            this.label_bilan = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.Title_RapVisite.AutoSize = true;
             this.Title_RapVisite.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title_RapVisite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.Title_RapVisite.Location = new System.Drawing.Point(429, 28);
+            this.Title_RapVisite.Location = new System.Drawing.Point(510, 24);
             this.Title_RapVisite.Name = "Title_RapVisite";
             this.Title_RapVisite.Size = new System.Drawing.Size(184, 25);
             this.Title_RapVisite.TabIndex = 0;
@@ -107,7 +108,7 @@
             this.BilanRap.AutoSize = true;
             this.BilanRap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BilanRap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.BilanRap.Location = new System.Drawing.Point(12, 310);
+            this.BilanRap.Location = new System.Drawing.Point(12, 327);
             this.BilanRap.Name = "BilanRap";
             this.BilanRap.Size = new System.Drawing.Size(54, 18);
             this.BilanRap.TabIndex = 5;
@@ -138,12 +139,13 @@
             // 
             // textBox_BilanRap
             // 
-            this.textBox_BilanRap.Location = new System.Drawing.Point(103, 309);
+            this.textBox_BilanRap.Location = new System.Drawing.Point(103, 326);
             this.textBox_BilanRap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_BilanRap.Multiline = true;
             this.textBox_BilanRap.Name = "textBox_BilanRap";
             this.textBox_BilanRap.Size = new System.Drawing.Size(308, 189);
             this.textBox_BilanRap.TabIndex = 13;
+            this.textBox_BilanRap.TextChanged += new System.EventHandler(this.textBox_BilanRap_TextChanged);
             // 
             // textBox_AutreMotif
             // 
@@ -155,6 +157,7 @@
             this.textBox_AutreMotif.Size = new System.Drawing.Size(557, 50);
             this.textBox_AutreMotif.TabIndex = 14;
             this.textBox_AutreMotif.Visible = false;
+            this.textBox_AutreMotif.TextChanged += new System.EventHandler(this.textBox_AutreMotif_TextChanged);
             // 
             // AutreMotif
             // 
@@ -203,7 +206,7 @@
             "Périodicité",
             "Rapport Annuel",
             "Autre"});
-            this.comboBox_Motif.Location = new System.Drawing.Point(131, 250);
+            this.comboBox_Motif.Location = new System.Drawing.Point(131, 255);
             this.comboBox_Motif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox_Motif.Name = "comboBox_Motif";
             this.comboBox_Motif.Size = new System.Drawing.Size(178, 24);
@@ -235,42 +238,18 @@
             this.comboBox_NewRDV.TabIndex = 20;
             this.comboBox_NewRDV.SelectedIndexChanged += new System.EventHandler(this.ComboBox_NewRDV_SelectedIndexChanged);
             // 
-            // button_precedent
+            // button_Creer
             // 
-            this.button_precedent.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_precedent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_precedent.Location = new System.Drawing.Point(64, 550);
-            this.button_precedent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_precedent.Name = "button_precedent";
-            this.button_precedent.Size = new System.Drawing.Size(107, 37);
-            this.button_precedent.TabIndex = 21;
-            this.button_precedent.Text = "Précédent";
-            this.button_precedent.UseVisualStyleBackColor = true;
-            // 
-            // button_Suivant
-            // 
-            this.button_Suivant.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Suivant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_Suivant.Location = new System.Drawing.Point(187, 550);
-            this.button_Suivant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_Suivant.Name = "button_Suivant";
-            this.button_Suivant.Size = new System.Drawing.Size(107, 37);
-            this.button_Suivant.TabIndex = 22;
-            this.button_Suivant.Text = "Suivant";
-            this.button_Suivant.UseVisualStyleBackColor = true;
-            // 
-            // button_Nouveau
-            // 
-            this.button_Nouveau.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Nouveau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_Nouveau.Location = new System.Drawing.Point(304, 550);
-            this.button_Nouveau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_Nouveau.Name = "button_Nouveau";
-            this.button_Nouveau.Size = new System.Drawing.Size(107, 37);
-            this.button_Nouveau.TabIndex = 23;
-            this.button_Nouveau.Text = "Nouveau";
-            this.button_Nouveau.UseVisualStyleBackColor = true;
-            this.button_Nouveau.Click += new System.EventHandler(this.button_Nouveau_Click);
+            this.button_Creer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Creer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.button_Creer.Location = new System.Drawing.Point(304, 550);
+            this.button_Creer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_Creer.Name = "button_Creer";
+            this.button_Creer.Size = new System.Drawing.Size(107, 37);
+            this.button_Creer.TabIndex = 23;
+            this.button_Creer.Text = "Créer";
+            this.button_Creer.UseVisualStyleBackColor = true;
+            this.button_Creer.Click += new System.EventHandler(this.button_Nouveau_Click);
             // 
             // button_Fermer
             // 
@@ -287,15 +266,16 @@
             // 
             // dateTimePicker_DateRap
             // 
-            this.dateTimePicker_DateRap.Location = new System.Drawing.Point(140, 190);
+            this.dateTimePicker_DateRap.Location = new System.Drawing.Point(154, 194);
             this.dateTimePicker_DateRap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker_DateRap.Name = "dateTimePicker_DateRap";
             this.dateTimePicker_DateRap.Size = new System.Drawing.Size(237, 22);
             this.dateTimePicker_DateRap.TabIndex = 25;
+            this.dateTimePicker_DateRap.ValueChanged += new System.EventHandler(this.dateTimePicker_DateRap_ValueChanged);
             // 
             // dateTimePicker_DateProVisite
             // 
-            this.dateTimePicker_DateProVisite.Location = new System.Drawing.Point(705, 186);
+            this.dateTimePicker_DateProVisite.Location = new System.Drawing.Point(705, 194);
             this.dateTimePicker_DateProVisite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker_DateProVisite.Name = "dateTimePicker_DateProVisite";
             this.dateTimePicker_DateProVisite.Size = new System.Drawing.Size(249, 22);
@@ -328,15 +308,6 @@
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             // 
-            // label_id_hidden
-            // 
-            this.label_id_hidden.AutoSize = true;
-            this.label_id_hidden.Location = new System.Drawing.Point(20, 65);
-            this.label_id_hidden.Name = "label_id_hidden";
-            this.label_id_hidden.Size = new System.Drawing.Size(0, 17);
-            this.label_id_hidden.TabIndex = 28;
-            this.label_id_hidden.Visible = false;
-            // 
             // label_errPratricien
             // 
             this.label_errPratricien.AutoSize = true;
@@ -347,15 +318,55 @@
             this.label_errPratricien.Size = new System.Drawing.Size(0, 18);
             this.label_errPratricien.TabIndex = 29;
             // 
-            // label_prodate
+            // label_DateRap
             // 
-            this.label_prodate.AutoSize = true;
-            this.label_prodate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_prodate.ForeColor = System.Drawing.Color.Red;
-            this.label_prodate.Location = new System.Drawing.Point(447, 172);
-            this.label_prodate.Name = "label_prodate";
-            this.label_prodate.Size = new System.Drawing.Size(0, 18);
-            this.label_prodate.TabIndex = 30;
+            this.label_DateRap.AutoSize = true;
+            this.label_DateRap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_DateRap.ForeColor = System.Drawing.Color.Red;
+            this.label_DateRap.Location = new System.Drawing.Point(20, 176);
+            this.label_DateRap.Name = "label_DateRap";
+            this.label_DateRap.Size = new System.Drawing.Size(0, 18);
+            this.label_DateRap.TabIndex = 30;
+            // 
+            // label_datepro
+            // 
+            this.label_datepro.AutoSize = true;
+            this.label_datepro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_datepro.ForeColor = System.Drawing.Color.Red;
+            this.label_datepro.Location = new System.Drawing.Point(447, 172);
+            this.label_datepro.Name = "label_datepro";
+            this.label_datepro.Size = new System.Drawing.Size(0, 18);
+            this.label_datepro.TabIndex = 31;
+            // 
+            // label_motifvisite
+            // 
+            this.label_motifvisite.AutoSize = true;
+            this.label_motifvisite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_motifvisite.ForeColor = System.Drawing.Color.Red;
+            this.label_motifvisite.Location = new System.Drawing.Point(20, 229);
+            this.label_motifvisite.Name = "label_motifvisite";
+            this.label_motifvisite.Size = new System.Drawing.Size(0, 18);
+            this.label_motifvisite.TabIndex = 32;
+            // 
+            // label_autremotif
+            // 
+            this.label_autremotif.AutoSize = true;
+            this.label_autremotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_autremotif.ForeColor = System.Drawing.Color.Red;
+            this.label_autremotif.Location = new System.Drawing.Point(394, 220);
+            this.label_autremotif.Name = "label_autremotif";
+            this.label_autremotif.Size = new System.Drawing.Size(0, 18);
+            this.label_autremotif.TabIndex = 33;
+            // 
+            // label_bilan
+            // 
+            this.label_bilan.AutoSize = true;
+            this.label_bilan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_bilan.ForeColor = System.Drawing.Color.Red;
+            this.label_bilan.Location = new System.Drawing.Point(20, 299);
+            this.label_bilan.Name = "label_bilan";
+            this.label_bilan.Size = new System.Drawing.Size(0, 18);
+            this.label_bilan.TabIndex = 34;
             // 
             // rapportVisite
             // 
@@ -363,16 +374,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(163)))), ((int)(((byte)(235)))));
             this.ClientSize = new System.Drawing.Size(1235, 608);
-            this.Controls.Add(this.label_prodate);
+            this.Controls.Add(this.label_bilan);
+            this.Controls.Add(this.label_autremotif);
+            this.Controls.Add(this.label_motifvisite);
+            this.Controls.Add(this.label_datepro);
+            this.Controls.Add(this.label_DateRap);
             this.Controls.Add(this.label_errPratricien);
-            this.Controls.Add(this.label_id_hidden);
             this.Controls.Add(this.dataGridView_echantillon);
             this.Controls.Add(this.dateTimePicker_DateProVisite);
             this.Controls.Add(this.dateTimePicker_DateRap);
             this.Controls.Add(this.button_Fermer);
-            this.Controls.Add(this.button_Nouveau);
-            this.Controls.Add(this.button_Suivant);
-            this.Controls.Add(this.button_precedent);
+            this.Controls.Add(this.button_Creer);
             this.Controls.Add(this.comboBox_NewRDV);
             this.Controls.Add(this.NewRDV);
             this.Controls.Add(this.comboBox_Motif);
@@ -415,18 +427,19 @@
         private System.Windows.Forms.ComboBox comboBox_Motif;
         private System.Windows.Forms.Label NewRDV;
         private System.Windows.Forms.ComboBox comboBox_NewRDV;
-        private System.Windows.Forms.Button button_precedent;
-        private System.Windows.Forms.Button button_Suivant;
-        private System.Windows.Forms.Button button_Nouveau;
+        private System.Windows.Forms.Button button_Creer;
         private System.Windows.Forms.Button button_Fermer;
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateRap;
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateProVisite;
         private System.Windows.Forms.DataGridView dataGridView_echantillon;
-        private System.Windows.Forms.Label label_id_hidden;
         private System.Windows.Forms.DataGridViewComboBoxColumn Medicaments;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Label label_errPratricien;
-        private System.Windows.Forms.Label label_prodate;
+        private System.Windows.Forms.Label label_DateRap;
+        private System.Windows.Forms.Label label_datepro;
+        private System.Windows.Forms.Label label_motifvisite;
+        private System.Windows.Forms.Label label_autremotif;
+        private System.Windows.Forms.Label label_bilan;
     }
 }
 
