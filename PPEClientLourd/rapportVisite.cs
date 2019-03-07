@@ -126,15 +126,20 @@ namespace PPEClientLourd
 
             if (comboBox_Practiciens == null || comboBox_Practiciens.Text == "")
             {
-                label_errPratricien.Text = "Veuillez choirsir un praticien";
+                label_errPratricien.Text = "Veuillez choisir un praticien";
                 err++;
             }
 
-            //MessageBox.Show(dateTimePicker_DateProVisite.ToString());
-            if (true)
+            if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
             {
-
+                label_prodate.Text = "Veuillez choisir une date correcte";
+                err++;
             }
+        }
+
+        private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
+        {
+            label_prodate.Text = "";
         }
     }
 }

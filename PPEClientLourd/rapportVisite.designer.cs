@@ -151,6 +151,7 @@
             this.textBox_AutreMotif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_AutreMotif.Multiline = true;
             this.textBox_AutreMotif.Name = "textBox_AutreMotif";
+            this.textBox_AutreMotif.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_AutreMotif.Size = new System.Drawing.Size(557, 50);
             this.textBox_AutreMotif.TabIndex = 14;
             this.textBox_AutreMotif.Visible = false;
@@ -300,6 +301,7 @@
             this.dateTimePicker_DateProVisite.Size = new System.Drawing.Size(249, 22);
             this.dateTimePicker_DateProVisite.TabIndex = 26;
             this.dateTimePicker_DateProVisite.Visible = false;
+            this.dateTimePicker_DateProVisite.ValueChanged += new System.EventHandler(this.dateTimePicker_DateProVisite_ValueChanged);
             // 
             // dataGridView_echantillon
             // 
@@ -350,11 +352,10 @@
             this.label_prodate.AutoSize = true;
             this.label_prodate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_prodate.ForeColor = System.Drawing.Color.Red;
-            this.label_prodate.Location = new System.Drawing.Point(492, 172);
+            this.label_prodate.Location = new System.Drawing.Point(447, 172);
             this.label_prodate.Name = "label_prodate";
-            this.label_prodate.Size = new System.Drawing.Size(40, 18);
+            this.label_prodate.Size = new System.Drawing.Size(0, 18);
             this.label_prodate.TabIndex = 30;
-            this.label_prodate.Text = "azea";
             // 
             // rapportVisite
             // 
