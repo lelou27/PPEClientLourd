@@ -97,6 +97,7 @@ namespace PPEClientLourd
             {
                 Btn_detailsPracticiens.Visible = true;
             }
+            label_errPratricien.Text = "";
         }
 
         private void rapportVisite_Load(object sender, EventArgs e)
@@ -123,11 +124,22 @@ namespace PPEClientLourd
         {
             int err = 0;
 
-            if (comboBox_Practiciens == null || comboBox_Practiciens.ToString() == "")
+            if (comboBox_Practiciens == null || comboBox_Practiciens.Text == "")
             {
-                label_errPratricien.Text = "";
+                label_errPratricien.Text = "Veuillez choisir un praticien";
                 err++;
             }
+
+            if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
+            {
+                label_prodate.Text = "Veuillez choisir une date correcte";
+                err++;
+            }
+        }
+
+        private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
+        {
+            label_prodate.Text = "";
         }
     }
 }
