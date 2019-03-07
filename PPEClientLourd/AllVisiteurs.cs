@@ -44,7 +44,7 @@ namespace PPEClientLourd
             {
                 OneVisiteur ov = new OneVisiteur(this._colMatricule, matricule);
                 ov.Show();
-
+                 
                 this.Hide();
 
             }
