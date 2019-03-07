@@ -97,6 +97,7 @@ namespace PPEClientLourd
             {
                 Btn_detailsPracticiens.Visible = true;
             }
+            label_errPratricien.Text = "";
         }
 
         private void rapportVisite_Load(object sender, EventArgs e)
@@ -123,10 +124,16 @@ namespace PPEClientLourd
         {
             int err = 0;
 
-            if (comboBox_Practiciens == null || comboBox_Practiciens.ToString() == "")
+            if (comboBox_Practiciens == null || comboBox_Practiciens.Text == "")
             {
-                label_errPratricien.Text = "";
+                label_errPratricien.Text = "Veuillez choirsir un praticien";
                 err++;
+            }
+
+            //MessageBox.Show(dateTimePicker_DateProVisite.ToString());
+            if (true)
+            {
+
             }
         }
     }
