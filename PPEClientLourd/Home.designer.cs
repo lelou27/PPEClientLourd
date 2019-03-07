@@ -206,7 +206,6 @@
             this.consulterToutsLesMédicamentsToolStripMenuItem.Name = "consulterToutsLesMédicamentsToolStripMenuItem";
             this.consulterToutsLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
             this.consulterToutsLesMédicamentsToolStripMenuItem.Text = "Consulter tous les médicaments";
-            this.consulterToutsLesMédicamentsToolStripMenuItem.Click += new System.EventHandler(this.consulterToutsLesMédicamentsToolStripMenuItem_Click);
             // 
             // seDéconnecterToolStripMenuItem
             // 
