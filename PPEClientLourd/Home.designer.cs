@@ -128,6 +128,7 @@
             this.chercherUnVisiteurToolStripMenuItem.Name = "chercherUnVisiteurToolStripMenuItem";
             this.chercherUnVisiteurToolStripMenuItem.Size = new System.Drawing.Size(334, 26);
             this.chercherUnVisiteurToolStripMenuItem.Text = "Chercher un visiteur";
+            this.chercherUnVisiteurToolStripMenuItem.Click += new System.EventHandler(this.chercherUnVisiteurToolStripMenuItem_Click);
             // 
             // modifierLesInformationsDunVisiteurToolStripMenuItem
             // 
