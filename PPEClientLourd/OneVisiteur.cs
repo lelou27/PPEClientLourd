@@ -13,6 +13,7 @@ namespace PPEClientLourd
     public partial class OneVisiteur : Form
     {
         string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string _previous;
 
         public string ChaineConnexion
         {
@@ -24,11 +25,12 @@ namespace PPEClientLourd
         private string _matriculePersonne;
         private string _nom;
 
-        public OneVisiteur(string matricule, string matriculePersonne)
+        public OneVisiteur(string matricule, string matriculePersonne, string previous = "AllVisiteur")
         {
             InitializeComponent();
             this._matricule = matricule;
             this._matriculePersonne = matriculePersonne;
+            this._previous = previous;
 
             Curs cs = new Curs(this.chaineConnexion);
 
@@ -74,8 +76,16 @@ namespace PPEClientLourd
         {
             this.Close();
 
-            AllVisiteurs av = new AllVisiteurs(this._nom, this._matricule);
-            av.Show();
+            if (this._previous == "AllVisiteur")
+            {
+                AllVisiteurs av = new AllVisiteurs(this._nom, this._matricule);
+                av.Show();
+            }
+            else
+            {
+                SearchVisiteur sv = new SearchVisiteur(this._matricule);
+                sv.Show();
+            }
         }
     }
 }
