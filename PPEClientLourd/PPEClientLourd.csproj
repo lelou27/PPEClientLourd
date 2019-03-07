@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajouter_Medicament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ajouter_Medicament.designer.cs">
+      <DependentUpon>Ajouter_Medicament.cs</DependentUpon>
+    </Compile>
     <Compile Include="AllVisiteurs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,18 @@
     </Compile>
     <Compile Include="Connexion.designer.cs">
       <DependentUpon>Connexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consulter_Medicament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consulter_Medicament.designer.cs">
+      <DependentUpon>Consulter_Medicament.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consulter_Tous_Medicaments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consulter_Tous_Medicaments.Designer.cs">
+      <DependentUpon>Consulter_Tous_Medicaments.cs</DependentUpon>
     </Compile>
     <Compile Include="curs.cs" />
     <Compile Include="DetailsPatricien.cs">
@@ -98,6 +116,9 @@
     <Compile Include="rapportVisite.designer.cs">
       <DependentUpon>rapportVisite.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ajouter_Medicament.resx">
+      <DependentUpon>Ajouter_Medicament.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="SearchVisiteur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulter_Medicament.resx">
+      <DependentUpon>Consulter_Medicament.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulter_Tous_Medicaments.resx">
+      <DependentUpon>Consulter_Tous_Medicaments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailsPatricien.resx">
       <DependentUpon>DetailsPatricien.cs</DependentUpon>
