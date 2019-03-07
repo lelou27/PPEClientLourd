@@ -13,9 +13,9 @@ namespace PPEClientLourd
     public partial class Consulter_Medicament : Form
     {
 
-        public Consulter_Medicament(int idMedicament = -1)
+        public Consulter_Medicament(string idMedicament = "a")
         {
-            if(idMedicament != -1)
+            if(idMedicament != "a")
             {
                 // requête recup medoc
                 // remplissage du combobox
