@@ -176,6 +176,7 @@
             // 
             // Consulter_medicament_combobox
             // 
+            this.Consulter_medicament_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Consulter_medicament_combobox.FormattingEnabled = true;
             this.Consulter_medicament_combobox.Location = new System.Drawing.Point(40, 34);
             this.Consulter_medicament_combobox.Name = "Consulter_medicament_combobox";
