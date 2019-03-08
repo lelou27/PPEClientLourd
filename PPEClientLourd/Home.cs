@@ -114,5 +114,11 @@ namespace PPEClientLourd
             CreerVisiteur cv = new CreerVisiteur();
             cv.Show();
         }
+
+        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ModificationMyInformations mmy = new ModificationMyInformations(this._colMatricule, this._colNom, this._role);
+            mmy.Show();
+        }
     }
 }

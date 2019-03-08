@@ -134,6 +134,7 @@
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Name = "modifierLesInformationsDunVisiteurToolStripMenuItem";
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.modifierLesInformationsDunVisiteurToolStripMenuItem.Text = "Modifier mes informations";
+            this.modifierLesInformationsDunVisiteurToolStripMenuItem.Click += new System.EventHandler(this.modifierLesInformationsDunVisiteurToolStripMenuItem_Click_1);
             // 
             // ajouterUnVisiteurToolStripMenuItem
             // 
