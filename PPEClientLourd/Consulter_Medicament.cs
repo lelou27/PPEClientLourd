@@ -21,7 +21,7 @@ namespace PPEClientLourd
                 // remplissage du combobox
             }
             InitializeComponent();
-            string chaineconnexion = "SERVER=127.0.0.1; DATABASE=clientlourdtest; UID=root; PASSWORD=; SslMode=none";
+            string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
 
             Curs cs = new Curs(chaineconnexion);
             string requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL`";
@@ -38,7 +38,7 @@ namespace PPEClientLourd
         private void Consulter_medicament_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nommed = Consulter_medicament_combobox.Text;
-            string chaineconnexion = "SERVER=127.0.0.1; DATABASE=clientlourdtest; UID=root; PASSWORD=; SslMode=none";
+            string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
             Curs cs = new Curs(chaineconnexion);
             string requete = "SELECT * FROM `medicament` WHERE `medicament`.`MED_NOMCOMMERCIAL` = '" + nommed + "'";
             cs.ReqSelect(requete);

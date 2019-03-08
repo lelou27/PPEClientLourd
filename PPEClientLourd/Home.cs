@@ -102,5 +102,11 @@ namespace PPEClientLourd
             SearchVisiteur sv = new SearchVisiteur(this._colMatricule);
             sv.Show();
         }
+
+        private void ajouterUnVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreerVisiteur cv = new CreerVisiteur();
+            cv.Show();
+        }
     }
 }
