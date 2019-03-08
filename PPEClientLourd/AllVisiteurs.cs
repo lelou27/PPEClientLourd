@@ -1,72 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
     public partial class AllVisiteurs : Form
     {
-        string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
 
         public string ChaineConnexion
         {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
+            get => chaineConnexion;
+            set => chaineConnexion = value;
         }
 
         private string _colNom, _colMatricule;
-        public AllVisiteurs(string colNom, string colMat)
+        public AllVisiteurs( string colNom, string colMat )
         {
             InitializeComponent();
 
-            this._colNom = colNom;
-            this._colMatricule = colMat;
-
-
+            _colNom = colNom;
+            _colMatricule = colMat;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dgv_visiteurs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_visiteurs_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
             string matricule = dgv_visiteurs[0, e.RowIndex].Value.ToString();
 
-            if(matricule.Length != 0)
+            if (matricule.Length != 0)
             {
-                OneVisiteur ov = new OneVisiteur(this._colMatricule, matricule);
+                OneVisiteur ov = new OneVisiteur(_colMatricule, matricule);
                 ov.Show();
-                 
-                this.Hide();
 
+                Hide();
             }
         }
 
-        private void btn_retour_Click(object sender, EventArgs e)
+        private void btn_retour_Click( object sender, EventArgs e )
         {
-            this.Close();
+            Close();
 
-            Home h = new Home(this._colMatricule, this._colNom);
+            Home h = new Home(_colMatricule, _colNom);
         }
 
-        private void AllVisiteurs_Load(object sender, EventArgs e)
+        private void AllVisiteurs_Load( object sender, EventArgs e )
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT c.COL_MATRICULE, c.COL_NOM, c.COL_PRENOM, c.COL_DATEEMBAUCHE FROM collaborateur c " +
                             " INNER JOIN visiteur v ON c.COL_MATRICULE = v.COL_MATRICULE; ");
 
             string matricule, nom, prenom, dateEmbauche;
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
                 matricule = cs.Champ("COL_MATRICULE").ToString();
                 nom = cs.Champ("COL_NOM").ToString();
@@ -82,8 +67,10 @@ namespace PPEClientLourd
                 cs.Suivant();
             }
 
-            if(dgv_visiteurs.Rows.Count == 0)
+            if (dgv_visiteurs.Rows.Count == 0)
+            {
                 dgv_visiteurs.Rows.Add("Désolé, aucun visiteurs n'ont été trouvés");
+            }
 
             cs.Fermer();
         }

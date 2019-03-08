@@ -80,7 +80,6 @@
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Code Postal :";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 

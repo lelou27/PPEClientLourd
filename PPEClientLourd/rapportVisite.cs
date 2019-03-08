@@ -11,15 +11,16 @@ namespace PPEClientLourd
         private string _colMatricule;
         private string _colNom;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
-
-        public rapportVisite(string colNom, string colMat)
+        private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
+        
+        public rapportVisite( string colNom, string colMat )
         {
             InitializeComponent();
 
-            this._colNom = colNom;
-            this._colMatricule = colMat;
-
+            _colNom = colNom;
+            _colMatricule = colMat;
+            
+            //Pour remplir le combobox des Pratitiens
             Curs cs = new Curs(connection);
             string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
             cs.ReqSelect(requete);
@@ -37,7 +38,7 @@ namespace PPEClientLourd
             dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
             dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-
+            //Pour remplir le combobox dans le datagridview presenté des medicaments
             Curs cs2 = new Curs(connection);
             requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL` ASC";
             cs2.ReqSelect(requete);
@@ -48,6 +49,7 @@ namespace PPEClientLourd
             }
             cs2.Fermer();
 
+            //Pour remplir le combobox dans le datagridview Offert des medicaments
             Curs cs3 = new Curs(connection);
             requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL` ASC";
             cs3.ReqSelect(requete);
@@ -59,59 +61,54 @@ namespace PPEClientLourd
             cs3.Fermer();
         }
 
-
-        private void ComboBox_NewRDV_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private void ComboBox_NewRDV_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (comboBox_NewRDV.Text == "Non")
+            switch (comboBox_NewRDV.Text)
             {
-                DateProVisite.Visible = false;
-                dateTimePicker_DateProVisite.Visible = false;
-            }
-            else if (comboBox_NewRDV.Text == "Oui")
-            {
-                DateProVisite.Visible = true;
-                dateTimePicker_DateProVisite.Visible = true;
+                case "Non":
+                    DateProVisite.Visible = false;
+                    dateTimePicker_DateProVisite.Visible = false;
+                    break;
+                case "Oui":
+                    DateProVisite.Visible = true;
+                    dateTimePicker_DateProVisite.Visible = true;
+                    break;
             }
             label_datepro.Text = "";
         }
 
-        private void ComboBox_Motif_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_Motif_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (comboBox_Motif.Text == "Autre")
+            switch (comboBox_Motif.Text)
             {
-                AutreMotif.Visible = true;
-                textBox_AutreMotif.Visible = true;
-            }
-            else
-            {
-                AutreMotif.Visible = false;
-                textBox_AutreMotif.Visible = false;
+                case "Autre":
+                    AutreMotif.Visible = true;
+                    textBox_AutreMotif.Visible = true;
+                    break;
+                default:
+                    AutreMotif.Visible = false;
+                    textBox_AutreMotif.Visible = false;
+                    break;
             }
             label_motifvisite.Text = "";
             label_autremotif.Text = "";
         }
 
 
-        private void button_Fermer_Click_1(object sender, EventArgs e)
+        private void button_Fermer_Click_1( object sender, EventArgs e )
         {
             Form.ActiveForm.Close();
 
         }
 
-        private void comboBox_Practiciens_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (comboBox_Practiciens.Text == "" || comboBox_Practiciens.Text == null)
-            {
-                Btn_detailsPracticiens.Visible = false;
-            }
-            else
-            {
-                Btn_detailsPracticiens.Visible = true;
-            }
+            Btn_detailsPracticiens.Visible = comboBox_Practiciens.Text == "" || comboBox_Practiciens.Text == null ? false : true;
             label_errPratricien.Text = "";
         }
 
-        private void Btn_detailsPracticiens_Click(object sender, EventArgs e)
+        private void Btn_detailsPracticiens_Click( object sender, EventArgs e )
         {
 
             int myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
@@ -121,7 +118,7 @@ namespace PPEClientLourd
             DP.Show();
         }
 
-        private void button_Nouveau_Click(object sender, EventArgs e)
+        private void button_Nouveau_Click( object sender, EventArgs e )
         {
             int err = 0;
 
@@ -169,7 +166,7 @@ namespace PPEClientLourd
 
             Result.RemoveAt(Result.Count - 1);
 
-            foreach (var Echan in Result)
+            foreach (object[] Echan in Result)
             {
                 object medoc = Echan.GetValue(0);
                 object nbMedoc = Echan.GetValue(1);
@@ -194,7 +191,7 @@ namespace PPEClientLourd
 
             ResultOffert.RemoveAt(ResultOffert.Count - 1);
 
-            foreach (var Echan in ResultOffert)
+            foreach (object[] Echan in ResultOffert)
             {
                 object medoc = Echan.GetValue(0);
                 object nbMedoc = Echan.GetValue(1);
@@ -247,17 +244,15 @@ namespace PPEClientLourd
                 requete = "SELECT RAP_NUM FROM `rapport_visite`ORDER BY RAP_NUM DESC LIMIT 1;";
                 cs2.ReqSelect(requete);
                 string rapNum = "";
+                int nbRapNum = 0;
                 while (!cs2.Fin())
                 {
-                    int nbRapNum = 0;
-                    if (cs2.Champ("RAP_NUM").ToString() != "" || cs2.Champ("RAP_NUM").ToString() != null)
-                    {
-                        nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
-                        nbRapNum++;
-                    }
-                    rapNum = nbRapNum.ToString();
+                    nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
+                    nbRapNum++;
                     cs2.Suivant();
                 }
+
+                rapNum = nbRapNum.ToString();
                 cs2.Fermer();
 
                 requete = comboBox_NewRDV.Text == "Oui"
@@ -267,36 +262,55 @@ namespace PPEClientLourd
                 cs.ReqAdmin(requete);
                 cs.Fermer();
 
-                foreach (KeyValuePair<string, int> item in echantillons)
-                {
-                    Curs echanPre = new Curs(connection);
-                    requete = "SELECT `MED_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
-                    echanPre.ReqSelect(requete);
-                    bool test = true;
-                    while (!echanPre.Fin())
-                    {
-                        test = false;
-                        echanPre.Suivant();
-                    }
-                    if (test)
-                    {
-                        string medID = item.Key;
-                        requete = "INSERT INTO `echantillon` (`ECH_ID`, `MED_ID`) VALUES ('', '" + medID + "')";
-                        Curs insertEchanPre = new Curs(connection);
-                        insertEchanPre.ReqAdmin(requete);
-                        insertEchanPre.Fermer();
-                    }
-                    echanPre.Fermer();
-                }
+                //foreach (KeyValuePair<string, int> item in echantillons)
+                //{
+                //    Curs echanPre = new Curs(connection);
+                //    requete = "SELECT `ECH_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
+                //    echanPre.ReqSelect(requete);
+                //    string echPreID = "";
+                //    while (!echanPre.Fin())
+                //    {
+                //        echPreID = echanPre.Champ("ECH_ID").ToString();
+                //        echanPre.Suivant();
+                //    }
+                //    echanPre.Fermer();
 
+                //    string echPreQuantite = item.Value.ToString();
+
+                //    requete = "INSERT INTO `distribuer` (`ECH_ID`, `COL_MATRICULE`, `RAP_NUM`, `QUANTITE`, `OFFERT`, `PRESENTE`) VALUES (" + echPreID + ", '" + _colMatricule + "', " + rapNum + ", " + echPreQuantite + ", False, True)";
+                //    Curs insertEchanPre = new Curs(connection);
+                //    insertEchanPre.ReqAdmin(requete);
+                //    insertEchanPre.Fermer();
+                //}
+
+                //foreach (KeyValuePair<string, int> item in echantillonsOffert)
+                //{
+                //    Curs echanOff = new Curs(connection);
+                //    requete = "SELECT `ECH_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
+                //    echanOff.ReqSelect(requete);
+                //    string echOffID = "";
+                //    while (!echanOff.Fin())
+                //    {
+                //        echOffID = echanOff.Champ("ECH_ID").ToString();
+                //        echanOff.Suivant();
+                //    }
+                //    echanOff.Fermer();
+
+                //    string echOffQuantite = item.Value.ToString();
+
+                //    requete = "INSERT INTO `distribuer` (`ECH_ID`, `COL_MATRICULE`, `RAP_NUM`, `QUANTITE`, `OFFERT`, `PRESENTE`) VALUES (" + echOffID + ", '" + _colMatricule + "', " + rapNum + ", " + echOffQuantite + ", True, False)";
+                //    Curs insertEchanOff = new Curs(connection);
+                //    insertEchanOff.ReqAdmin(requete);
+                //    insertEchanOff.Fermer();
+                //}
             }
         }
 
-        private string ErreurSaisieNbEchan(List<string> listErr)
+        private string ErreurSaisieNbEchan( List<string> listErr )
         {
             string errResult = "";
 
-            foreach (var err in listErr)
+            foreach (string err in listErr)
             {
                 errResult = listErr.IndexOf(err) == 0 ? "Vérifiez le nombre saisi pour le médicament : " + err : errResult + ", " + err;
             }
@@ -304,17 +318,17 @@ namespace PPEClientLourd
             return errResult;
         }
 
-        private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e )
         {
             label_datepro.Text = "";
         }
 
-        private void dateTimePicker_DateRap_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker_DateRap_ValueChanged( object sender, EventArgs e )
         {
             label_DateRap.Text = "";
         }
 
-        private void textBox_AutreMotif_TextChanged(object sender, EventArgs e)
+        private void textBox_AutreMotif_TextChanged( object sender, EventArgs e )
         {
             if (textBox_AutreMotif.Text.Trim() != "")
             {
@@ -322,7 +336,7 @@ namespace PPEClientLourd
             }
         }
 
-        private void textBox_BilanRap_TextChanged(object sender, EventArgs e)
+        private void textBox_BilanRap_TextChanged( object sender, EventArgs e )
         {
             if (textBox_BilanRap.Text.Trim() != "")
             {
