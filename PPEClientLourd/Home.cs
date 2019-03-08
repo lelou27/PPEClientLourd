@@ -51,6 +51,8 @@ namespace PPEClientLourd
             if (this._role == "visiteur")
             {
                 ajouterUnVisiteurToolStripMenuItem.Visible = false;
+                toutLesVisiteursToolStripMenuItem.Visible = false;
+                chercherUnVisiteurToolStripMenuItem.Visible = false;
             }
         }
 
@@ -88,6 +90,22 @@ namespace PPEClientLourd
         {
             AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
             ap.Show();
+
+        private void ajouterUnMédicamentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ajouter_Medicament am = new Ajouter_Medicament();
+            am.Show();
+        }
+
+        private void consulterLesMédicamentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consulter_Medicament cm = new Consulter_Medicament();
+            cm.Show();
+        }
+        private void chercherUnVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchVisiteur sv = new SearchVisiteur(this._colMatricule);
+            sv.Show();
         }
     }
 }

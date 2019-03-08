@@ -75,6 +75,7 @@ namespace PPEClientLourd
                 AutreMotif.Visible = false;
                 textBox_AutreMotif.Visible = false;
             }
+            label_motifvisite.Text = "";
         }
 
 
@@ -82,9 +83,6 @@ namespace PPEClientLourd
         {
             Form.ActiveForm.Close();
 
-            Home homeForm = new Home(this._colMatricule, this._colNom);
-
-            homeForm.Show();
         }
 
         private void comboBox_Practiciens_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,14 +124,104 @@ namespace PPEClientLourd
 
             if (comboBox_Practiciens == null || comboBox_Practiciens.Text == "")
             {
-                label_errPratricien.Text = "Veuillez choirsir un praticien";
+                label_errPratricien.Text = "Veuillez choisir un praticien";
                 err++;
             }
 
-            //MessageBox.Show(dateTimePicker_DateProVisite.ToString());
-            if (true)
+            if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
             {
+                label_datepro.Text = "Veuillez choisir une date correcte";
+                err++;
+            }
 
+            if (dateTimePicker_DateRap.Value > DateTime.Now)
+            {
+                label_DateRap.Text = "Veuillez choisir une date correcte";
+                err++;
+            }
+
+            if (comboBox_Motif == null || comboBox_Motif.Text == "")
+            {
+                label_motifvisite.Text = "Veuillez choisir un motif";
+                err++;
+            }
+
+            if (comboBox_Motif.Text == "Autre" && (textBox_AutreMotif.Text.Trim() == "" || textBox_AutreMotif.Text == null))
+            {
+                label_autremotif.Text = "Veuillez écrire un motif";
+                err++;
+            }
+
+            if (textBox_BilanRap.Text.Trim() == "" || textBox_BilanRap.Text == null)
+            {
+                label_bilan.Text = "Veuillez écrire un bilan";
+                err++;
+            }
+
+            List<object[]> Result = dataGridView_echantillon.Rows.OfType<DataGridViewRow>().Select(
+            r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+
+            List<string> erreurs = new List<string>();
+            Dictionary<string, int> echantillons = new Dictionary<string, int>();
+
+            Result.RemoveAt(Result.Count - 1);
+
+            foreach (var Echan in Result)
+            {
+                object medoc = Echan.GetValue(0);
+                object nbMedoc = Echan.GetValue(1);
+                try
+                {
+                    Convert.ToInt32(nbMedoc.ToString().Trim());
+                    echantillons.Add(medoc.ToString(), Convert.ToInt32(nbMedoc.ToString().Trim()));
+                }
+                catch (Exception)
+                {
+                    erreurs.Add(medoc.ToString());
+                    err++;
+                }
+            }
+            if (erreurs.Count != 0)
+            {
+                label_errEchan.Text = ErreurSaisieNbEchan(erreurs);
+            }
+        }
+
+        private string ErreurSaisieNbEchan(List<string> listErr)
+        {
+            string errResult = "";
+
+            foreach (var err in listErr)
+            {
+                errResult = listErr.IndexOf(err) == 0 ? "Vérifiez le nombre saisi pour le médicament : " + err : errResult + ", " + err;
+            }
+
+            return errResult;
+        }
+
+        private void dateTimePicker_DateProVisite_ValueChanged(object sender, EventArgs e)
+        {
+            label_datepro.Text = "";
+        }
+
+        private void dateTimePicker_DateRap_ValueChanged(object sender, EventArgs e)
+        {
+            label_DateRap.Text = "";
+        }
+
+        private void textBox_AutreMotif_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_AutreMotif.Text.Trim() != "")
+            {
+                label_autremotif.Text = "";
+            }
+        }
+
+        private void textBox_BilanRap_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_BilanRap.Text.Trim() != "")
+            {
+                label_bilan.Text = "";
             }
         }
     }

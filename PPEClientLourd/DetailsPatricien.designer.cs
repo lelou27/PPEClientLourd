@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox_chercher = new System.Windows.Forms.ComboBox();
-            this.lbl_chercher = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
             this.label_num = new System.Windows.Forms.Label();
             this.label_nom = new System.Windows.Forms.Label();
@@ -49,36 +46,6 @@
             this.textBox_CP = new System.Windows.Forms.TextBox();
             this.button_Fermer = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // comboBox_chercher
-            // 
-            this.comboBox_chercher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_chercher.FormattingEnabled = true;
-            this.comboBox_chercher.Location = new System.Drawing.Point(216, 56);
-            this.comboBox_chercher.Name = "comboBox_chercher";
-            this.comboBox_chercher.Size = new System.Drawing.Size(222, 24);
-            this.comboBox_chercher.TabIndex = 0;
-            this.comboBox_chercher.SelectedIndexChanged += new System.EventHandler(this.comboBox_chercher_SelectedIndexChanged);
-            // 
-            // lbl_chercher
-            // 
-            this.lbl_chercher.AutoSize = true;
-            this.lbl_chercher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_chercher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.lbl_chercher.Location = new System.Drawing.Point(12, 62);
-            this.lbl_chercher.Name = "lbl_chercher";
-            this.lbl_chercher.Size = new System.Drawing.Size(77, 18);
-            this.lbl_chercher.TabIndex = 3;
-            this.lbl_chercher.Text = "Chercher";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(468, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Title
             // 
@@ -267,9 +234,6 @@
             this.Controls.Add(this.label_nom);
             this.Controls.Add(this.label_num);
             this.Controls.Add(this.Title);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lbl_chercher);
-            this.Controls.Add(this.comboBox_chercher);
             this.Name = "DetailsPatricien";
             this.Text = "DetailsPatricien";
             this.ResumeLayout(false);
@@ -278,10 +242,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox comboBox_chercher;
-        private System.Windows.Forms.Label lbl_chercher;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Label label_num;
         private System.Windows.Forms.Label label_nom;
