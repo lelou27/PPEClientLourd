@@ -47,7 +47,7 @@
             this.button_Fermer = new System.Windows.Forms.Button();
             this.dateTimePicker_DateRap = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_DateProVisite = new System.Windows.Forms.DateTimePicker();
-            this.dataGridView_echantillon = new System.Windows.Forms.DataGridView();
+            this.dataGridView_echantillonPresente = new System.Windows.Forms.DataGridView();
             this.Medicaments = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_errPratricien = new System.Windows.Forms.Label();
@@ -56,8 +56,20 @@
             this.label_motifvisite = new System.Windows.Forms.Label();
             this.label_autremotif = new System.Windows.Forms.Label();
             this.label_bilan = new System.Windows.Forms.Label();
-            this.label_errEchan = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillon)).BeginInit();
+            this.label_errEchanPresente = new System.Windows.Forms.Label();
+            this.comboBox_presenceconcurrence = new System.Windows.Forms.ComboBox();
+            this.label_presenceconcurrence = new System.Windows.Forms.Label();
+            this.label_connaissancePraticien = new System.Windows.Forms.Label();
+            this.comboBox_connaissancePraticien = new System.Windows.Forms.ComboBox();
+            this.comboBox_confianceLabo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label_errechanOffert = new System.Windows.Forms.Label();
+            this.dataGridView_echantillonOffert = new System.Windows.Forms.DataGridView();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label_echanOffert = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonPresente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonOffert)).BeginInit();
             this.SuspendLayout();
             // 
             // Title_RapVisite
@@ -89,7 +101,7 @@
             this.DateRap.AutoSize = true;
             this.DateRap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateRap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.DateRap.Location = new System.Drawing.Point(24, 376);
+            this.DateRap.Location = new System.Drawing.Point(24, 379);
             this.DateRap.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.DateRap.Name = "DateRap";
             this.DateRap.Size = new System.Drawing.Size(203, 36);
@@ -101,7 +113,7 @@
             this.MotifVisite.AutoSize = true;
             this.MotifVisite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MotifVisite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.MotifVisite.Location = new System.Drawing.Point(24, 496);
+            this.MotifVisite.Location = new System.Drawing.Point(24, 479);
             this.MotifVisite.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.MotifVisite.Name = "MotifVisite";
             this.MotifVisite.Size = new System.Drawing.Size(174, 36);
@@ -113,7 +125,7 @@
             this.BilanRap.AutoSize = true;
             this.BilanRap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BilanRap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.BilanRap.Location = new System.Drawing.Point(24, 634);
+            this.BilanRap.Location = new System.Drawing.Point(42, 1438);
             this.BilanRap.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.BilanRap.Name = "BilanRap";
             this.BilanRap.Size = new System.Drawing.Size(108, 36);
@@ -125,19 +137,19 @@
             this.OffreEch.AutoSize = true;
             this.OffreEch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OffreEch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.OffreEch.Location = new System.Drawing.Point(984, 601);
+            this.OffreEch.Location = new System.Drawing.Point(1310, 746);
             this.OffreEch.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.OffreEch.Name = "OffreEch";
-            this.OffreEch.Size = new System.Drawing.Size(280, 36);
+            this.OffreEch.Size = new System.Drawing.Size(428, 36);
             this.OffreEch.TabIndex = 6;
-            this.OffreEch.Text = "Offres échantillons";
+            this.OffreEch.Text = "Offres échantillons présentés";
             // 
             // DateProVisite
             // 
             this.DateProVisite.AutoSize = true;
             this.DateProVisite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateProVisite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.DateProVisite.Location = new System.Drawing.Point(894, 368);
+            this.DateProVisite.Location = new System.Drawing.Point(1170, 374);
             this.DateProVisite.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.DateProVisite.Name = "DateProVisite";
             this.DateProVisite.Size = new System.Drawing.Size(313, 36);
@@ -147,7 +159,7 @@
             // 
             // textBox_BilanRap
             // 
-            this.textBox_BilanRap.Location = new System.Drawing.Point(206, 632);
+            this.textBox_BilanRap.Location = new System.Drawing.Point(224, 1436);
             this.textBox_BilanRap.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.textBox_BilanRap.Multiline = true;
             this.textBox_BilanRap.Name = "textBox_BilanRap";
@@ -157,7 +169,7 @@
             // 
             // textBox_AutreMotif
             // 
-            this.textBox_AutreMotif.Location = new System.Drawing.Point(794, 484);
+            this.textBox_AutreMotif.Location = new System.Drawing.Point(1316, 497);
             this.textBox_AutreMotif.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.textBox_AutreMotif.Multiline = true;
             this.textBox_AutreMotif.Name = "textBox_AutreMotif";
@@ -172,7 +184,7 @@
             this.AutreMotif.AutoSize = true;
             this.AutreMotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AutreMotif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.AutreMotif.Location = new System.Drawing.Point(688, 486);
+            this.AutreMotif.Location = new System.Drawing.Point(1210, 499);
             this.AutreMotif.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.AutreMotif.Name = "AutreMotif";
             this.AutreMotif.Size = new System.Drawing.Size(92, 36);
@@ -215,7 +227,7 @@
             "Périodicité",
             "Rapport Annuel",
             "Autre"});
-            this.comboBox_Motif.Location = new System.Drawing.Point(262, 494);
+            this.comboBox_Motif.Location = new System.Drawing.Point(262, 477);
             this.comboBox_Motif.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.comboBox_Motif.Name = "comboBox_Motif";
             this.comboBox_Motif.Size = new System.Drawing.Size(352, 39);
@@ -227,7 +239,7 @@
             this.NewRDV.AutoSize = true;
             this.NewRDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewRDV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.NewRDV.Location = new System.Drawing.Point(894, 277);
+            this.NewRDV.Location = new System.Drawing.Point(1169, 271);
             this.NewRDV.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.NewRDV.Name = "NewRDV";
             this.NewRDV.Size = new System.Drawing.Size(471, 36);
@@ -241,7 +253,7 @@
             this.comboBox_NewRDV.Items.AddRange(new object[] {
             "Non",
             "Oui"});
-            this.comboBox_NewRDV.Location = new System.Drawing.Point(1458, 265);
+            this.comboBox_NewRDV.Location = new System.Drawing.Point(1728, 268);
             this.comboBox_NewRDV.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.comboBox_NewRDV.Name = "comboBox_NewRDV";
             this.comboBox_NewRDV.Size = new System.Drawing.Size(238, 39);
@@ -252,7 +264,7 @@
             // 
             this.button_Creer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Creer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_Creer.Location = new System.Drawing.Point(608, 1066);
+            this.button_Creer.Location = new System.Drawing.Point(1853, 1583);
             this.button_Creer.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.button_Creer.Name = "button_Creer";
             this.button_Creer.Size = new System.Drawing.Size(214, 72);
@@ -265,7 +277,7 @@
             // 
             this.button_Fermer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Fermer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_Fermer.Location = new System.Drawing.Point(842, 1066);
+            this.button_Fermer.Location = new System.Drawing.Point(2150, 1583);
             this.button_Fermer.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.button_Fermer.Name = "button_Fermer";
             this.button_Fermer.Size = new System.Drawing.Size(214, 72);
@@ -276,7 +288,7 @@
             // 
             // dateTimePicker_DateRap
             // 
-            this.dateTimePicker_DateRap.Location = new System.Drawing.Point(308, 376);
+            this.dateTimePicker_DateRap.Location = new System.Drawing.Point(308, 379);
             this.dateTimePicker_DateRap.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.dateTimePicker_DateRap.Name = "dateTimePicker_DateRap";
             this.dateTimePicker_DateRap.Size = new System.Drawing.Size(470, 38);
@@ -285,7 +297,7 @@
             // 
             // dateTimePicker_DateProVisite
             // 
-            this.dateTimePicker_DateProVisite.Location = new System.Drawing.Point(1410, 376);
+            this.dateTimePicker_DateProVisite.Location = new System.Drawing.Point(1686, 382);
             this.dateTimePicker_DateProVisite.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.dateTimePicker_DateProVisite.Name = "dateTimePicker_DateProVisite";
             this.dateTimePicker_DateProVisite.Size = new System.Drawing.Size(494, 38);
@@ -293,19 +305,19 @@
             this.dateTimePicker_DateProVisite.Visible = false;
             this.dateTimePicker_DateProVisite.ValueChanged += new System.EventHandler(this.dateTimePicker_DateProVisite_ValueChanged);
             // 
-            // dataGridView_echantillon
+            // dataGridView_echantillonPresente
             // 
-            this.dataGridView_echantillon.AllowUserToDeleteRows = false;
-            this.dataGridView_echantillon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_echantillon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView_echantillonPresente.AllowUserToDeleteRows = false;
+            this.dataGridView_echantillonPresente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_echantillonPresente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Medicaments,
             this.Nombre});
-            this.dataGridView_echantillon.Location = new System.Drawing.Point(1360, 599);
-            this.dataGridView_echantillon.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.dataGridView_echantillon.Name = "dataGridView_echantillon";
-            this.dataGridView_echantillon.RowTemplate.Height = 24;
-            this.dataGridView_echantillon.Size = new System.Drawing.Size(726, 515);
-            this.dataGridView_echantillon.TabIndex = 27;
+            this.dataGridView_echantillonPresente.Location = new System.Drawing.Point(1672, 789);
+            this.dataGridView_echantillonPresente.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.dataGridView_echantillonPresente.Name = "dataGridView_echantillonPresente";
+            this.dataGridView_echantillonPresente.RowTemplate.Height = 24;
+            this.dataGridView_echantillonPresente.Size = new System.Drawing.Size(726, 515);
+            this.dataGridView_echantillonPresente.TabIndex = 27;
             // 
             // Medicaments
             // 
@@ -335,7 +347,7 @@
             this.label_DateRap.AutoSize = true;
             this.label_DateRap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_DateRap.ForeColor = System.Drawing.Color.Red;
-            this.label_DateRap.Location = new System.Drawing.Point(40, 341);
+            this.label_DateRap.Location = new System.Drawing.Point(40, 344);
             this.label_DateRap.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_DateRap.Name = "label_DateRap";
             this.label_DateRap.Size = new System.Drawing.Size(0, 36);
@@ -346,7 +358,7 @@
             this.label_datepro.AutoSize = true;
             this.label_datepro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_datepro.ForeColor = System.Drawing.Color.Red;
-            this.label_datepro.Location = new System.Drawing.Point(894, 333);
+            this.label_datepro.Location = new System.Drawing.Point(1170, 339);
             this.label_datepro.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_datepro.Name = "label_datepro";
             this.label_datepro.Size = new System.Drawing.Size(0, 36);
@@ -357,7 +369,7 @@
             this.label_motifvisite.AutoSize = true;
             this.label_motifvisite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_motifvisite.ForeColor = System.Drawing.Color.Red;
-            this.label_motifvisite.Location = new System.Drawing.Point(40, 444);
+            this.label_motifvisite.Location = new System.Drawing.Point(40, 427);
             this.label_motifvisite.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_motifvisite.Name = "label_motifvisite";
             this.label_motifvisite.Size = new System.Drawing.Size(0, 36);
@@ -368,7 +380,7 @@
             this.label_autremotif.AutoSize = true;
             this.label_autremotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_autremotif.ForeColor = System.Drawing.Color.Red;
-            this.label_autremotif.Location = new System.Drawing.Point(788, 426);
+            this.label_autremotif.Location = new System.Drawing.Point(1310, 439);
             this.label_autremotif.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_autremotif.Name = "label_autremotif";
             this.label_autremotif.Size = new System.Drawing.Size(0, 36);
@@ -379,38 +391,194 @@
             this.label_bilan.AutoSize = true;
             this.label_bilan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_bilan.ForeColor = System.Drawing.Color.Red;
-            this.label_bilan.Location = new System.Drawing.Point(40, 579);
+            this.label_bilan.Location = new System.Drawing.Point(58, 1383);
             this.label_bilan.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_bilan.Name = "label_bilan";
             this.label_bilan.Size = new System.Drawing.Size(0, 36);
             this.label_bilan.TabIndex = 34;
             // 
-            // label_errEchan
+            // label_errEchanPresente
             // 
-            this.label_errEchan.AutoSize = true;
-            this.label_errEchan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_errEchan.ForeColor = System.Drawing.Color.Red;
-            this.label_errEchan.Location = new System.Drawing.Point(950, 651);
-            this.label_errEchan.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label_errEchan.MaximumSize = new System.Drawing.Size(350, 350);
-            this.label_errEchan.Name = "label_errEchan";
-            this.label_errEchan.Size = new System.Drawing.Size(0, 36);
-            this.label_errEchan.TabIndex = 35;
+            this.label_errEchanPresente.AutoSize = true;
+            this.label_errEchanPresente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_errEchanPresente.ForeColor = System.Drawing.Color.Red;
+            this.label_errEchanPresente.Location = new System.Drawing.Point(1262, 841);
+            this.label_errEchanPresente.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_errEchanPresente.MaximumSize = new System.Drawing.Size(350, 350);
+            this.label_errEchanPresente.Name = "label_errEchanPresente";
+            this.label_errEchanPresente.Size = new System.Drawing.Size(0, 36);
+            this.label_errEchanPresente.TabIndex = 35;
+            // 
+            // comboBox_presenceconcurrence
+            // 
+            this.comboBox_presenceconcurrence.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_presenceconcurrence.FormattingEnabled = true;
+            this.comboBox_presenceconcurrence.Items.AddRange(new object[] {
+            "Non",
+            "Oui",
+            "Je ne sais pas"});
+            this.comboBox_presenceconcurrence.Location = new System.Drawing.Point(574, 568);
+            this.comboBox_presenceconcurrence.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.comboBox_presenceconcurrence.Name = "comboBox_presenceconcurrence";
+            this.comboBox_presenceconcurrence.Size = new System.Drawing.Size(238, 39);
+            this.comboBox_presenceconcurrence.TabIndex = 37;
+            // 
+            // label_presenceconcurrence
+            // 
+            this.label_presenceconcurrence.AutoSize = true;
+            this.label_presenceconcurrence.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_presenceconcurrence.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.label_presenceconcurrence.Location = new System.Drawing.Point(24, 571);
+            this.label_presenceconcurrence.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_presenceconcurrence.Name = "label_presenceconcurrence";
+            this.label_presenceconcurrence.Size = new System.Drawing.Size(355, 36);
+            this.label_presenceconcurrence.TabIndex = 36;
+            this.label_presenceconcurrence.Text = "Présence Concurence ?";
+            // 
+            // label_connaissancePraticien
+            // 
+            this.label_connaissancePraticien.AutoSize = true;
+            this.label_connaissancePraticien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_connaissancePraticien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.label_connaissancePraticien.Location = new System.Drawing.Point(24, 673);
+            this.label_connaissancePraticien.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_connaissancePraticien.Name = "label_connaissancePraticien";
+            this.label_connaissancePraticien.Size = new System.Drawing.Size(347, 36);
+            this.label_connaissancePraticien.TabIndex = 38;
+            this.label_connaissancePraticien.Text = "Connaissance praticien";
+            // 
+            // comboBox_connaissancePraticien
+            // 
+            this.comboBox_connaissancePraticien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_connaissancePraticien.FormattingEnabled = true;
+            this.comboBox_connaissancePraticien.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "Je ne sais pas"});
+            this.comboBox_connaissancePraticien.Location = new System.Drawing.Point(574, 673);
+            this.comboBox_connaissancePraticien.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.comboBox_connaissancePraticien.Name = "comboBox_connaissancePraticien";
+            this.comboBox_connaissancePraticien.Size = new System.Drawing.Size(238, 39);
+            this.comboBox_connaissancePraticien.TabIndex = 39;
+            // 
+            // comboBox_confianceLabo
+            // 
+            this.comboBox_confianceLabo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_confianceLabo.FormattingEnabled = true;
+            this.comboBox_confianceLabo.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "Je ne sais pas"});
+            this.comboBox_confianceLabo.Location = new System.Drawing.Point(1860, 667);
+            this.comboBox_confianceLabo.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.comboBox_confianceLabo.Name = "comboBox_confianceLabo";
+            this.comboBox_confianceLabo.Size = new System.Drawing.Size(238, 39);
+            this.comboBox_confianceLabo.TabIndex = 41;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.label1.Location = new System.Drawing.Point(1310, 667);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(238, 36);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Confiance Labo";
+            // 
+            // label_errechanOffert
+            // 
+            this.label_errechanOffert.AutoSize = true;
+            this.label_errechanOffert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_errechanOffert.ForeColor = System.Drawing.Color.Red;
+            this.label_errechanOffert.Location = new System.Drawing.Point(76, 841);
+            this.label_errechanOffert.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_errechanOffert.MaximumSize = new System.Drawing.Size(350, 350);
+            this.label_errechanOffert.Name = "label_errechanOffert";
+            this.label_errechanOffert.Size = new System.Drawing.Size(0, 36);
+            this.label_errechanOffert.TabIndex = 44;
+            // 
+            // dataGridView_echantillonOffert
+            // 
+            this.dataGridView_echantillonOffert.AllowUserToDeleteRows = false;
+            this.dataGridView_echantillonOffert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_echantillonOffert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewComboBoxColumn1,
+            this.dataGridViewTextBoxColumn1});
+            this.dataGridView_echantillonOffert.Location = new System.Drawing.Point(486, 789);
+            this.dataGridView_echantillonOffert.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.dataGridView_echantillonOffert.Name = "dataGridView_echantillonOffert";
+            this.dataGridView_echantillonOffert.RowTemplate.Height = 24;
+            this.dataGridView_echantillonOffert.Size = new System.Drawing.Size(726, 515);
+            this.dataGridView_echantillonOffert.TabIndex = 43;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.Frozen = true;
+            this.dataGridViewComboBoxColumn1.HeaderText = "Médicament";
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // label_echanOffert
+            // 
+            this.label_echanOffert.AutoSize = true;
+            this.label_echanOffert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_echanOffert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.label_echanOffert.Location = new System.Drawing.Point(24, 746);
+            this.label_echanOffert.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label_echanOffert.Name = "label_echanOffert";
+            this.label_echanOffert.Size = new System.Drawing.Size(362, 36);
+            this.label_echanOffert.TabIndex = 42;
+            this.label_echanOffert.Text = "Offres échantillons offert";
             // 
             // rapportVisite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(163)))), ((int)(((byte)(235)))));
-            this.ClientSize = new System.Drawing.Size(2470, 1293);
-            this.Controls.Add(this.label_errEchan);
+            this.ClientSize = new System.Drawing.Size(2550, 2057);
+            this.Controls.Add(this.label_errechanOffert);
+            this.Controls.Add(this.dataGridView_echantillonOffert);
+            this.Controls.Add(this.label_echanOffert);
+            this.Controls.Add(this.comboBox_confianceLabo);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox_connaissancePraticien);
+            this.Controls.Add(this.label_connaissancePraticien);
+            this.Controls.Add(this.comboBox_presenceconcurrence);
+            this.Controls.Add(this.label_presenceconcurrence);
+            this.Controls.Add(this.label_errEchanPresente);
             this.Controls.Add(this.label_bilan);
             this.Controls.Add(this.label_autremotif);
             this.Controls.Add(this.label_motifvisite);
             this.Controls.Add(this.label_datepro);
             this.Controls.Add(this.label_DateRap);
             this.Controls.Add(this.label_errPratricien);
-            this.Controls.Add(this.dataGridView_echantillon);
+            this.Controls.Add(this.dataGridView_echantillonPresente);
             this.Controls.Add(this.dateTimePicker_DateProVisite);
             this.Controls.Add(this.dateTimePicker_DateRap);
             this.Controls.Add(this.button_Fermer);
@@ -433,8 +601,8 @@
             this.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.Name = "rapportVisite";
             this.Text = "RapVisite";
-            this.Load += new System.EventHandler(this.rapportVisite_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonPresente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonOffert)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,7 +629,7 @@
         private System.Windows.Forms.Button button_Fermer;
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateRap;
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateProVisite;
-        private System.Windows.Forms.DataGridView dataGridView_echantillon;
+        private System.Windows.Forms.DataGridView dataGridView_echantillonPresente;
         private System.Windows.Forms.Label label_errPratricien;
         private System.Windows.Forms.Label label_DateRap;
         private System.Windows.Forms.Label label_datepro;
@@ -470,7 +638,18 @@
         private System.Windows.Forms.Label label_bilan;
         private System.Windows.Forms.DataGridViewComboBoxColumn Medicaments;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.Label label_errEchan;
+        private System.Windows.Forms.Label label_errEchanPresente;
+        private System.Windows.Forms.ComboBox comboBox_presenceconcurrence;
+        private System.Windows.Forms.Label label_presenceconcurrence;
+        private System.Windows.Forms.Label label_connaissancePraticien;
+        private System.Windows.Forms.ComboBox comboBox_connaissancePraticien;
+        private System.Windows.Forms.ComboBox comboBox_confianceLabo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_errechanOffert;
+        private System.Windows.Forms.DataGridView dataGridView_echantillonOffert;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label label_echanOffert;
     }
 }
 
