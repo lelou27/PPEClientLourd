@@ -83,7 +83,7 @@ namespace PPEClientLourd
             }
 
             if(dgv_visiteurs.Rows.Count == 0)
-                dgv_visiteurs.Rows.Add("Désolé, aucun visiteurs n'ont été trouvés");
+                dgv_visiteurs.Rows.Add("Désolé, aucun visiteur n'a été trouvé");
 
             cs.Fermer();
         }

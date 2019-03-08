@@ -118,6 +118,7 @@
             this.Controls.Add(this.dgv_praticiens);
             this.Name = "AllPraticiens";
             this.Text = "Praticiens";
+            this.Load += new System.EventHandler(this.AllPraticiens_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_praticiens)).EndInit();
             this.ResumeLayout(false);
 

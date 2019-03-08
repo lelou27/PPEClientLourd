@@ -21,6 +21,13 @@ namespace PPEClientLourd
             set { chaineConnexion = value; }
         }
         private string _colNom, _colMatricule;
+        public AllPraticiens(string colNom, string colMat)
+        {
+            InitializeComponent();
+
+            this._colNom = colNom;
+            this._colMatricule = colMat;
+        }
 
         private void Retour_Click(object sender, EventArgs e)
         {
@@ -34,14 +41,12 @@ namespace PPEClientLourd
 
         }
 
-        public AllPraticiens(string colNom, string colMat)
+        private void dgv_praticiens_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            InitializeComponent();
-
-            this._colNom = colNom;
-            this._colMatricule = colMat;
+           
         }
-        private void AllPraticiens_Load(object sender, EventArgs e)
+
+        private void AllPraticiens_Load_1(object sender, EventArgs e)
         {
             Curs cs = new Curs(this.chaineConnexion);
 
@@ -54,13 +59,13 @@ namespace PPEClientLourd
 
             while (!cs.Fin())
             {
-                Numero = Convert.ToInt32(cs.Champ("PRA_NUM"));
+                Numero = Convert.ToInt32(cs.Champ("PRA_NUM").ToString());
                 Nom = cs.Champ("PRA_NOM").ToString();
                 Prenom = cs.Champ("PRA_PRENOM").ToString();
                 Adresse = cs.Champ("PRA_ADRESSE").ToString();
                 Cp = cs.Champ("PRA_CP").ToString();
                 Ville = cs.Champ("PRA_VILLE").ToString();
-                Coefnotoriete = Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE"));
+                Coefnotoriete = Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE").ToString());
                 Libelle = cs.Champ("TYP_LIBELLE").ToString();
 
                 dgv_praticiens.Rows.Add(Numero, Nom, Prenom, Adresse, Cp, Ville, Libelle, Coefnotoriete);
@@ -70,8 +75,14 @@ namespace PPEClientLourd
                 if (dgv_praticiens.Rows.Count == 0)
                     dgv_praticiens.Rows.Add("Désolé, aucun praticiens n'a été trouvé");
 
-                cs.Fermer();
             }
+
+            cs.Fermer();
+        }
+
+        private void AllPraticiens_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
