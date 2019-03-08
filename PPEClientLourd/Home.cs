@@ -86,6 +86,11 @@ namespace PPEClientLourd
            
         }
 
+        private void voirToutLesPraticiensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
+            ap.Show();
+
         private void ajouterUnMédicamentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Ajouter_Medicament am = new Ajouter_Medicament();

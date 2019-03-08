@@ -158,6 +158,7 @@
             this.voirToutLesPraticiensToolStripMenuItem.Name = "voirToutLesPraticiensToolStripMenuItem";
             this.voirToutLesPraticiensToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
             this.voirToutLesPraticiensToolStripMenuItem.Text = "Voir tout les praticiens";
+            this.voirToutLesPraticiensToolStripMenuItem.Click += new System.EventHandler(this.voirToutLesPraticiensToolStripMenuItem_Click);
             // 
             // rechercherUnPraticienToolStripMenuItem
             // 

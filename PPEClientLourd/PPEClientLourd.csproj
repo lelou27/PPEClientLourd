@@ -71,6 +71,12 @@
     <Compile Include="AllVisiteurs.designer.cs">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllPraticiens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllPraticiens.Designer.cs">
+      <DependentUpon>AllPraticiens.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="AllVisiteurs.resx">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllPraticiens.resx">
+      <DependentUpon>AllPraticiens.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
