@@ -68,7 +68,7 @@ namespace PPEClientLourd
         private void btn_valider_Click(object sender, EventArgs e)
         {
             string matricule, nom, prenom, adresse, cp, ville, dateEmbauche, labo, secteur;
-            int delegue;
+            int delegue, codePostal;
 
             if (cb_delegue.Checked)
                 delegue = 1;
@@ -110,7 +110,13 @@ namespace PPEClientLourd
                 }
                 cs.Fermer();
 
-                if(!error)
+                if (!Int32.TryParse(cp, out codePostal))
+                {
+                    lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
+                    error = true;
+                }
+
+                if (!error)
                 {
                     // GET LABO FOR INSERTION
                     cs = new Curs(this.chaineConnexion);
