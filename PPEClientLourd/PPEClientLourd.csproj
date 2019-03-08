@@ -108,6 +108,12 @@
     <Compile Include="Home.designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModificationMyInformations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificationMyInformations.Designer.cs">
+      <DependentUpon>ModificationMyInformations.cs</DependentUpon>
+    </Compile>
     <Compile Include="OneVisiteur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificationMyInformations.resx">
+      <DependentUpon>ModificationMyInformations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OneVisiteur.resx">
       <DependentUpon>OneVisiteur.cs</DependentUpon>
