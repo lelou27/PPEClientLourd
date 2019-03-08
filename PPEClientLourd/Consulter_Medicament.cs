@@ -32,6 +32,7 @@ namespace PPEClientLourd
         private void Consulter_medicament_combobox_SelectedIndexChanged( object sender, EventArgs e )
         {
             string nommed = Consulter_medicament_combobox.Text;
+
             Curs cs = new Curs(chaineconnexion);
             string requete = "SELECT * FROM `medicament` WHERE `medicament`.`MED_NOMCOMMERCIAL` = '" + nommed + "'";
             cs.ReqSelect(requete);

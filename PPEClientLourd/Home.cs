@@ -80,7 +80,13 @@ namespace PPEClientLourd
 
         }
 
-        private void ajouterUnMédicamentToolStripMenuItem_Click( object sender, EventArgs e )
+        private void voirToutLesPraticiensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
+            ap.Show();
+        }
+
+        private void ajouterUnMédicamentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Ajouter_Medicament am = new Ajouter_Medicament();
             am.Show();
@@ -95,6 +101,18 @@ namespace PPEClientLourd
         {
             SearchVisiteur sv = new SearchVisiteur(_colMatricule);
             sv.Show();
+        }
+
+        private void ajouterUnVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreerVisiteur cv = new CreerVisiteur();
+            cv.Show();
+        }
+
+        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ModificationMyInformations mmy = new ModificationMyInformations(this._colMatricule, this._colNom, this._role);
+            mmy.Show();
         }
     }
 }
