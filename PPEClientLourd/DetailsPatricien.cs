@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
     public partial class DetailsPatricien : Form
     {
-        string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
+        private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        public DetailsPatricien(int NomPatriciens)
+        public DetailsPatricien( int NomPatriciens )
         {
-
             InitializeComponent();
 
             Curs cs2 = new Curs(connection);
@@ -32,13 +30,6 @@ namespace PPEClientLourd
             cs2.Fermer();
 
         }
-
-       
-        private void button_Fermer_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Close();
-        }
-
-
+        private void button_Fermer_Click( object sender, EventArgs e ) => Form.ActiveForm.Close();
     }
 }

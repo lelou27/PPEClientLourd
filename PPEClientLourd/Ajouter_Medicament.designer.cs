@@ -166,7 +166,6 @@
             this.contreindic_input.Name = "contreindic_input";
             this.contreindic_input.Size = new System.Drawing.Size(303, 47);
             this.contreindic_input.TabIndex = 13;
-            this.contreindic_input.TextChanged += new System.EventHandler(this.contreindic_input_TextChanged);
             // 
             // Ajouter_medicament_valider_bouton
             // 
@@ -244,7 +243,6 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.Name = "Ajouter_Medicament";
             this.Text = "Ajouter_Medicament";
-            this.Load += new System.EventHandler(this.Ajouter_Medicament_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
