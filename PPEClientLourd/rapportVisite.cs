@@ -253,19 +253,17 @@ namespace PPEClientLourd
                 string rapNum = "";
                 while (!cs2.Fin())
                 {
-                    rapNum = cs2.Champ("RAP_NUM").ToString();
+                    int nbRapNum = 0;
+                    nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
+                    nbRapNum++;
+                    rapNum = nbRapNum.ToString();
                     cs2.Suivant();
                 }
                 cs2.Fermer();
 
-                if (comboBox_NewRDV.Text == "Oui")
-                {
-                    requete = "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', '" + rapDateProVisite + "', " + rapPresenceConcurence + ", " + praNum + ")";
-                }
-                else
-                {
-                    requete = "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', " + rapDateProVisite + ", " + rapPresenceConcurence + ", " + praNum + ")";
-                }
+                requete = comboBox_NewRDV.Text == "Oui"
+                    ? "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', '" + rapDateProVisite + "', " + rapPresenceConcurence + ", " + praNum + ")"
+                    : "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', " + rapDateProVisite + ", " + rapPresenceConcurence + ", " + praNum + ")";
                 Curs cs = new Curs(connection);
                 cs.ReqAdmin(requete);
                 cs.Fermer();
