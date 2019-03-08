@@ -74,7 +74,6 @@ namespace PPEClientLourd
 
                 if (dgv_praticiens.Rows.Count == 0)
                     dgv_praticiens.Rows.Add("Désolé, aucun praticiens n'a été trouvé");
-
             }
 
             cs.Fermer();
