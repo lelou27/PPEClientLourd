@@ -184,10 +184,8 @@ namespace PPEClientLourd
                     err++;
                 }
             }
-            if (erreurs.Count != 0)
-            {
-                label_errEchanPresente.Text = ErreurSaisieNbEchan(erreurs);
-            }
+            label_errEchanPresente.Text = erreurs.Count != 0 ? ErreurSaisieNbEchan(erreurs) : "";
+
             List<object[]> ResultOffert = dataGridView_echantillonOffert.Rows.OfType<DataGridViewRow>().Select(
                 r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
 
@@ -211,10 +209,8 @@ namespace PPEClientLourd
                     err++;
                 }
             }
-            if (erreursOffert.Count != 0)
-            {
-                label_errechanOffert.Text = ErreurSaisieNbEchan(erreursOffert);
-            }
+
+            label_errechanOffert.Text = erreursOffert.Count != 0 ? ErreurSaisieNbEchan(erreursOffert) : "";
 
             if (err == 0)
             {
@@ -254,8 +250,11 @@ namespace PPEClientLourd
                 while (!cs2.Fin())
                 {
                     int nbRapNum = 0;
-                    nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
-                    nbRapNum++;
+                    if (cs2.Champ("RAP_NUM").ToString() != "" || cs2.Champ("RAP_NUM").ToString() != null)
+                    {
+                        nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
+                        nbRapNum++;
+                    }
                     rapNum = nbRapNum.ToString();
                     cs2.Suivant();
                 }
@@ -267,6 +266,29 @@ namespace PPEClientLourd
                 Curs cs = new Curs(connection);
                 cs.ReqAdmin(requete);
                 cs.Fermer();
+
+                foreach (KeyValuePair<string, int> item in echantillons)
+                {
+                    Curs echanPre = new Curs(connection);
+                    requete = "SELECT `MED_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
+                    echanPre.ReqSelect(requete);
+                    bool test = true;
+                    while (!echanPre.Fin())
+                    {
+                        test = false;
+                        echanPre.Suivant();
+                    }
+                    if (test)
+                    {
+                        string medID = item.Key;
+                        requete = "INSERT INTO `echantillon` (`ECH_ID`, `MED_ID`) VALUES ('', '" + medID + "')";
+                        Curs insertEchanPre = new Curs(connection);
+                        insertEchanPre.ReqAdmin(requete);
+                        insertEchanPre.Fermer();
+                    }
+                    echanPre.Fermer();
+                }
+
             }
         }
 
