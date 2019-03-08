@@ -12,14 +12,14 @@ namespace PPEClientLourd
         private string _colNom;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
-        
+
         public rapportVisite( string colNom, string colMat )
         {
             InitializeComponent();
 
             _colNom = colNom;
             _colMatricule = colMat;
-            
+
             //Pour remplir le combobox des Pratitiens
             Curs cs = new Curs(connection);
             string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
@@ -61,7 +61,7 @@ namespace PPEClientLourd
             cs3.Fermer();
         }
 
-        
+
         private void ComboBox_NewRDV_SelectedIndexChanged( object sender, EventArgs e )
         {
             switch (comboBox_NewRDV.Text)
@@ -96,11 +96,7 @@ namespace PPEClientLourd
         }
 
 
-        private void button_Fermer_Click_1( object sender, EventArgs e )
-        {
-            Form.ActiveForm.Close();
-
-        }
+        private void button_Fermer_Click_1( object sender, EventArgs e ) => Form.ActiveForm.Close();
 
         private void comboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
         {
@@ -262,47 +258,47 @@ namespace PPEClientLourd
                 cs.ReqAdmin(requete);
                 cs.Fermer();
 
-                //foreach (KeyValuePair<string, int> item in echantillons)
-                //{
-                //    Curs echanPre = new Curs(connection);
-                //    requete = "SELECT `ECH_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
-                //    echanPre.ReqSelect(requete);
-                //    string echPreID = "";
-                //    while (!echanPre.Fin())
-                //    {
-                //        echPreID = echanPre.Champ("ECH_ID").ToString();
-                //        echanPre.Suivant();
-                //    }
-                //    echanPre.Fermer();
+                foreach (KeyValuePair<string, int> item in echantillons)
+                {
+                    Curs echanpre = new Curs(connection);
+                    requete = "select `ech_id` from `echantillon` where `echantillon`.`med_id` = '" + item.Key + "'";
+                    echanpre.ReqSelect(requete);
+                    string echpreid = "";
+                    while (!echanpre.Fin())
+                    {
+                        echpreid = echanpre.Champ("ech_id").ToString();
+                        echanpre.Suivant();
+                    }
+                    echanpre.Fermer();
 
-                //    string echPreQuantite = item.Value.ToString();
+                    string echprequantite = item.Value.ToString();
 
-                //    requete = "INSERT INTO `distribuer` (`ECH_ID`, `COL_MATRICULE`, `RAP_NUM`, `QUANTITE`, `OFFERT`, `PRESENTE`) VALUES (" + echPreID + ", '" + _colMatricule + "', " + rapNum + ", " + echPreQuantite + ", False, True)";
-                //    Curs insertEchanPre = new Curs(connection);
-                //    insertEchanPre.ReqAdmin(requete);
-                //    insertEchanPre.Fermer();
-                //}
+                    requete = "insert into `distribuer` (`ech_id`, `col_matricule`, `rap_num`, `quantite`, `offert`, `presente`) values (" + echpreid + ", '" + _colMatricule + "', " + rapNum + ", " + echprequantite + ", false, true)";
+                    Curs insertechanpre = new Curs(connection);
+                    insertechanpre.ReqAdmin(requete);
+                    insertechanpre.Fermer();
+                }
 
-                //foreach (KeyValuePair<string, int> item in echantillonsOffert)
-                //{
-                //    Curs echanOff = new Curs(connection);
-                //    requete = "SELECT `ECH_ID` FROM `echantillon` WHERE `echantillon`.`MED_ID` = '" + item.Key + "'";
-                //    echanOff.ReqSelect(requete);
-                //    string echOffID = "";
-                //    while (!echanOff.Fin())
-                //    {
-                //        echOffID = echanOff.Champ("ECH_ID").ToString();
-                //        echanOff.Suivant();
-                //    }
-                //    echanOff.Fermer();
+                foreach (KeyValuePair<string, int> item in echantillonsOffert)
+                {
+                    Curs echanoff = new Curs(connection);
+                    requete = "select `ech_id` from `echantillon` where `echantillon`.`med_id` = '" + item.Key + "'";
+                    echanoff.ReqSelect(requete);
+                    string echoffid = "";
+                    while (!echanoff.Fin())
+                    {
+                        echoffid = echanoff.Champ("ech_id").ToString();
+                        echanoff.Suivant();
+                    }
+                    echanoff.Fermer();
 
-                //    string echOffQuantite = item.Value.ToString();
+                    string echoffquantite = item.Value.ToString();
 
-                //    requete = "INSERT INTO `distribuer` (`ECH_ID`, `COL_MATRICULE`, `RAP_NUM`, `QUANTITE`, `OFFERT`, `PRESENTE`) VALUES (" + echOffID + ", '" + _colMatricule + "', " + rapNum + ", " + echOffQuantite + ", True, False)";
-                //    Curs insertEchanOff = new Curs(connection);
-                //    insertEchanOff.ReqAdmin(requete);
-                //    insertEchanOff.Fermer();
-                //}
+                    requete = "insert into `distribuer` (`ech_id`, `col_matricule`, `rap_num`, `quantite`, `offert`, `presente`) values (" + echoffid + ", '" + _colMatricule + "', " + rapNum + ", " + echoffquantite + ", true, false)";
+                    Curs insertechanoff = new Curs(connection);
+                    insertechanoff.ReqAdmin(requete);
+                    insertechanoff.Fermer();
+                }
             }
         }
 
@@ -318,15 +314,9 @@ namespace PPEClientLourd
             return errResult;
         }
 
-        private void dateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e )
-        {
-            label_datepro.Text = "";
-        }
+        private void dateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e ) => label_datepro.Text = "";
 
-        private void dateTimePicker_DateRap_ValueChanged( object sender, EventArgs e )
-        {
-            label_DateRap.Text = "";
-        }
+        private void dateTimePicker_DateRap_ValueChanged( object sender, EventArgs e ) => label_DateRap.Text = "";
 
         private void textBox_AutreMotif_TextChanged( object sender, EventArgs e )
         {
