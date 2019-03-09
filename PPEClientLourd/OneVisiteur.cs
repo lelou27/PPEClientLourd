@@ -1,31 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
     public partial class OneVisiteur : Form
     {
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
         private string _previous;
 
         public string ChaineConnexion
         {
-            get => chaineConnexion;
-            set => chaineConnexion = value;
+            get { return chaineConnexion; }
+            set { chaineConnexion = value; }
         }
 
         private string _matricule;
         private string _matriculePersonne;
         private string _nom;
 
-        public OneVisiteur( string matricule, string matriculePersonne, string previous = "AllVisiteur" )
+        public OneVisiteur(string matricule, string matriculePersonne, string previous = "AllVisiteur")
         {
             InitializeComponent();
-            _matricule = matricule;
-            _matriculePersonne = matriculePersonne;
-            _previous = previous;
+            this._matricule = matricule;
+            this._matriculePersonne = matriculePersonne;
+            this._previous = previous;
 
-            Curs cs = new Curs(chaineConnexion);
+            Curs cs = new Curs(this.chaineConnexion);
 
             cs.ReqSelect("SELECT c.*, l.LAB_NOM FROM collaborateur c INNER JOIN labo l ON c.LAB_CODE = l.LAB_CODE" +
                 " WHERE c.COL_MATRICULE = '" + matricule + "';");
@@ -34,7 +41,7 @@ namespace PPEClientLourd
             {
                 string dateEmbauche;
 
-                _nom = cs.Champ("COL_NOM").ToString();
+                this._nom = cs.Champ("COL_NOM").ToString();
 
                 txb_nom.Text = cs.Champ("COL_NOM").ToString();
                 txb_prenom.Text = cs.Champ("COL_PRENOM").ToString();
@@ -55,23 +62,28 @@ namespace PPEClientLourd
             cs.Fermer();
         }
 
-        private void OneVisiteur_Load( object sender, EventArgs e )
+        private void OneVisiteur_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void btn_retour_Click( object sender, EventArgs e )
+        private void label4_Click(object sender, EventArgs e)
         {
-            Close();
 
-            if (_previous == "AllVisiteur")
+        }
+
+        private void btn_retour_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            if (this._previous == "AllVisiteur")
             {
-                AllVisiteurs av = new AllVisiteurs(_nom, _matricule);
+                AllVisiteurs av = new AllVisiteurs(this._nom, this._matricule);
                 av.Show();
             }
             else
             {
-                SearchVisiteur sv = new SearchVisiteur(_matricule);
+                SearchVisiteur sv = new SearchVisiteur(this._matricule);
                 sv.Show();
             }
         }

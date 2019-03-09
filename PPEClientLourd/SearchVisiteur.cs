@@ -1,32 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
     public partial class SearchVisiteur : Form
     {
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
-        private Dictionary<string, string> visiteurs = new Dictionary<string, string>();
+        string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        Dictionary<string, string> visiteurs = new Dictionary<string, string>();
         private string _matricule;
 
         public string ChaineConnexion
         {
-            get => chaineConnexion;
-            set => chaineConnexion = value;
+            get { return chaineConnexion; }
+            set { chaineConnexion = value; }
         }
 
-        public SearchVisiteur( string matricule )
+        public SearchVisiteur(string matricule)
         {
             InitializeComponent();
 
-            _matricule = matricule;
+            this._matricule = matricule;
         }
 
-        private void SearchVisiteur_Load( object sender, EventArgs e )
+        private void SearchVisiteur_Load(object sender, EventArgs e)
         {
-            Curs cs = new Curs(chaineConnexion);
+            Curs cs = new Curs(this.chaineConnexion);
 
             string request = "SELECT c.COL_MATRICULE, c.COL_NOM, c.COL_PRENOM " +
                 "             FROM collaborateur c INNER JOIN visiteur v ON c.COL_MATRICULE = v.COL_MATRICULE";
@@ -35,7 +40,7 @@ namespace PPEClientLourd
 
             string nomComplet;
 
-            while (!cs.Fin())
+            while(!cs.Fin())
             {
                 nomComplet = cs.Champ("COL_PRENOM").ToString() + " " + cs.Champ("COL_NOM").ToString();
                 cmbx_visiteurs.Items.Add(nomComplet);
@@ -48,20 +53,20 @@ namespace PPEClientLourd
             cs.Fermer();
         }
 
-        private void btn_showInformations_Click( object sender, EventArgs e )
+        private void btn_showInformations_Click(object sender, EventArgs e)
         {
-            string visiteur = cmbx_visiteurs.Text;
+            var visiteur = cmbx_visiteurs.Text;
             string matricule;
 
-            if (visiteur.Length != 0)
+            if(visiteur.Length != 0)
             {
                 matricule = visiteurs.FirstOrDefault(x => x.Value == visiteur).Key;
-                OneVisiteur ov = new OneVisiteur(matricule, _matricule, "SearchVisiteur");
+                OneVisiteur ov = new OneVisiteur(matricule, this._matricule, "SearchVisiteur");
 
-                Close();
+                this.Close();
 
                 ov.Show();
-            }
+            } 
             else
             {
                 lbl_errorVisitor.Text = "Le visiteur renseigné ne correspond pas";
