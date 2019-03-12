@@ -185,6 +185,7 @@
             // 
             // Consulter_medicament_hidden_contreindic
             // 
+            this.Consulter_medicament_hidden_contreindic.AllowDrop = true;
             this.Consulter_medicament_hidden_contreindic.AutoSize = true;
             this.Consulter_medicament_hidden_contreindic.Location = new System.Drawing.Point(1118, 601);
             this.Consulter_medicament_hidden_contreindic.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -195,6 +196,7 @@
             // 
             // Consulter_medicament_combobox
             // 
+            this.Consulter_medicament_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Consulter_medicament_combobox.FormattingEnabled = true;
             this.Consulter_medicament_combobox.Location = new System.Drawing.Point(80, 66);
             this.Consulter_medicament_combobox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
