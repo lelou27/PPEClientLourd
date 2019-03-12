@@ -20,6 +20,13 @@ namespace PPEClientLourd
 
             _colNom = colNom;
             _colMatricule = colMat;
+
+
+        }
+
+        private void dataGridView1_CellContentClick( object sender, DataGridViewCellEventArgs e )
+        {
+
         }
 
         private void dgv_visiteurs_CellContentClick( object sender, DataGridViewCellEventArgs e )
@@ -32,6 +39,7 @@ namespace PPEClientLourd
                 ov.Show();
 
                 Hide();
+
             }
         }
 

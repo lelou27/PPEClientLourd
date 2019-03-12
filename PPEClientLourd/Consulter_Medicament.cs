@@ -5,9 +5,9 @@ namespace PPEClientLourd
 {
     public partial class Consulter_Medicament : Form
     {
-        private string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
+        string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
 
-        public Consulter_Medicament( int idMedicament = -1 )
+        public Consulter_Medicament(int idMedicament = -1)
         {
             if (idMedicament != -1)
             {
@@ -29,7 +29,7 @@ namespace PPEClientLourd
 
         }
 
-        private void Consulter_medicament_combobox_SelectedIndexChanged( object sender, EventArgs e )
+        private void Consulter_medicament_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nommed = Consulter_medicament_combobox.Text;
 

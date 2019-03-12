@@ -60,6 +60,11 @@ namespace PPEClientLourd
 
         }
 
+        private void label4_Click( object sender, EventArgs e )
+        {
+
+        }
+
         private void btn_retour_Click( object sender, EventArgs e )
         {
             Close();
