@@ -71,6 +71,12 @@
     <Compile Include="AllVisiteurs.designer.cs">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllPraticiens.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllPraticiens.Designer.cs">
+      <DependentUpon>AllPraticiens.cs</DependentUpon>
+    </Compile>
     <Compile Include="Connexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     <Compile Include="Consulter_Tous_Medicaments.Designer.cs">
       <DependentUpon>Consulter_Tous_Medicaments.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreerVisiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreerVisiteur.Designer.cs">
+      <DependentUpon>CreerVisiteur.cs</DependentUpon>
+    </Compile>
     <Compile Include="curs.cs" />
     <Compile Include="DetailsPatricien.cs">
       <SubType>Form</SubType>
@@ -101,6 +113,12 @@
     </Compile>
     <Compile Include="Home.designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificationMyInformations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificationMyInformations.Designer.cs">
+      <DependentUpon>ModificationMyInformations.cs</DependentUpon>
     </Compile>
     <Compile Include="OneVisiteur.cs">
       <SubType>Form</SubType>
@@ -128,6 +146,9 @@
     <EmbeddedResource Include="AllVisiteurs.resx">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AllPraticiens.resx">
+      <DependentUpon>AllPraticiens.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,11 +158,17 @@
     <EmbeddedResource Include="Consulter_Tous_Medicaments.resx">
       <DependentUpon>Consulter_Tous_Medicaments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreerVisiteur.resx">
+      <DependentUpon>CreerVisiteur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailsPatricien.resx">
       <DependentUpon>DetailsPatricien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificationMyInformations.resx">
+      <DependentUpon>ModificationMyInformations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OneVisiteur.resx">
       <DependentUpon>OneVisiteur.cs</DependentUpon>

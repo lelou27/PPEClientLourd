@@ -52,13 +52,13 @@ namespace PPEClientLourd
 
         private void Ajouter_medicament_valider_bouton_Click(object sender, EventArgs e)
         {
-            string depot_legal = depot_legal_input.Text;
-            string nom = nom_input.Text;
-            string code = code_input.Text;
-            string composition = composition_input.Text;
-            string effets = effets_input.Text;
-            string contreindic = contreindic_input.Text;
-            string prixech = prixech_input.Text;
+            string depot_legal = depot_legal_input.Text.Trim();
+            string nom = nom_input.Text.Trim();
+            string code = code_input.Text.Trim();
+            string composition = composition_input.Text.Trim();
+            string effets = effets_input.Text.Trim();
+            string contreindic = contreindic_input.Text.Trim();
+            string prixech = prixech_input.Text.Trim();
 
             if( (depot_legal.Length == 0) || (nom.Length == 0) || (code.Length == 0) || (composition.Length == 0) || (effets.Length == 0) || (contreindic.Length == 0) || (prixech.ToString().Length == 0))
             {
