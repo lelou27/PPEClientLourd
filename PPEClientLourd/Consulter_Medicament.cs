@@ -7,9 +7,9 @@ namespace PPEClientLourd
     {
         string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
 
-        public Consulter_Medicament(int idMedicament = -1)
+        public Consulter_Medicament(string idMedicament = "a")
         {
-            if (idMedicament != -1)
+            if(idMedicament != "a")
             {
                 // requête recup medoc
                 // remplissage du combobox
