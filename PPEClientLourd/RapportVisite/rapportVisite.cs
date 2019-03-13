@@ -14,42 +14,49 @@ namespace PPEClientLourd
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
 
-        public rapportVisite( string colNom, string colMat )
+        public rapportVisite( string colNom, string colMat, string previous = "Home",int numRap=0 )
         {
             InitializeComponent();
 
             _colNom = colNom;
             _colMatricule = colMat;
 
-            //Pour remplir le combobox des Pratitiens
-            Curs cs = new Curs(connection);
-            string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
-            cs.ReqSelect(requete);
-            string Name = "";
-            while (!cs.Fin())
+            if (previous == "Home")
             {
-                Name = cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString();
-                praticiens.Add(Convert.ToInt16(cs.Champ("PRA_NUM").ToString()), Name);
-                comboBox_Practiciens.Items.Add(Name);
-                cs.Suivant();
+                //Pour remplir le combobox des Pratitiens
+                Curs cs = new Curs(connection);
+                string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
+                cs.ReqSelect(requete);
+                string Name = "";
+                while (!cs.Fin())
+                {
+                    Name = cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString();
+                    praticiens.Add(Convert.ToInt16(cs.Champ("PRA_NUM").ToString()), Name);
+                    comboBox_Practiciens.Items.Add(Name);
+                    cs.Suivant();
+                }
+                cs.Fermer();
+
+                dataGridView_echantillonPresente.ColumnCount = 2;
+                dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+                dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+                //Pour remplir le combobox dans les datagridview des medicaments
+                Curs cs2 = new Curs(connection);
+                requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL` ASC";
+                cs2.ReqSelect(requete);
+                while (!cs2.Fin())
+                {
+                    Medicaments.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
+                    dataGridViewComboBoxColumn1.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
+                    cs2.Suivant();
+                }
+                cs2.Fermer();
             }
-            cs.Fermer();
-
-            dataGridView_echantillonPresente.ColumnCount = 2;
-            dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
-            dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
-            //Pour remplir le combobox dans le datagridview presenté des medicaments
-            Curs cs2 = new Curs(connection);
-            requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL` ASC";
-            cs2.ReqSelect(requete);
-            while (!cs2.Fin())
+            else
             {
-                Medicaments.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
-                dataGridViewComboBoxColumn1.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
-                cs2.Suivant();
+                comboBox_Practiciens.Enabled = false;
             }
-            cs2.Fermer();
         }
 
 
