@@ -41,7 +41,8 @@ namespace PPEClientLourd
             this._colNom = colNom;
             this._colMatricule = colMat;
         }
-        private void AllPraticiens_Load(object sender, EventArgs e)
+
+        private void AllPraticiens_Load_1(object sender, EventArgs e)
         {
             Curs cs = new Curs(this.chaineConnexion);
 
@@ -60,7 +61,7 @@ namespace PPEClientLourd
                 Adresse = cs.Champ("PRA_ADRESSE").ToString();
                 Cp = cs.Champ("PRA_CP").ToString();
                 Ville = cs.Champ("PRA_VILLE").ToString();
-                Coefnotoriete = Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE"));
+                Coefnotoriete = Math.Round(Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE")), 2);
                 Libelle = cs.Champ("TYP_LIBELLE").ToString();
 
                 dgv_praticiens.Rows.Add(Numero, Nom, Prenom, Adresse, Cp, Ville, Libelle, Coefnotoriete);
@@ -69,9 +70,9 @@ namespace PPEClientLourd
 
                 if (dgv_praticiens.Rows.Count == 0)
                     dgv_praticiens.Rows.Add("Désolé, aucun praticiens n'a été trouvé");
-
-                cs.Fermer();
             }
+
+            cs.Fermer();
         }
     }
 }

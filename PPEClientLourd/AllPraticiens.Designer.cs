@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllPraticiens));
             this.dgv_praticiens = new System.Windows.Forms.DataGridView();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,8 +117,10 @@
             this.ClientSize = new System.Drawing.Size(872, 450);
             this.Controls.Add(this.Retour);
             this.Controls.Add(this.dgv_praticiens);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllPraticiens";
             this.Text = "Praticiens";
+            this.Load += new System.EventHandler(this.AllPraticiens_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_praticiens)).EndInit();
             this.ResumeLayout(false);
 

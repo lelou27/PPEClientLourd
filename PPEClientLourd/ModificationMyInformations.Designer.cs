@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificationMyInformations));
             this.lbl_nom = new System.Windows.Forms.Label();
             this.lbl_prenom = new System.Windows.Forms.Label();
             this.lbl_ville = new System.Windows.Forms.Label();
@@ -294,6 +295,7 @@
             this.Controls.Add(this.lbl_ville);
             this.Controls.Add(this.lbl_prenom);
             this.Controls.Add(this.lbl_nom);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModificationMyInformations";
             this.Text = "Modifier mes informations";
             this.Load += new System.EventHandler(this.ModificationMyInformations_Load);

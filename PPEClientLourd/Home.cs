@@ -109,10 +109,22 @@ namespace PPEClientLourd
             cv.Show();
         }
 
-        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_2(object sender, EventArgs e)
         {
             ModificationMyInformations mmy = new ModificationMyInformations(this._colMatricule, this._colNom, this._role);
             mmy.Show();
+        }
+
+        private void ajouterUnVisiteurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            CreerVisiteur cv = new CreerVisiteur();
+            cv.Show();
+        }
+
+        private void voirToutLesPraticiensToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
+            ap.Show();
         }
     }
 }

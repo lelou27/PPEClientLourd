@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchVisiteur));
             this.cmbx_visiteurs = new System.Windows.Forms.ComboBox();
             this.lbl_nomVisiteur = new System.Windows.Forms.Label();
             this.btn_showInformations = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@
             this.Controls.Add(this.btn_showInformations);
             this.Controls.Add(this.lbl_nomVisiteur);
             this.Controls.Add(this.cmbx_visiteurs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchVisiteur";
             this.Text = "Rechercher un visiteur";
             this.Load += new System.EventHandler(this.SearchVisiteur_Load);
