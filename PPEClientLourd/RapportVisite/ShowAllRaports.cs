@@ -89,14 +89,11 @@ namespace PPEClientLourd
         {
             string rapNum = dgv_rapports[1, e.RowIndex].Value.ToString();
             int noRapport = Convert.ToInt16(rapNum);
-            lbl_noResults.Text = noRapport.ToString();
 
             if (noRapport != 0)
             {
-                Home h = new Home(this._matricule, this._nom);
-
-                Hide();
-
+                rapportVisite rv = new rapportVisite(this._nom, this._matricule, "ShowAllRaports", noRapport);
+                rv.Show();
             }
         }
     }
