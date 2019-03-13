@@ -181,18 +181,11 @@ namespace PPEClientLourd
                 cs.ReqAdmin(req);
                 cs.Fermer();
 
-                // INSERT INTO VISITEUR OR RESPONSABLE
-                if (secteur != null)
+                // UPDATE IF DELEGUE
+                if (delegue == 1)
                 {
                     cs = new Curs(this.chaineConnexion);
-                    req = "INSERT INTO responsable(COL_MATRICULE) VALUES('" + matricule + "');";
-                    cs.ReqAdmin(req);
-                    cs.Fermer();
-                }
-                else
-                {
-                    cs = new Curs(this.chaineConnexion);
-                    req = "INSERT INTO visiteur(COL_MATRICULE, DELEGUE) VALUES('" + matricule + "', " + delegue + ");";
+                    req = "UPDATE visiteur SET DELEGUE = '" + delegue + "' WHERE COL_MATRICULE = '"+matricule+"';";
                     cs.ReqAdmin(req);
                     cs.Fermer();
                 }
