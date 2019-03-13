@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsPatricien));
             this.Title = new System.Windows.Forms.Label();
             this.label_num = new System.Windows.Forms.Label();
             this.label_nom = new System.Windows.Forms.Label();
@@ -52,9 +53,10 @@
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.Title.Location = new System.Drawing.Point(380, 9);
+            this.Title.Location = new System.Drawing.Point(285, 7);
+            this.Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(140, 18);
+            this.Title.Size = new System.Drawing.Size(120, 15);
             this.Title.TabIndex = 5;
             this.Title.Text = "Détails Patriciens";
             // 
@@ -63,9 +65,10 @@
             this.label_num.AutoSize = true;
             this.label_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_num.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_num.Location = new System.Drawing.Point(12, 122);
+            this.label_num.Location = new System.Drawing.Point(9, 99);
+            this.label_num.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_num.Name = "label_num";
-            this.label_num.Size = new System.Drawing.Size(68, 18);
+            this.label_num.Size = new System.Drawing.Size(58, 15);
             this.label_num.TabIndex = 6;
             this.label_num.Text = "Numéro";
             // 
@@ -74,9 +77,10 @@
             this.label_nom.AutoSize = true;
             this.label_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_nom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_nom.Location = new System.Drawing.Point(12, 171);
+            this.label_nom.Location = new System.Drawing.Point(9, 139);
+            this.label_nom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_nom.Name = "label_nom";
-            this.label_nom.Size = new System.Drawing.Size(44, 18);
+            this.label_nom.Size = new System.Drawing.Size(37, 15);
             this.label_nom.TabIndex = 7;
             this.label_nom.Text = "Nom";
             // 
@@ -85,9 +89,10 @@
             this.label_prenom.AutoSize = true;
             this.label_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_prenom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_prenom.Location = new System.Drawing.Point(12, 214);
+            this.label_prenom.Location = new System.Drawing.Point(9, 174);
+            this.label_prenom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_prenom.Name = "label_prenom";
-            this.label_prenom.Size = new System.Drawing.Size(67, 18);
+            this.label_prenom.Size = new System.Drawing.Size(57, 15);
             this.label_prenom.TabIndex = 8;
             this.label_prenom.Text = "Prénom";
             // 
@@ -96,9 +101,10 @@
             this.label_adresse.AutoSize = true;
             this.label_adresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_adresse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_adresse.Location = new System.Drawing.Point(12, 255);
+            this.label_adresse.Location = new System.Drawing.Point(9, 207);
+            this.label_adresse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_adresse.Name = "label_adresse";
-            this.label_adresse.Size = new System.Drawing.Size(69, 18);
+            this.label_adresse.Size = new System.Drawing.Size(58, 15);
             this.label_adresse.TabIndex = 9;
             this.label_adresse.Text = "Adresse";
             // 
@@ -107,9 +113,10 @@
             this.label_ville.AutoSize = true;
             this.label_ville.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_ville.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_ville.Location = new System.Drawing.Point(12, 298);
+            this.label_ville.Location = new System.Drawing.Point(9, 242);
+            this.label_ville.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_ville.Name = "label_ville";
-            this.label_ville.Size = new System.Drawing.Size(39, 18);
+            this.label_ville.Size = new System.Drawing.Size(35, 15);
             this.label_ville.TabIndex = 10;
             this.label_ville.Text = "Ville";
             // 
@@ -118,9 +125,10 @@
             this.label_cofnot.AutoSize = true;
             this.label_cofnot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_cofnot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_cofnot.Location = new System.Drawing.Point(12, 340);
+            this.label_cofnot.Location = new System.Drawing.Point(9, 276);
+            this.label_cofnot.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_cofnot.Name = "label_cofnot";
-            this.label_cofnot.Size = new System.Drawing.Size(129, 18);
+            this.label_cofnot.Size = new System.Drawing.Size(107, 15);
             this.label_cofnot.TabIndex = 11;
             this.label_cofnot.Text = "Coeff. Notoriété";
             // 
@@ -129,84 +137,93 @@
             this.label_Lieu.AutoSize = true;
             this.label_Lieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Lieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.label_Lieu.Location = new System.Drawing.Point(12, 391);
+            this.label_Lieu.Location = new System.Drawing.Point(9, 318);
+            this.label_Lieu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_Lieu.Name = "label_Lieu";
-            this.label_Lieu.Size = new System.Drawing.Size(120, 18);
+            this.label_Lieu.Size = new System.Drawing.Size(105, 15);
             this.label_Lieu.TabIndex = 12;
             this.label_Lieu.Text = "Lieu d\'exercice";
             // 
             // textBox_num
             // 
-            this.textBox_num.Location = new System.Drawing.Point(216, 122);
+            this.textBox_num.Location = new System.Drawing.Point(162, 99);
+            this.textBox_num.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_num.Name = "textBox_num";
             this.textBox_num.ReadOnly = true;
-            this.textBox_num.Size = new System.Drawing.Size(222, 22);
+            this.textBox_num.Size = new System.Drawing.Size(168, 20);
             this.textBox_num.TabIndex = 13;
             // 
             // textBox_nom
             // 
-            this.textBox_nom.Location = new System.Drawing.Point(216, 171);
+            this.textBox_nom.Location = new System.Drawing.Point(162, 139);
+            this.textBox_nom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_nom.Name = "textBox_nom";
             this.textBox_nom.ReadOnly = true;
-            this.textBox_nom.Size = new System.Drawing.Size(222, 22);
+            this.textBox_nom.Size = new System.Drawing.Size(168, 20);
             this.textBox_nom.TabIndex = 14;
             // 
             // textBox_prenom
             // 
-            this.textBox_prenom.Location = new System.Drawing.Point(216, 214);
+            this.textBox_prenom.Location = new System.Drawing.Point(162, 174);
+            this.textBox_prenom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_prenom.Name = "textBox_prenom";
             this.textBox_prenom.ReadOnly = true;
-            this.textBox_prenom.Size = new System.Drawing.Size(222, 22);
+            this.textBox_prenom.Size = new System.Drawing.Size(168, 20);
             this.textBox_prenom.TabIndex = 15;
             // 
             // textBox_adresse
             // 
-            this.textBox_adresse.Location = new System.Drawing.Point(216, 251);
+            this.textBox_adresse.Location = new System.Drawing.Point(162, 204);
+            this.textBox_adresse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_adresse.Name = "textBox_adresse";
             this.textBox_adresse.ReadOnly = true;
-            this.textBox_adresse.Size = new System.Drawing.Size(222, 22);
+            this.textBox_adresse.Size = new System.Drawing.Size(168, 20);
             this.textBox_adresse.TabIndex = 16;
             // 
             // textBox_ville
             // 
-            this.textBox_ville.Location = new System.Drawing.Point(347, 294);
+            this.textBox_ville.Location = new System.Drawing.Point(260, 239);
+            this.textBox_ville.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_ville.Name = "textBox_ville";
             this.textBox_ville.ReadOnly = true;
-            this.textBox_ville.Size = new System.Drawing.Size(222, 22);
+            this.textBox_ville.Size = new System.Drawing.Size(168, 20);
             this.textBox_ville.TabIndex = 17;
             // 
             // textBox_coef
             // 
-            this.textBox_coef.Location = new System.Drawing.Point(216, 336);
+            this.textBox_coef.Location = new System.Drawing.Point(162, 273);
+            this.textBox_coef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_coef.Name = "textBox_coef";
             this.textBox_coef.ReadOnly = true;
-            this.textBox_coef.Size = new System.Drawing.Size(222, 22);
+            this.textBox_coef.Size = new System.Drawing.Size(168, 20);
             this.textBox_coef.TabIndex = 18;
             // 
             // textBox_lieu
             // 
-            this.textBox_lieu.Location = new System.Drawing.Point(216, 387);
+            this.textBox_lieu.Location = new System.Drawing.Point(162, 314);
+            this.textBox_lieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_lieu.Name = "textBox_lieu";
             this.textBox_lieu.ReadOnly = true;
-            this.textBox_lieu.Size = new System.Drawing.Size(222, 22);
+            this.textBox_lieu.Size = new System.Drawing.Size(168, 20);
             this.textBox_lieu.TabIndex = 19;
             // 
             // textBox_CP
             // 
-            this.textBox_CP.Location = new System.Drawing.Point(216, 294);
+            this.textBox_CP.Location = new System.Drawing.Point(162, 239);
+            this.textBox_CP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_CP.Name = "textBox_CP";
             this.textBox_CP.ReadOnly = true;
-            this.textBox_CP.Size = new System.Drawing.Size(125, 22);
+            this.textBox_CP.Size = new System.Drawing.Size(95, 20);
             this.textBox_CP.TabIndex = 20;
             // 
             // button_Fermer
             // 
             this.button_Fermer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Fermer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.button_Fermer.Location = new System.Drawing.Point(633, 458);
-            this.button_Fermer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_Fermer.Location = new System.Drawing.Point(475, 372);
+            this.button_Fermer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_Fermer.Name = "button_Fermer";
-            this.button_Fermer.Size = new System.Drawing.Size(107, 37);
+            this.button_Fermer.Size = new System.Drawing.Size(80, 30);
             this.button_Fermer.TabIndex = 25;
             this.button_Fermer.Text = "Fermer";
             this.button_Fermer.UseVisualStyleBackColor = true;
@@ -214,9 +231,9 @@
             // 
             // DetailsPatricien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 532);
+            this.ClientSize = new System.Drawing.Size(644, 432);
             this.Controls.Add(this.button_Fermer);
             this.Controls.Add(this.textBox_CP);
             this.Controls.Add(this.textBox_lieu);
@@ -234,6 +251,8 @@
             this.Controls.Add(this.label_nom);
             this.Controls.Add(this.label_num);
             this.Controls.Add(this.Title);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DetailsPatricien";
             this.Text = "DetailsPatricien";
             this.ResumeLayout(false);

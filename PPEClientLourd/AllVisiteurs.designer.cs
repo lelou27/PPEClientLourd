@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllVisiteurs));
             this.dgv_visiteurs = new System.Windows.Forms.DataGridView();
             this.Matricule = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +93,7 @@
             this.ClientSize = new System.Drawing.Size(534, 407);
             this.Controls.Add(this.btn_retour);
             this.Controls.Add(this.dgv_visiteurs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllVisiteurs";
             this.Text = "Visiteurs";
             this.Load += new System.EventHandler(this.AllVisiteurs_Load);

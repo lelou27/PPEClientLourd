@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consulter_Tous_Medicaments));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nom_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,14 +40,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nom_med,
-            this.Code_med,
-            this.Composition_med,
-            this.Depot_legal_med});
-            this.dataGridView1.Location = new System.Drawing.Point(67, 32);
+            this.dataGridView1.Location = new System.Drawing.Point(88, 119);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(665, 390);
+            this.dataGridView1.Size = new System.Drawing.Size(180, 122);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -72,10 +69,12 @@
             // 
             // Consulter_Tous_Medicaments
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Consulter_Tous_Medicaments";
             this.Text = "Consulter_Tous_Medicaments";
             this.Load += new System.EventHandler(this.Consulter_Tous_Medicaments_Load);

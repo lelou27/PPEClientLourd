@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             this.lbl_connexion = new System.Windows.Forms.Label();
             this.txb_login = new System.Windows.Forms.TextBox();
             this.txb_password = new System.Windows.Forms.TextBox();
@@ -44,28 +45,25 @@
             this.lbl_connexion.AutoSize = true;
             this.lbl_connexion.Font = new System.Drawing.Font("Old English Text MT", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_connexion.ForeColor = System.Drawing.SystemColors.Control;
-            this.lbl_connexion.Location = new System.Drawing.Point(135, 82);
-            this.lbl_connexion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_connexion.Location = new System.Drawing.Point(101, 67);
             this.lbl_connexion.Name = "lbl_connexion";
-            this.lbl_connexion.Size = new System.Drawing.Size(608, 44);
+            this.lbl_connexion.Size = new System.Drawing.Size(469, 34);
             this.lbl_connexion.TabIndex = 0;
             this.lbl_connexion.Text = "Connexion à l\'application du laboratoire";
             this.lbl_connexion.Click += new System.EventHandler(this.Label1_Click);
             // 
             // txb_login
             // 
-            this.txb_login.Location = new System.Drawing.Point(324, 222);
-            this.txb_login.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txb_login.Location = new System.Drawing.Point(243, 180);
             this.txb_login.Name = "txb_login";
-            this.txb_login.Size = new System.Drawing.Size(260, 22);
+            this.txb_login.Size = new System.Drawing.Size(196, 20);
             this.txb_login.TabIndex = 1;
             // 
             // txb_password
             // 
-            this.txb_password.Location = new System.Drawing.Point(324, 321);
-            this.txb_password.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txb_password.Location = new System.Drawing.Point(243, 261);
             this.txb_password.Name = "txb_password";
-            this.txb_password.Size = new System.Drawing.Size(260, 22);
+            this.txb_password.Size = new System.Drawing.Size(196, 20);
             this.txb_password.TabIndex = 2;
             this.txb_password.UseSystemPasswordChar = true;
             // 
@@ -74,10 +72,9 @@
             this.lbl_login.AutoSize = true;
             this.lbl_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_login.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_login.Location = new System.Drawing.Point(377, 156);
-            this.lbl_login.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_login.Location = new System.Drawing.Point(283, 127);
             this.lbl_login.Name = "lbl_login";
-            this.lbl_login.Size = new System.Drawing.Size(155, 25);
+            this.lbl_login.Size = new System.Drawing.Size(126, 20);
             this.lbl_login.TabIndex = 3;
             this.lbl_login.Text = "Nom d\'utilisateur";
             // 
@@ -86,10 +83,9 @@
             this.lbl_password.AutoSize = true;
             this.lbl_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_password.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_password.Location = new System.Drawing.Point(377, 262);
-            this.lbl_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_password.Location = new System.Drawing.Point(283, 213);
             this.lbl_password.Name = "lbl_password";
-            this.lbl_password.Size = new System.Drawing.Size(130, 25);
+            this.lbl_password.Size = new System.Drawing.Size(105, 20);
             this.lbl_password.TabIndex = 4;
             this.lbl_password.Text = "Mot de passe";
             // 
@@ -97,10 +93,9 @@
             // 
             this.btn_send.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_send.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_send.Location = new System.Drawing.Point(404, 386);
-            this.btn_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_send.Location = new System.Drawing.Point(303, 314);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(96, 41);
+            this.btn_send.Size = new System.Drawing.Size(72, 33);
             this.btn_send.TabIndex = 5;
             this.btn_send.Text = "&Valider";
             this.btn_send.UseVisualStyleBackColor = true;
@@ -111,10 +106,9 @@
             this.lbl_error_login.AutoSize = true;
             this.lbl_error_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_error_login.ForeColor = System.Drawing.Color.Red;
-            this.lbl_error_login.Location = new System.Drawing.Point(320, 198);
-            this.lbl_error_login.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_error_login.Location = new System.Drawing.Point(240, 161);
             this.lbl_error_login.Name = "lbl_error_login";
-            this.lbl_error_login.Size = new System.Drawing.Size(0, 20);
+            this.lbl_error_login.Size = new System.Drawing.Size(0, 16);
             this.lbl_error_login.TabIndex = 6;
             this.lbl_error_login.Click += new System.EventHandler(this.Lbl_error_login_Click);
             // 
@@ -123,29 +117,27 @@
             this.lbl_error_password.AutoSize = true;
             this.lbl_error_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_error_password.ForeColor = System.Drawing.Color.Red;
-            this.lbl_error_password.Location = new System.Drawing.Point(320, 298);
-            this.lbl_error_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_error_password.Location = new System.Drawing.Point(240, 242);
             this.lbl_error_password.Name = "lbl_error_password";
-            this.lbl_error_password.Size = new System.Drawing.Size(0, 20);
+            this.lbl_error_password.Size = new System.Drawing.Size(0, 16);
             this.lbl_error_password.TabIndex = 7;
             // 
             // lbl_error_connexion
             // 
             this.lbl_error_connexion.AutoSize = true;
             this.lbl_error_connexion.ForeColor = System.Drawing.Color.Red;
-            this.lbl_error_connexion.Location = new System.Drawing.Point(255, 441);
-            this.lbl_error_connexion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_error_connexion.Location = new System.Drawing.Point(191, 358);
             this.lbl_error_connexion.Name = "lbl_error_connexion";
-            this.lbl_error_connexion.Size = new System.Drawing.Size(0, 17);
+            this.lbl_error_connexion.Size = new System.Drawing.Size(0, 13);
             this.lbl_error_connexion.TabIndex = 8;
             // 
             // Connexion
             // 
             this.AcceptButton = this.btn_send;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(901, 554);
+            this.ClientSize = new System.Drawing.Size(676, 450);
             this.Controls.Add(this.lbl_error_connexion);
             this.Controls.Add(this.lbl_error_password);
             this.Controls.Add(this.lbl_error_login);
@@ -155,7 +147,7 @@
             this.Controls.Add(this.txb_password);
             this.Controls.Add(this.txb_login);
             this.Controls.Add(this.lbl_connexion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Connexion";
             this.Text = "Application Laboratoire";
             this.Load += new System.EventHandler(this.Connexion_Load);

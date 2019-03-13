@@ -65,7 +65,7 @@ namespace PPEClientLourd
                 Adresse = cs.Champ("PRA_ADRESSE").ToString();
                 Cp = cs.Champ("PRA_CP").ToString();
                 Ville = cs.Champ("PRA_VILLE").ToString();
-                Coefnotoriete = Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE").ToString());
+                Coefnotoriete = Math.Round(Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE")), 2);
                 Libelle = cs.Champ("TYP_LIBELLE").ToString();
 
                 dgv_praticiens.Rows.Add(Numero, Nom, Prenom, Adresse, Cp, Ville, Libelle, Coefnotoriete);
@@ -81,7 +81,7 @@ namespace PPEClientLourd
 
         private void AllPraticiens_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
