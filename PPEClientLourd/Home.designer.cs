@@ -208,6 +208,7 @@
             this.consulterToutsLesMédicamentsToolStripMenuItem.Name = "consulterToutsLesMédicamentsToolStripMenuItem";
             this.consulterToutsLesMédicamentsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.consulterToutsLesMédicamentsToolStripMenuItem.Text = "Consulter tous les médicaments";
+            this.consulterToutsLesMédicamentsToolStripMenuItem.Click += new System.EventHandler(this.consulterToutsLesMédicamentsToolStripMenuItem_Click);
             // 
             // seDéconnecterToolStripMenuItem
             // 
@@ -226,6 +227,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Home";
             this.Text = "Accueil";
             this.Load += new System.EventHandler(this.Home_Load);

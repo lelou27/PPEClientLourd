@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consulter_Tous_Medicaments));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Nom_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Composition_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Depot_legal_med = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,6 +45,27 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(180, 122);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Nom_med
+            // 
+            this.Nom_med.HeaderText = "Nom";
+            this.Nom_med.Name = "Nom_med";
+            // 
+            // Code_med
+            // 
+            this.Code_med.HeaderText = "Code";
+            this.Code_med.Name = "Code_med";
+            // 
+            // Composition_med
+            // 
+            this.Composition_med.HeaderText = "Composition";
+            this.Composition_med.Name = "Composition_med";
+            // 
+            // Depot_legal_med
+            // 
+            this.Depot_legal_med.HeaderText = "Dépôt légal";
+            this.Depot_legal_med.Name = "Depot_legal_med";
             // 
             // Consulter_Tous_Medicaments
             // 
@@ -52,6 +77,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Consulter_Tous_Medicaments";
             this.Text = "Consulter_Tous_Medicaments";
+            this.Load += new System.EventHandler(this.Consulter_Tous_Medicaments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -60,5 +86,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nom_med;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code_med;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Composition_med;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Depot_legal_med;
     }
 }

@@ -21,6 +21,13 @@ namespace PPEClientLourd
             set { chaineConnexion = value; }
         }
         private string _colNom, _colMatricule;
+        public AllPraticiens(string colNom, string colMat)
+        {
+            InitializeComponent();
+
+            this._colNom = colNom;
+            this._colMatricule = colMat;
+        }
 
         private void Retour_Click(object sender, EventArgs e)
         {
@@ -34,12 +41,9 @@ namespace PPEClientLourd
 
         }
 
-        public AllPraticiens(string colNom, string colMat)
+        private void dgv_praticiens_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            InitializeComponent();
-
-            this._colNom = colNom;
-            this._colMatricule = colMat;
+           
         }
 
         private void AllPraticiens_Load_1(object sender, EventArgs e)
@@ -55,7 +59,7 @@ namespace PPEClientLourd
 
             while (!cs.Fin())
             {
-                Numero = Convert.ToInt32(cs.Champ("PRA_NUM"));
+                Numero = Convert.ToInt32(cs.Champ("PRA_NUM").ToString());
                 Nom = cs.Champ("PRA_NOM").ToString();
                 Prenom = cs.Champ("PRA_PRENOM").ToString();
                 Adresse = cs.Champ("PRA_ADRESSE").ToString();
@@ -73,6 +77,11 @@ namespace PPEClientLourd
             }
 
             cs.Fermer();
+        }
+
+        private void AllPraticiens_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
