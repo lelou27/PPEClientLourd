@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -45,20 +46,10 @@ namespace PPEClientLourd
             while (!cs2.Fin())
             {
                 Medicaments.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
+                dataGridViewComboBoxColumn1.Items.Add(cs2.Champ("MED_NOMCOMMERCIAL").ToString());
                 cs2.Suivant();
             }
             cs2.Fermer();
-
-            //Pour remplir le combobox dans le datagridview Offert des medicaments
-            Curs cs3 = new Curs(connection);
-            requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL` ASC";
-            cs3.ReqSelect(requete);
-            while (!cs3.Fin())
-            {
-                dataGridViewComboBoxColumn1.Items.Add(cs3.Champ("MED_NOMCOMMERCIAL").ToString());
-                cs3.Suivant();
-            }
-            cs3.Fermer();
         }
 
 
@@ -258,47 +249,40 @@ namespace PPEClientLourd
                 cs.ReqAdmin(requete);
                 cs.Fermer();
 
-                foreach (KeyValuePair<string, int> item in echantillons)
+                Insert_distribuer(echantillons, rapNum, false);
+                Insert_distribuer(echantillonsOffert, rapNum, true);
+
+                MessageBox.Show("Votre rapport à été enregistré !");
+                Form.ActiveForm.Close();
+            }
+        }
+
+        private void Insert_distribuer( Dictionary<string, int> ListEchantillon, string rapNum, bool offert )
+        {
+            foreach (KeyValuePair<string, int> item in ListEchantillon)
+            {
+                Curs Insert_Distri = new Curs(connection);
+
+                string echoffquantite = item.Value.ToString();
+                if (offert)
                 {
-                    Curs echanpre = new Curs(connection);
-                    requete = "SELECT `ech_id` FROM `echantillon`, `medicament` WHERE `medicament`.`MED_DEPOTLEGAL`=`echantillon`.`MED_ID` AND `medicament`.`MED_NOMCOMMERCIAL` = '" + item.Key + "'";
-                    echanpre.ReqSelect(requete);
-                    string echpreid = "";
-                    while (!echanpre.Fin())
-                    {
-                        echpreid = echanpre.Champ("ech_id").ToString();
-                        echanpre.Suivant();
-                    }
-                    echanpre.Fermer();
-
-                    string echprequantite = item.Value.ToString();
-
-                    requete = "insert into `distribuer` (`ech_id`, `col_matricule`, `rap_num`, `quantite`, `offert`, `presente`) values (" + echpreid + ", '" + _colMatricule + "', " + rapNum + ", " + echprequantite + ", false, true)";
-                    Curs insertechanpre = new Curs(connection);
-                    insertechanpre.ReqAdmin(requete);
-                    insertechanpre.Fermer();
+                    Insert_Distri.DefFonctStockee("insert_distribuer_offert");
+                }
+                else
+                {
+                    Insert_Distri.DefFonctStockee("insert_distribuer_presente");
                 }
 
-                foreach (KeyValuePair<string, int> item in echantillonsOffert)
-                {
-                    Curs echanoff = new Curs(connection);
-                    requete = "SELECT `ech_id` FROM `echantillon`, `medicament` WHERE `medicament`.`MED_DEPOTLEGAL`=`echantillon`.`MED_ID` AND `medicament`.`MED_NOMCOMMERCIAL` = '" + item.Key + "'";
-                    echanoff.ReqSelect(requete);
-                    string echoffid = "";
-                    while (!echanoff.Fin())
-                    {
-                        echoffid = echanoff.Champ("ech_id").ToString();
-                        echanoff.Suivant();
-                    }
-                    echanoff.Fermer();
+                Insert_Distri.AjouteparametreCol("MED_NOM", item.Key);
+                Insert_Distri.DirectionparametreCol("MED_NOM", ParameterDirection.Input);
+                Insert_Distri.AjouteparametreCol("COL_MAT", _colMatricule);
+                Insert_Distri.DirectionparametreCol("COL_MAT", ParameterDirection.Input);
+                Insert_Distri.AjouteparametreCol("RAP_NUM", rapNum);
+                Insert_Distri.DirectionparametreCol("RAP_NUM", ParameterDirection.Input);
+                Insert_Distri.AjouteparametreCol("QUANTITE", echoffquantite);
+                Insert_Distri.DirectionparametreCol("QUANTITE", ParameterDirection.Input);
 
-                    string echoffquantite = item.Value.ToString();
-
-                    requete = "insert into `distribuer` (`ech_id`, `col_matricule`, `rap_num`, `quantite`, `offert`, `presente`) values (" + echoffid + ", '" + _colMatricule + "', " + rapNum + ", " + echoffquantite + ", true, false)";
-                    Curs insertechanoff = new Curs(connection);
-                    insertechanoff.ReqAdmin(requete);
-                    insertechanoff.Fermer();
-                }
+                Insert_Distri.Appelfonctstockee();
             }
         }
 
