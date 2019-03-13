@@ -48,6 +48,7 @@
             this.DateEmbauche});
             this.dgv_visiteurs.Location = new System.Drawing.Point(12, 12);
             this.dgv_visiteurs.Name = "dgv_visiteurs";
+            this.dgv_visiteurs.ReadOnly = true;
             this.dgv_visiteurs.Size = new System.Drawing.Size(510, 342);
             this.dgv_visiteurs.TabIndex = 0;
             this.dgv_visiteurs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_visiteurs_CellContentClick);
