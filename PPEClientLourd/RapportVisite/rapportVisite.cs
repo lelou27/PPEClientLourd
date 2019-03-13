@@ -10,6 +10,7 @@ namespace PPEClientLourd
     public partial class rapportVisite : Form
     {
         private string _colMatricule;
+        private string _previous;
         private string _colNom;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
@@ -17,12 +18,13 @@ namespace PPEClientLourd
         public rapportVisite( string colNom, string colMat, string previous = "Home",int numRap=0 )
         {
             InitializeComponent();
-
+            _previous = previous;
             _colNom = colNom;
             _colMatricule = colMat;
 
             if (previous == "Home")
             {
+                Btn_detailsPracticiens.Visible = false;
                 //Pour remplir le combobox des Pratitiens
                 Curs cs = new Curs(connection);
                 string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
@@ -55,7 +57,86 @@ namespace PPEClientLourd
             }
             else
             {
-                comboBox_Practiciens.Enabled = false;
+                Curs cs = new Curs(connection);
+                string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
+                cs.ReqSelect(requete);
+                string Name = "";
+                while (!cs.Fin())
+                {
+                    Name = cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString();
+                    praticiens.Add(Convert.ToInt16(cs.Champ("PRA_NUM").ToString()), Name);
+                    cs.Suivant();
+                }
+                cs.Fermer();
+
+                textBox_paticien.Visible = true;
+                Btn_detailsPracticiens.Visible = true;
+                comboBox_Practiciens.Visible = false;
+
+                textBox_NewRDV.Visible = true;
+                comboBox_NewRDV.Visible = false;
+
+                dateTimePicker_DateRap.Enabled = false;
+
+                comboBox_Motif.Visible = false;
+                textBox_motif.Visible = true;
+
+                comboBox_presenceconcurrence.Visible = false;
+                textBox_concurence.Visible = true;
+
+                comboBox_connaissancePraticien.Visible = false;
+                textBox_connaissance.Visible = true;
+
+                dataGridView_echantillonPresente.Enabled = false;
+                textBox_BilanRap.Enabled = false;
+                dateTimePicker_DateProVisite.Enabled = false;
+                textBox_AutreMotif.Enabled = false;
+                textBox_confiance.Visible = true;
+                comboBox_confianceLabo.Visible = false;
+                dataGridView_echantillonOffert.Enabled = false;
+                button_Creer.Visible = false;
+
+                Curs cs2 = new Curs(connection);
+                requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap;
+                cs2.ReqSelect(requete);
+                while (!cs2.Fin())
+                {
+                    textBox_paticien.Text = cs2.Champ("PRA_NOM") + " " + cs2.Champ("PRA_PRENOM");
+                    bool verifDate = cs2.Champ("RAP_DATE_PROCHAINE_VISITE").ToString() == "" ? false : true;
+                    if (!verifDate)
+                    {
+                        textBox_NewRDV.Text = "Non";
+                    }
+                    else
+                    {
+                        textBox_NewRDV.Text = "Oui";
+                        DateProVisite.Visible = true;
+                        dateTimePicker_DateProVisite.Visible = true;
+                        dateTimePicker_DateProVisite.Value = DateTime.Parse(cs2.Champ("RAP_DATE_PROCHAINE_VISITE").ToString());
+                    }
+                    dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE").ToString());
+                    textBox_motif.Text = cs2.Champ("RAP_MOTIF").ToString();
+                    string tessstt = cs2.Champ("RAP_PRESENCE_CONCURENCE").ToString();
+                    switch (cs2.Champ("RAP_PRESENCE_CONCURENCE").ToString())
+                    {
+                        case "":
+                            textBox_concurence.Text = "Ne sais pas";
+                            break;
+                        case "True":
+                            textBox_concurence.Text = "Oui";
+                            break;
+                        case "False":
+                            textBox_concurence.Text = "Non";
+                            break;
+                    }
+
+                    textBox_connaissance.Text = cs2.Champ("RAP_CONNAISSANCE_PRACTICIEN").ToString() == "" ? "Ne sais pas" : cs2.Champ("RAP_CONNAISSANCE_PRACTICIEN").ToString();
+                    textBox_BilanRap.Text = cs2.Champ("RAP_BILAN").ToString();
+                    textBox_confiance.Text = cs2.Champ("RAP_CONFIANCE_LABO").ToString() == "" ? "Ne sais pas" : cs2.Champ("RAP_CONFIANCE_LABO").ToString();
+
+                    cs2.Suivant();
+                }
+                cs2.Fermer();
             }
         }
 
@@ -98,14 +179,24 @@ namespace PPEClientLourd
 
         private void comboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
         {
-            Btn_detailsPracticiens.Visible = comboBox_Practiciens.Text == "" || comboBox_Practiciens.Text == null ? false : true;
+            Btn_detailsPracticiens.Visible =  true;
+            Btn_detailsPracticiens.Show();
+            button_praticien2.Visible = true;
             label_errPratricien.Text = "";
         }
 
         private void Btn_detailsPracticiens_Click( object sender, EventArgs e )
         {
-
-            int myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
+            int myKey;
+            if (_previous == "Home")
+            {
+                myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
+            }
+            else
+            {
+                myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
+            }
+            
 
             DetailsPatricien DP = new DetailsPatricien(myKey);
 
@@ -217,7 +308,7 @@ namespace PPEClientLourd
                 string rapPresenceConcurence = "";
                 switch (comboBox_presenceconcurrence.Text.Trim())
                 {
-                    case "Je sais pas":
+                    case "Je ne sais pas":
                         rapPresenceConcurence = "NULL";
                         break;
                     case "":
@@ -323,6 +414,15 @@ namespace PPEClientLourd
             {
                 label_bilan.Text = "";
             }
+        }
+
+        private void button_praticien2_Click( object sender, EventArgs e )
+        {
+            int myKey;
+            myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
+            DetailsPatricien DP = new DetailsPatricien(myKey);
+
+            DP.Show();
         }
     }
 }

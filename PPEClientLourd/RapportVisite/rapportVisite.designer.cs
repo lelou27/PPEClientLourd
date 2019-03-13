@@ -69,6 +69,13 @@
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_echanOffert = new System.Windows.Forms.Label();
+            this.textBox_paticien = new System.Windows.Forms.TextBox();
+            this.button_praticien2 = new System.Windows.Forms.Button();
+            this.textBox_NewRDV = new System.Windows.Forms.TextBox();
+            this.textBox_motif = new System.Windows.Forms.TextBox();
+            this.textBox_concurence = new System.Windows.Forms.TextBox();
+            this.textBox_connaissance = new System.Windows.Forms.TextBox();
+            this.textBox_confiance = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonPresente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonOffert)).BeginInit();
             this.SuspendLayout();
@@ -207,7 +214,6 @@
             this.Btn_detailsPracticiens.TabIndex = 17;
             this.Btn_detailsPracticiens.Text = "Détails";
             this.Btn_detailsPracticiens.UseVisualStyleBackColor = true;
-            this.Btn_detailsPracticiens.Visible = false;
             this.Btn_detailsPracticiens.Click += new System.EventHandler(this.Btn_detailsPracticiens_Click);
             // 
             // comboBox_Motif
@@ -535,6 +541,80 @@
             this.label_echanOffert.TabIndex = 42;
             this.label_echanOffert.Text = "Offres échantillons offert";
             // 
+            // textBox_paticien
+            // 
+            this.textBox_paticien.Enabled = false;
+            this.textBox_paticien.Location = new System.Drawing.Point(112, 142);
+            this.textBox_paticien.Name = "textBox_paticien";
+            this.textBox_paticien.ReadOnly = true;
+            this.textBox_paticien.Size = new System.Drawing.Size(197, 22);
+            this.textBox_paticien.TabIndex = 45;
+            this.textBox_paticien.Visible = false;
+            // 
+            // button_praticien2
+            // 
+            this.button_praticien2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_praticien2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.button_praticien2.Location = new System.Drawing.Point(333, 86);
+            this.button_praticien2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_praticien2.Name = "button_praticien2";
+            this.button_praticien2.Size = new System.Drawing.Size(75, 23);
+            this.button_praticien2.TabIndex = 46;
+            this.button_praticien2.Text = "Détails";
+            this.button_praticien2.UseVisualStyleBackColor = true;
+            this.button_praticien2.Visible = false;
+            this.button_praticien2.Click += new System.EventHandler(this.button_praticien2_Click);
+            // 
+            // textBox_NewRDV
+            // 
+            this.textBox_NewRDV.Enabled = false;
+            this.textBox_NewRDV.Location = new System.Drawing.Point(864, 138);
+            this.textBox_NewRDV.Name = "textBox_NewRDV";
+            this.textBox_NewRDV.ReadOnly = true;
+            this.textBox_NewRDV.Size = new System.Drawing.Size(121, 22);
+            this.textBox_NewRDV.TabIndex = 47;
+            this.textBox_NewRDV.Visible = false;
+            // 
+            // textBox_motif
+            // 
+            this.textBox_motif.Enabled = false;
+            this.textBox_motif.Location = new System.Drawing.Point(146, 248);
+            this.textBox_motif.Name = "textBox_motif";
+            this.textBox_motif.ReadOnly = true;
+            this.textBox_motif.Size = new System.Drawing.Size(1117, 22);
+            this.textBox_motif.TabIndex = 48;
+            this.textBox_motif.Visible = false;
+            // 
+            // textBox_concurence
+            // 
+            this.textBox_concurence.Enabled = false;
+            this.textBox_concurence.Location = new System.Drawing.Point(287, 293);
+            this.textBox_concurence.Name = "textBox_concurence";
+            this.textBox_concurence.ReadOnly = true;
+            this.textBox_concurence.Size = new System.Drawing.Size(121, 22);
+            this.textBox_concurence.TabIndex = 49;
+            this.textBox_concurence.Visible = false;
+            // 
+            // textBox_connaissance
+            // 
+            this.textBox_connaissance.Enabled = false;
+            this.textBox_connaissance.Location = new System.Drawing.Point(287, 349);
+            this.textBox_connaissance.Name = "textBox_connaissance";
+            this.textBox_connaissance.ReadOnly = true;
+            this.textBox_connaissance.Size = new System.Drawing.Size(121, 22);
+            this.textBox_connaissance.TabIndex = 50;
+            this.textBox_connaissance.Visible = false;
+            // 
+            // textBox_confiance
+            // 
+            this.textBox_confiance.Enabled = false;
+            this.textBox_confiance.Location = new System.Drawing.Point(931, 346);
+            this.textBox_confiance.Name = "textBox_confiance";
+            this.textBox_confiance.ReadOnly = true;
+            this.textBox_confiance.Size = new System.Drawing.Size(121, 22);
+            this.textBox_confiance.TabIndex = 51;
+            this.textBox_confiance.Visible = false;
+            // 
             // rapportVisite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -542,6 +622,13 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(163)))), ((int)(((byte)(235)))));
             this.ClientSize = new System.Drawing.Size(1332, 922);
+            this.Controls.Add(this.textBox_confiance);
+            this.Controls.Add(this.textBox_connaissance);
+            this.Controls.Add(this.textBox_concurence);
+            this.Controls.Add(this.textBox_motif);
+            this.Controls.Add(this.textBox_NewRDV);
+            this.Controls.Add(this.button_praticien2);
+            this.Controls.Add(this.textBox_paticien);
             this.Controls.Add(this.label_errechanOffert);
             this.Controls.Add(this.dataGridView_echantillonOffert);
             this.Controls.Add(this.label_echanOffert);
@@ -631,6 +718,13 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Label label_echanOffert;
+        private System.Windows.Forms.TextBox textBox_paticien;
+        private System.Windows.Forms.Button button_praticien2;
+        private System.Windows.Forms.TextBox textBox_NewRDV;
+        private System.Windows.Forms.TextBox textBox_motif;
+        private System.Windows.Forms.TextBox textBox_concurence;
+        private System.Windows.Forms.TextBox textBox_connaissance;
+        private System.Windows.Forms.TextBox textBox_confiance;
     }
 }
 
