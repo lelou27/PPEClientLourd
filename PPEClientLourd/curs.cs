@@ -1,5 +1,11 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using MySql.Data.Types;
+using System.Data;
 
 namespace PPEClientLourd
 {
@@ -9,6 +15,8 @@ namespace PPEClientLourd
         MySqlConnection maconnexion;
         MySqlCommand macommand;
         MySqlDataReader monreader;
+        MySqlParameterCollection col;
+
         public Curs(string connec)
         {
             maconnexion = new MySqlConnection(connec);
@@ -18,7 +26,6 @@ namespace PPEClientLourd
         }
         public MySqlConnection GetMaconnexion()
         {
-
             return maconnexion;
         }
         public void ReqSelect(string req)
@@ -47,6 +54,30 @@ namespace PPEClientLourd
                     fin = true;
             }
         }
+
+        public void AjouteparametreCol(string nompara, object valeur)
+        {
+
+            col.AddWithValue(nompara, valeur);
+
+        }
+        public void DirectionparametreCol(string nompara, ParameterDirection Direction)
+        {
+            col[nompara].Direction = Direction;
+        }
+        public void SetCol(int i, Object valeur)
+        {
+            col[i].Value = valeur;
+
+        }
+
+        public MySqlParameterCollection GetCol()
+        {
+
+            return col;
+        }
+
+
         public void ReqAdmin(string req)
         {
 
@@ -54,6 +85,23 @@ namespace PPEClientLourd
             macommand.ExecuteNonQuery();
 
         }
+
+        public Object Appelfonctstockee()
+        {
+            Object O = macommand.ExecuteNonQuery();
+            return O;
+
+        }
+        public void DefFonctStockee(string req)
+        {
+
+            macommand = new MySqlCommand(req, maconnexion);
+            macommand.CommandType = CommandType.StoredProcedure;
+            col = macommand.Parameters;
+
+
+        }
+
         public object Champ(string nomChamp)
         {
             return monreader[nomChamp];
