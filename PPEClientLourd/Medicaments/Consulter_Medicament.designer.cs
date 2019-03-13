@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consulter_Medicament));
-            this.Consulter_medicament_button = new System.Windows.Forms.Button();
             this.Consulter_medicament_nom_label = new System.Windows.Forms.Label();
             this.Consulter_medicament_composition_label = new System.Windows.Forms.Label();
             this.Consulter_medicament_depot_legal_label = new System.Windows.Forms.Label();
@@ -47,16 +46,6 @@
             this.Consulter_medicament_combobox = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // Consulter_medicament_button
-            // 
-            this.Consulter_medicament_button.Location = new System.Drawing.Point(212, 30);
-            this.Consulter_medicament_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Consulter_medicament_button.Name = "Consulter_medicament_button";
-            this.Consulter_medicament_button.Size = new System.Drawing.Size(56, 19);
-            this.Consulter_medicament_button.TabIndex = 1;
-            this.Consulter_medicament_button.Text = "Valider";
-            this.Consulter_medicament_button.UseVisualStyleBackColor = true;
             // 
             // Consulter_medicament_nom_label
             // 
@@ -202,14 +191,14 @@
             this.Consulter_medicament_combobox.Location = new System.Drawing.Point(30, 28);
             this.Consulter_medicament_combobox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Consulter_medicament_combobox.Name = "Consulter_medicament_combobox";
-            this.Consulter_medicament_combobox.Size = new System.Drawing.Size(92, 21);
+            this.Consulter_medicament_combobox.Size = new System.Drawing.Size(178, 21);
             this.Consulter_medicament_combobox.TabIndex = 16;
             this.Consulter_medicament_combobox.SelectedIndexChanged += new System.EventHandler(this.Consulter_medicament_combobox_SelectedIndexChanged);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(518, 170);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(1);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -237,18 +226,16 @@
             this.Controls.Add(this.Consulter_medicament_depot_legal_label);
             this.Controls.Add(this.Consulter_medicament_composition_label);
             this.Controls.Add(this.Consulter_medicament_nom_label);
-            this.Controls.Add(this.Consulter_medicament_button);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Consulter_Medicament";
-            this.Text = "Consulter_Medicament";
+            this.Text = "Consulter un médicament";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Consulter_medicament_button;
         private System.Windows.Forms.Label Consulter_medicament_nom_label;
         private System.Windows.Forms.Label Consulter_medicament_composition_label;
         private System.Windows.Forms.Label Consulter_medicament_depot_legal_label;
