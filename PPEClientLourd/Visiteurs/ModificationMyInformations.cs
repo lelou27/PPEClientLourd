@@ -167,6 +167,8 @@ namespace PPEClientLourd
                         cs.ReqAdmin(req);
                         cs.Fermer();
 
+                        MessageBox.Show("Mise à jour effectué", "Success lors de la mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         this.Close();
                     }
                     catch (Exception)

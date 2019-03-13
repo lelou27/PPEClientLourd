@@ -197,6 +197,8 @@ namespace PPEClientLourd
                     cs.Fermer();
                 }
 
+                MessageBox.Show("Enregistrement effectué", "Success lors de l'enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Close();
             }
             catch (Exception errorInsert)
