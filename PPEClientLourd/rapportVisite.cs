@@ -261,7 +261,7 @@ namespace PPEClientLourd
                 foreach (KeyValuePair<string, int> item in echantillons)
                 {
                     Curs echanpre = new Curs(connection);
-                    requete = "select `ech_id` from `echantillon` where `echantillon`.`med_id` = '" + item.Key + "'";
+                    requete = "SELECT `ech_id` FROM `echantillon`, `medicament` WHERE `medicament`.`MED_DEPOTLEGAL`=`echantillon`.`MED_ID` AND `medicament`.`MED_NOMCOMMERCIAL` = '" + item.Key + "'";
                     echanpre.ReqSelect(requete);
                     string echpreid = "";
                     while (!echanpre.Fin())
@@ -282,7 +282,7 @@ namespace PPEClientLourd
                 foreach (KeyValuePair<string, int> item in echantillonsOffert)
                 {
                     Curs echanoff = new Curs(connection);
-                    requete = "select `ech_id` from `echantillon` where `echantillon`.`med_id` = '" + item.Key + "'";
+                    requete = "SELECT `ech_id` FROM `echantillon`, `medicament` WHERE `medicament`.`MED_DEPOTLEGAL`=`echantillon`.`MED_ID` AND `medicament`.`MED_NOMCOMMERCIAL` = '" + item.Key + "'";
                     echanoff.ReqSelect(requete);
                     string echoffid = "";
                     while (!echanoff.Fin())
