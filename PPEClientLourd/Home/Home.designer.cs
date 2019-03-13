@@ -91,6 +91,7 @@
             this.voirToutLesCompteRendusToolStripMenuItem.Name = "voirToutLesCompteRendusToolStripMenuItem";
             this.voirToutLesCompteRendusToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.voirToutLesCompteRendusToolStripMenuItem.Text = "Voir tout les compte rendus";
+            this.voirToutLesCompteRendusToolStripMenuItem.Click += new System.EventHandler(this.voirToutLesCompteRendusToolStripMenuItem_Click);
             // 
             // voirUnCompteRenduToolStripMenuItem
             // 

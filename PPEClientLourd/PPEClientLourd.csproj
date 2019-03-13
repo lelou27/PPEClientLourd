@@ -65,6 +65,12 @@
     <Compile Include="Medicaments\Ajouter_Medicament.designer.cs">
       <DependentUpon>Ajouter_Medicament.cs</DependentUpon>
     </Compile>
+    <Compile Include="RapportVisite\ShowAllRaports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportVisite\ShowAllRaports.Designer.cs">
+      <DependentUpon>ShowAllRaports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visiteurs\AllVisiteurs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     <Compile Include="Visiteurs\SearchVisiteur.Designer.cs">
       <DependentUpon>SearchVisiteur.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RapportVisite\ShowAllRaports.resx">
+      <DependentUpon>ShowAllRaports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visiteurs\AllVisiteurs.resx">
       <DependentUpon>AllVisiteurs.cs</DependentUpon>
     </EmbeddedResource>

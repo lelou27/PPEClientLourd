@@ -131,5 +131,11 @@ namespace PPEClientLourd
             AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
             ap.Show();
         }
+
+        private void voirToutLesCompteRendusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAllRaports sar = new ShowAllRaports(this._colMatricule, this._colNom, this._role);
+            sar.Show();
+        }
     }
 }
