@@ -165,6 +165,7 @@
             this.ajouterUnPraticienToolStripMenuItem.Name = "ajouterUnPraticienToolStripMenuItem";
             this.ajouterUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.ajouterUnPraticienToolStripMenuItem.Text = "Ajouter un praticien";
+            this.ajouterUnPraticienToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnPraticienToolStripMenuItem_Click);
             // 
             // modifierUnPraticienToolStripMenuItem
             // 
