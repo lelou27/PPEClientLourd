@@ -27,17 +27,19 @@ namespace PPEClientLourd
         private void Consulter_Tous_Medicaments_Load(object sender, EventArgs e)
         {
             Curs cs = new Curs(chaineConnexion);
-            string sql = "SELECT MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_DEPOTLEGAL FROM medicament";
+            string sql = "SELECT MED_NOMCOMMERCIAL, FAM_LIBELLE, MED_COMPOSITION, MED_DEPOTLEGAL " +
+                            " FROM medicament " +
+                            "       INNER JOIN famille ON medicament.FAM_CODE = famille.FAM_CODE ;";
             cs.ReqSelect(sql);
-            string nom, code, composition, depot;
+            string nom, familleLibelle, composition, depot;
             while (!cs.Fin())
             {
                 nom = cs.Champ("MED_NOMCOMMERCIAL").ToString();
-                code = cs.Champ("FAM_CODE").ToString();
+                familleLibelle = cs.Champ("FAM_LIBELLE").ToString();
                 composition = cs.Champ("MED_COMPOSITION").ToString();
                 depot = cs.Champ("MED_DEPOTLEGAL").ToString();
 
-                dataGridView1.Rows.Add(nom, code, composition, depot);
+                dgv_allMedicaments.Rows.Add(nom, familleLibelle, composition, depot);
 
                 cs.Suivant();
             }
@@ -47,6 +49,17 @@ namespace PPEClientLourd
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string depotLegal = dgv_allMedicaments[3, e.RowIndex].Value.ToString();
+
+            Consulter_Medicament cm = new Consulter_Medicament(depotLegal);
+            cm.Show();
+
+            this.Close();
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

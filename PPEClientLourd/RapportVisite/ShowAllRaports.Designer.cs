@@ -36,6 +36,7 @@
             this.RapMotif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Praticien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_noResults = new System.Windows.Forms.Label();
+            this.btn_return = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_rapports)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,22 @@
             this.lbl_noResults.Size = new System.Drawing.Size(0, 20);
             this.lbl_noResults.TabIndex = 1;
             // 
+            // btn_return
+            // 
+            this.btn_return.Location = new System.Drawing.Point(541, 503);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(75, 23);
+            this.btn_return.TabIndex = 2;
+            this.btn_return.Text = "&Retour";
+            this.btn_return.UseVisualStyleBackColor = true;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
             // ShowAllRaports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 498);
+            this.ClientSize = new System.Drawing.Size(628, 538);
+            this.Controls.Add(this.btn_return);
             this.Controls.Add(this.lbl_noResults);
             this.Controls.Add(this.dgv_rapports);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -122,5 +134,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RapMotif;
         private System.Windows.Forms.DataGridViewTextBoxColumn Praticien;
         private System.Windows.Forms.Label lbl_noResults;
+        private System.Windows.Forms.Button btn_return;
     }
 }
