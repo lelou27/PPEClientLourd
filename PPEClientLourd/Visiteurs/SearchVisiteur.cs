@@ -61,7 +61,7 @@ namespace PPEClientLourd
             if(visiteur.Length != 0)
             {
                 matricule = visiteurs.FirstOrDefault(x => x.Value == visiteur).Key;
-                OneVisiteur ov = new OneVisiteur(matricule, this._matricule, "SearchVisiteur");
+                OneVisiteur ov = new OneVisiteur(this._matricule, matricule, "SearchVisiteur");
 
                 this.Close();
 
