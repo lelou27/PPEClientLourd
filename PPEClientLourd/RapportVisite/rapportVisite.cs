@@ -213,7 +213,6 @@ namespace PPEClientLourd
         {
             Btn_detailsPracticiens.Visible = true;
             Btn_detailsPracticiens.Show();
-            button_praticien2.Visible = true;
             label_errPratricien.Text = "";
         }
 
@@ -361,14 +360,17 @@ namespace PPEClientLourd
                 requete = "SELECT RAP_NUM FROM `rapport_visite` WHERE `rapport_visite`.`COL_MATRICULE` = '" + _colMatricule + "' ORDER  BY RAP_NUM DESC LIMIT 1";
                 cs2.ReqSelect(requete);
                 string rapNum = "";
-                int nbRapNum = 0;
+                int nbRapNum = -1;
                 while (!cs2.Fin())
                 {
                     nbRapNum = Convert.ToInt32(cs2.Champ("RAP_NUM").ToString());
                     nbRapNum++;
                     cs2.Suivant();
                 }
-
+                if (nbRapNum == -1)
+                {
+                    nbRapNum = 0;
+                }
                 rapNum = nbRapNum.ToString();
                 cs2.Fermer();
 
