@@ -33,7 +33,6 @@
             this.compteRendusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créerUnCompteRenduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.voirToutLesCompteRendusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.voirUnCompteRenduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierUnCompteRenduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visiteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toutLesVisiteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +72,6 @@
             this.compteRendusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.créerUnCompteRenduToolStripMenuItem,
             this.voirToutLesCompteRendusToolStripMenuItem,
-            this.voirUnCompteRenduToolStripMenuItem,
             this.modifierUnCompteRenduToolStripMenuItem});
             this.compteRendusToolStripMenuItem.Name = "compteRendusToolStripMenuItem";
             this.compteRendusToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
@@ -92,12 +90,6 @@
             this.voirToutLesCompteRendusToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.voirToutLesCompteRendusToolStripMenuItem.Text = "Voir tout les compte rendus";
             this.voirToutLesCompteRendusToolStripMenuItem.Click += new System.EventHandler(this.voirToutLesCompteRendusToolStripMenuItem_Click);
-            // 
-            // voirUnCompteRenduToolStripMenuItem
-            // 
-            this.voirUnCompteRenduToolStripMenuItem.Name = "voirUnCompteRenduToolStripMenuItem";
-            this.voirUnCompteRenduToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.voirUnCompteRenduToolStripMenuItem.Text = "Voir un compte rendu";
             // 
             // modifierUnCompteRenduToolStripMenuItem
             // 
@@ -245,7 +237,6 @@
         private System.Windows.Forms.ToolStripMenuItem compteRendusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem créerUnCompteRenduToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem voirToutLesCompteRendusToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem voirUnCompteRenduToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierUnCompteRenduToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visiteursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toutLesVisiteursToolStripMenuItem;

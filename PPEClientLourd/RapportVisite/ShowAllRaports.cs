@@ -96,5 +96,10 @@ namespace PPEClientLourd
                 rv.Show();
             }
         }
+
+        private void btn_return_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

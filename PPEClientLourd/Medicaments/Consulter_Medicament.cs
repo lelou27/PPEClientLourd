@@ -9,11 +9,6 @@ namespace PPEClientLourd
 
         public Consulter_Medicament(string idMedicament = "a")
         {
-            if(idMedicament != "a")
-            {
-                // requête recup medoc
-                // remplissage du combobox
-            }
             InitializeComponent();
 
             Curs cs = new Curs(chaineconnexion);
@@ -25,6 +20,25 @@ namespace PPEClientLourd
                 nom = cs.Champ("MED_NOMCOMMERCIAL").ToString();
                 Consulter_medicament_combobox.Items.Add(nom);
                 cs.Suivant();
+            }
+
+            cs.Fermer();
+
+            if (idMedicament != "a")
+            {
+                cs = new Curs(this.chaineconnexion);
+
+                cs.ReqSelect("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_DEPOTLEGAL = '" + idMedicament +"';");
+
+                string medicamentParameter;
+                while(!cs.Fin())
+                {
+                    medicamentParameter = cs.Champ("MED_NOMCOMMERCIAL").ToString();
+                    Consulter_medicament_combobox.SelectedItem = medicamentParameter;
+
+                    cs.Suivant();
+                }
+                cs.Fermer();
             }
 
         }
@@ -45,5 +59,6 @@ namespace PPEClientLourd
             Consulter_medicament_hidden_prixechant.Text = cs.Champ("MED_PRIXECHANTILLON").ToString();
             cs.Fermer();
         }
+        
     }
 }

@@ -28,7 +28,7 @@ namespace PPEClientLourd
             Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT c.*, l.LAB_NOM FROM collaborateur c INNER JOIN labo l ON c.LAB_CODE = l.LAB_CODE" +
-                " WHERE c.COL_MATRICULE = '" + matricule + "';");
+                " WHERE c.COL_MATRICULE = '" + matriculePersonne + "';");
 
             while (!cs.Fin())
             {
