@@ -59,7 +59,7 @@
             // Consulter_medicament_composition_label
             // 
             this.Consulter_medicament_composition_label.AutoSize = true;
-            this.Consulter_medicament_composition_label.Location = new System.Drawing.Point(419, 144);
+            this.Consulter_medicament_composition_label.Location = new System.Drawing.Point(391, 143);
             this.Consulter_medicament_composition_label.Name = "Consulter_medicament_composition_label";
             this.Consulter_medicament_composition_label.Size = new System.Drawing.Size(85, 17);
             this.Consulter_medicament_composition_label.TabIndex = 3;
@@ -77,7 +77,7 @@
             // Consulter_medicament_effets_label
             // 
             this.Consulter_medicament_effets_label.AutoSize = true;
-            this.Consulter_medicament_effets_label.Location = new System.Drawing.Point(419, 225);
+            this.Consulter_medicament_effets_label.Location = new System.Drawing.Point(391, 225);
             this.Consulter_medicament_effets_label.MaximumSize = new System.Drawing.Size(175, 0);
             this.Consulter_medicament_effets_label.Name = "Consulter_medicament_effets_label";
             this.Consulter_medicament_effets_label.Size = new System.Drawing.Size(44, 17);
@@ -96,7 +96,7 @@
             // Consulter_medicament_contreindic_label
             // 
             this.Consulter_medicament_contreindic_label.AutoSize = true;
-            this.Consulter_medicament_contreindic_label.Location = new System.Drawing.Point(419, 370);
+            this.Consulter_medicament_contreindic_label.Location = new System.Drawing.Point(391, 370);
             this.Consulter_medicament_contreindic_label.Name = "Consulter_medicament_contreindic_label";
             this.Consulter_medicament_contreindic_label.Size = new System.Drawing.Size(122, 17);
             this.Consulter_medicament_contreindic_label.TabIndex = 7;
@@ -174,22 +174,22 @@
             // 
             // Consulter_medicament_box_effets
             // 
-            this.Consulter_medicament_box_effets.Location = new System.Drawing.Point(654, 225);
+            this.Consulter_medicament_box_effets.Location = new System.Drawing.Point(562, 222);
             this.Consulter_medicament_box_effets.Margin = new System.Windows.Forms.Padding(1);
             this.Consulter_medicament_box_effets.Multiline = true;
             this.Consulter_medicament_box_effets.Name = "Consulter_medicament_box_effets";
             this.Consulter_medicament_box_effets.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Consulter_medicament_box_effets.Size = new System.Drawing.Size(165, 69);
+            this.Consulter_medicament_box_effets.Size = new System.Drawing.Size(299, 69);
             this.Consulter_medicament_box_effets.TabIndex = 17;
             // 
             // Consulter_medicament_box_contreindic
             // 
-            this.Consulter_medicament_box_contreindic.Location = new System.Drawing.Point(654, 370);
+            this.Consulter_medicament_box_contreindic.Location = new System.Drawing.Point(562, 358);
             this.Consulter_medicament_box_contreindic.Margin = new System.Windows.Forms.Padding(1);
             this.Consulter_medicament_box_contreindic.Multiline = true;
             this.Consulter_medicament_box_contreindic.Name = "Consulter_medicament_box_contreindic";
             this.Consulter_medicament_box_contreindic.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Consulter_medicament_box_contreindic.Size = new System.Drawing.Size(165, 69);
+            this.Consulter_medicament_box_contreindic.Size = new System.Drawing.Size(299, 69);
             this.Consulter_medicament_box_contreindic.TabIndex = 18;
             // 
             // Consulter_Medicament
