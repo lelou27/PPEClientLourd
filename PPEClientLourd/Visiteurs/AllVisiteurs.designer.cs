@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllVisiteurs));
             this.dgv_visiteurs = new System.Windows.Forms.DataGridView();
+            this.btn_retour = new System.Windows.Forms.Button();
             this.Matricule = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEmbauche = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_retour = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_visiteurs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +52,16 @@
             this.dgv_visiteurs.Size = new System.Drawing.Size(510, 342);
             this.dgv_visiteurs.TabIndex = 0;
             this.dgv_visiteurs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_visiteurs_CellContentClick);
+            // 
+            // btn_retour
+            // 
+            this.btn_retour.Location = new System.Drawing.Point(447, 372);
+            this.btn_retour.Name = "btn_retour";
+            this.btn_retour.Size = new System.Drawing.Size(75, 23);
+            this.btn_retour.TabIndex = 1;
+            this.btn_retour.Text = "Retour";
+            this.btn_retour.UseVisualStyleBackColor = true;
+            this.btn_retour.Click += new System.EventHandler(this.btn_retour_Click);
             // 
             // Matricule
             // 
@@ -77,16 +87,6 @@
             this.DateEmbauche.Name = "DateEmbauche";
             this.DateEmbauche.ReadOnly = true;
             // 
-            // btn_retour
-            // 
-            this.btn_retour.Location = new System.Drawing.Point(447, 372);
-            this.btn_retour.Name = "btn_retour";
-            this.btn_retour.Size = new System.Drawing.Size(75, 23);
-            this.btn_retour.TabIndex = 1;
-            this.btn_retour.Text = "Retour";
-            this.btn_retour.UseVisualStyleBackColor = true;
-            this.btn_retour.Click += new System.EventHandler(this.btn_retour_Click);
-            // 
             // AllVisiteurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,10 +106,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_visiteurs;
+        private System.Windows.Forms.Button btn_retour;
         private System.Windows.Forms.DataGridViewTextBoxColumn Matricule;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEmbauche;
-        private System.Windows.Forms.Button btn_retour;
     }
 }
