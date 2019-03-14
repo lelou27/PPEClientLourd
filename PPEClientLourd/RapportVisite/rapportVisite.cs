@@ -15,7 +15,7 @@ namespace PPEClientLourd
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
 
-        public rapportVisite( string colNom, string colMat, string previous = "Home",int numRap=0 )
+        public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0 )
         {
             InitializeComponent();
             _previous = previous;
@@ -87,17 +87,19 @@ namespace PPEClientLourd
                 comboBox_connaissancePraticien.Visible = false;
                 textBox_connaissance.Visible = true;
 
-                dataGridView_echantillonPresente.Enabled = false;
+                dataGridView_echantillonPresente.Visible = false;
                 textBox_BilanRap.Enabled = false;
                 dateTimePicker_DateProVisite.Enabled = false;
                 textBox_AutreMotif.Enabled = false;
                 textBox_confiance.Visible = true;
                 comboBox_confianceLabo.Visible = false;
-                dataGridView_echantillonOffert.Enabled = false;
+                dataGridView_echantillonOffert.Visible = false;
                 button_Creer.Visible = false;
+                dataGridView_echantillonO.Visible = true;
+                dataGridView_echantillonP.Visible = true;
+                requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap + " AND `rapport_visite`.`COL_MATRICULE` = '" + _colMatricule + "'";
 
                 Curs cs2 = new Curs(connection);
-                requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap;
                 cs2.ReqSelect(requete);
                 while (!cs2.Fin())
                 {
@@ -137,6 +139,36 @@ namespace PPEClientLourd
                     cs2.Suivant();
                 }
                 cs2.Fermer();
+
+                requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL`,`distribuer`.`QUANTITE`,`distribuer`.`OFFERT` FROM `distribuer`,`echantillon`,`medicament` WHERE `distribuer`.`RAP_NUM` = " + numRap + " AND `echantillon`.`ECH_ID` = `distribuer`.`ECH_ID` AND `medicament`.`MED_DEPOTLEGAL` = `echantillon`.`MED_ID` AND `distribuer`.`COL_MATRICULE` = '" + _colMatricule + "'";
+                Dictionary<string, int> EchantillionO = new Dictionary<string, int>();
+                Dictionary<string, int> EchantillionP = new Dictionary<string, int>();
+
+                Curs cs3 = new Curs(connection);
+                cs3.ReqSelect(requete);
+                while (!cs3.Fin())
+                {
+                    var eiqhfdod = cs3.Champ("OFFERT").ToString();
+                    if (cs3.Champ("OFFERT").ToString() == "True")
+                    {
+                        EchantillionO.Add(cs3.Champ("MED_NOMCOMMERCIAL").ToString(), Convert.ToInt16(cs3.Champ("QUANTITE")));
+                    }
+                    else
+                    {
+                        EchantillionP.Add(cs3.Champ("MED_NOMCOMMERCIAL").ToString(), Convert.ToInt16(cs3.Champ("QUANTITE")));
+                    }
+                    cs3.Suivant();
+                }
+                cs3.Fermer();
+
+                foreach (KeyValuePair<string, int> item in EchantillionO)
+                {
+                    dataGridView_echantillonO.Rows.Add(item.Key, item.Value);
+                }
+                foreach (KeyValuePair<string, int> item in EchantillionP)
+                {
+                    dataGridView_echantillonP.Rows.Add(item.Key, item.Value);
+                }
             }
         }
 
@@ -179,7 +211,7 @@ namespace PPEClientLourd
 
         private void comboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
         {
-            Btn_detailsPracticiens.Visible =  true;
+            Btn_detailsPracticiens.Visible = true;
             Btn_detailsPracticiens.Show();
             button_praticien2.Visible = true;
             label_errPratricien.Text = "";
@@ -196,7 +228,7 @@ namespace PPEClientLourd
             {
                 myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
             }
-            
+
 
             DetailsPatricien DP = new DetailsPatricien(myKey);
 
@@ -326,7 +358,7 @@ namespace PPEClientLourd
 
                 string requete = "";
                 Curs cs2 = new Curs(connection);
-                requete = "SELECT RAP_NUM FROM `rapport_visite`ORDER BY RAP_NUM DESC LIMIT 1;";
+                requete = "SELECT RAP_NUM FROM `rapport_visite` WHERE `rapport_visite`.`COL_MATRICULE` = '" + _colMatricule + "' ORDER  BY RAP_NUM DESC LIMIT 1";
                 cs2.ReqSelect(requete);
                 string rapNum = "";
                 int nbRapNum = 0;
