@@ -143,5 +143,11 @@ namespace PPEClientLourd
             newPraticien np = new newPraticien();
             np.Show();
         }
+
+        private void rechercherUnPraticienToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchPraticien sp = new SearchPraticien();
+            sp.Show();
+        }
     }
 }

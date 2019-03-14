@@ -159,6 +159,7 @@
             this.rechercherUnPraticienToolStripMenuItem.Name = "rechercherUnPraticienToolStripMenuItem";
             this.rechercherUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.rechercherUnPraticienToolStripMenuItem.Text = "Rechercher un praticien";
+            this.rechercherUnPraticienToolStripMenuItem.Click += new System.EventHandler(this.rechercherUnPraticienToolStripMenuItem_Click);
             // 
             // ajouterUnPraticienToolStripMenuItem
             // 

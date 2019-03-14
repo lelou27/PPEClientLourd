@@ -71,6 +71,12 @@
     <Compile Include="Praticiens\newPraticien.Designer.cs">
       <DependentUpon>newPraticien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Praticiens\SearchPraticien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Praticiens\SearchPraticien.Designer.cs">
+      <DependentUpon>SearchPraticien.cs</DependentUpon>
+    </Compile>
     <Compile Include="RapportVisite\ShowAllRaports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </Compile>
     <EmbeddedResource Include="Praticiens\newPraticien.resx">
       <DependentUpon>newPraticien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Praticiens\SearchPraticien.resx">
+      <DependentUpon>SearchPraticien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RapportVisite\ShowAllRaports.resx">
       <DependentUpon>ShowAllRaports.cs</DependentUpon>
