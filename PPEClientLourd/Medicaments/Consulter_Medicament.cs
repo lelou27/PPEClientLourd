@@ -54,8 +54,8 @@ namespace PPEClientLourd
             Consulter_medicament_hidden_depot_legal.Text = cs.Champ("MED_DEPOTLEGAL").ToString();
             Consulter_medicament_hidden_code.Text = cs.Champ("FAM_CODE").ToString();
             Consulter_medicament_hidden_composition.Text = cs.Champ("MED_COMPOSITION").ToString();
-            Consulter_medicament_hidden_effets.Text = cs.Champ("MED_EFFETS").ToString();
-            Consulter_medicament_hidden_contreindic.Text = cs.Champ("MED_CONTREINDIC").ToString();
+            Consulter_medicament_box_effets.Text = cs.Champ("MED_EFFETS").ToString();
+            Consulter_medicament_box_contreindic.Text = cs.Champ("MED_CONTREINDIC").ToString();
             Consulter_medicament_hidden_prixechant.Text = cs.Champ("MED_PRIXECHANTILLON").ToString();
             cs.Fermer();
         }
