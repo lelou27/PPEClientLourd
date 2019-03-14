@@ -137,6 +137,11 @@ namespace PPEClientLourd
             ShowAllRaports sar = new ShowAllRaports(this._colMatricule, this._colNom, this._role);
             sar.Show();
         }
-        
+
+        private void ajouterUnPraticienToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newPraticien np = new newPraticien();
+            np.Show();
+        }
     }
 }
