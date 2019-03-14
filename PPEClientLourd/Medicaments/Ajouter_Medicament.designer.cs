@@ -58,7 +58,7 @@
             this.Ajouter_medicament_titre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Ajouter_medicament_titre.Location = new System.Drawing.Point(343, 21);
             this.Ajouter_medicament_titre.Name = "Ajouter_medicament_titre";
-            this.Ajouter_medicament_titre.Size = new System.Drawing.Size(176, 20);
+            this.Ajouter_medicament_titre.Size = new System.Drawing.Size(216, 25);
             this.Ajouter_medicament_titre.TabIndex = 0;
             this.Ajouter_medicament_titre.Text = "Ajoutez un médicament";
             // 
@@ -67,7 +67,7 @@
             this.Ajouter_medicament_code_label.AutoSize = true;
             this.Ajouter_medicament_code_label.Location = new System.Drawing.Point(21, 269);
             this.Ajouter_medicament_code_label.Name = "Ajouter_medicament_code_label";
-            this.Ajouter_medicament_code_label.Size = new System.Drawing.Size(32, 13);
+            this.Ajouter_medicament_code_label.Size = new System.Drawing.Size(41, 17);
             this.Ajouter_medicament_code_label.TabIndex = 1;
             this.Ajouter_medicament_code_label.Text = "Code";
             // 
@@ -76,7 +76,7 @@
             this.Ajouter_medicament_nom_label.AutoSize = true;
             this.Ajouter_medicament_nom_label.Location = new System.Drawing.Point(25, 180);
             this.Ajouter_medicament_nom_label.Name = "Ajouter_medicament_nom_label";
-            this.Ajouter_medicament_nom_label.Size = new System.Drawing.Size(29, 13);
+            this.Ajouter_medicament_nom_label.Size = new System.Drawing.Size(37, 17);
             this.Ajouter_medicament_nom_label.TabIndex = 2;
             this.Ajouter_medicament_nom_label.Text = "Nom";
             // 
@@ -85,7 +85,7 @@
             this.Ajouter_medicament_effets_label.AutoSize = true;
             this.Ajouter_medicament_effets_label.Location = new System.Drawing.Point(515, 180);
             this.Ajouter_medicament_effets_label.Name = "Ajouter_medicament_effets_label";
-            this.Ajouter_medicament_effets_label.Size = new System.Drawing.Size(34, 13);
+            this.Ajouter_medicament_effets_label.Size = new System.Drawing.Size(44, 17);
             this.Ajouter_medicament_effets_label.TabIndex = 3;
             this.Ajouter_medicament_effets_label.Text = "Effets";
             // 
@@ -94,7 +94,7 @@
             this.Ajouter_medicament_compo_label.AutoSize = true;
             this.Ajouter_medicament_compo_label.Location = new System.Drawing.Point(515, 86);
             this.Ajouter_medicament_compo_label.Name = "Ajouter_medicament_compo_label";
-            this.Ajouter_medicament_compo_label.Size = new System.Drawing.Size(64, 13);
+            this.Ajouter_medicament_compo_label.Size = new System.Drawing.Size(85, 17);
             this.Ajouter_medicament_compo_label.TabIndex = 4;
             this.Ajouter_medicament_compo_label.Text = "Composition";
             // 
@@ -103,7 +103,7 @@
             this.Ajouter_medicament_dep_legal_label.AutoSize = true;
             this.Ajouter_medicament_dep_legal_label.Location = new System.Drawing.Point(25, 86);
             this.Ajouter_medicament_dep_legal_label.Name = "Ajouter_medicament_dep_legal_label";
-            this.Ajouter_medicament_dep_legal_label.Size = new System.Drawing.Size(65, 13);
+            this.Ajouter_medicament_dep_legal_label.Size = new System.Drawing.Size(85, 17);
             this.Ajouter_medicament_dep_legal_label.TabIndex = 5;
             this.Ajouter_medicament_dep_legal_label.Text = "Dépôt Légal";
             // 
@@ -112,7 +112,7 @@
             this.Ajouter_medicament_contreindic_label.AutoSize = true;
             this.Ajouter_medicament_contreindic_label.Location = new System.Drawing.Point(391, 332);
             this.Ajouter_medicament_contreindic_label.Name = "Ajouter_medicament_contreindic_label";
-            this.Ajouter_medicament_contreindic_label.Size = new System.Drawing.Size(91, 13);
+            this.Ajouter_medicament_contreindic_label.Size = new System.Drawing.Size(122, 17);
             this.Ajouter_medicament_contreindic_label.TabIndex = 6;
             this.Ajouter_medicament_contreindic_label.Text = "Contre-indications";
             // 
@@ -121,7 +121,7 @@
             this.Ajouter_medicament_prixechant_label.AutoSize = true;
             this.Ajouter_medicament_prixechant_label.Location = new System.Drawing.Point(515, 267);
             this.Ajouter_medicament_prixechant_label.Name = "Ajouter_medicament_prixechant_label";
-            this.Ajouter_medicament_prixechant_label.Size = new System.Drawing.Size(97, 13);
+            this.Ajouter_medicament_prixechant_label.Size = new System.Drawing.Size(129, 17);
             this.Ajouter_medicament_prixechant_label.TabIndex = 7;
             this.Ajouter_medicament_prixechant_label.Text = "Prix de l\'échantillon";
             // 
@@ -129,35 +129,35 @@
             // 
             this.depot_legal_input.Location = new System.Drawing.Point(157, 86);
             this.depot_legal_input.Name = "depot_legal_input";
-            this.depot_legal_input.Size = new System.Drawing.Size(192, 19);
+            this.depot_legal_input.Size = new System.Drawing.Size(192, 22);
             this.depot_legal_input.TabIndex = 8;
             // 
             // nom_input
             // 
             this.nom_input.Location = new System.Drawing.Point(157, 180);
             this.nom_input.Name = "nom_input";
-            this.nom_input.Size = new System.Drawing.Size(192, 19);
+            this.nom_input.Size = new System.Drawing.Size(192, 22);
             this.nom_input.TabIndex = 9;
             // 
             // code_input
             // 
             this.code_input.Location = new System.Drawing.Point(157, 264);
             this.code_input.Name = "code_input";
-            this.code_input.Size = new System.Drawing.Size(192, 19);
+            this.code_input.Size = new System.Drawing.Size(192, 22);
             this.code_input.TabIndex = 10;
             // 
             // composition_input
             // 
             this.composition_input.Location = new System.Drawing.Point(690, 83);
             this.composition_input.Name = "composition_input";
-            this.composition_input.Size = new System.Drawing.Size(189, 19);
+            this.composition_input.Size = new System.Drawing.Size(189, 22);
             this.composition_input.TabIndex = 11;
             // 
             // effets_input
             // 
             this.effets_input.Location = new System.Drawing.Point(690, 177);
             this.effets_input.Name = "effets_input";
-            this.effets_input.Size = new System.Drawing.Size(189, 19);
+            this.effets_input.Size = new System.Drawing.Size(189, 22);
             this.effets_input.TabIndex = 12;
             // 
             // contreindic_input
@@ -185,7 +185,7 @@
             this.Aj_med_error_label.ForeColor = System.Drawing.Color.Red;
             this.Aj_med_error_label.Location = new System.Drawing.Point(349, 474);
             this.Aj_med_error_label.Name = "Aj_med_error_label";
-            this.Aj_med_error_label.Size = new System.Drawing.Size(0, 13);
+            this.Aj_med_error_label.Size = new System.Drawing.Size(0, 17);
             this.Aj_med_error_label.TabIndex = 16;
             // 
             // Aj_med_error_prix
@@ -194,7 +194,7 @@
             this.Aj_med_error_prix.ForeColor = System.Drawing.Color.Gray;
             this.Aj_med_error_prix.Location = new System.Drawing.Point(702, 301);
             this.Aj_med_error_prix.Name = "Aj_med_error_prix";
-            this.Aj_med_error_prix.Size = new System.Drawing.Size(121, 13);
+            this.Aj_med_error_prix.Size = new System.Drawing.Size(165, 17);
             this.Aj_med_error_prix.TabIndex = 17;
             this.Aj_med_error_prix.Text = "(Caractères numériques)";
             // 
@@ -204,23 +204,23 @@
             this.Aj_med_error_code.ForeColor = System.Drawing.Color.Red;
             this.Aj_med_error_code.Location = new System.Drawing.Point(154, 301);
             this.Aj_med_error_code.Name = "Aj_med_error_code";
-            this.Aj_med_error_code.Size = new System.Drawing.Size(0, 13);
+            this.Aj_med_error_code.Size = new System.Drawing.Size(0, 17);
             this.Aj_med_error_code.TabIndex = 18;
             // 
             // prixech_input
             // 
             this.prixech_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.prixech_input.Location = new System.Drawing.Point(690, 262);
-            this.prixech_input.Mask = "99999";
+            this.prixech_input.Mask = "00.00";
             this.prixech_input.Name = "prixech_input";
-            this.prixech_input.Size = new System.Drawing.Size(189, 29);
+            this.prixech_input.Size = new System.Drawing.Size(189, 34);
             this.prixech_input.SkipLiterals = false;
             this.prixech_input.TabIndex = 19;
             this.prixech_input.ValidatingType = typeof(int);
             // 
             // Ajouter_Medicament
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 521);
             this.Controls.Add(this.prixech_input);

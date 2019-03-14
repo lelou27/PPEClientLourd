@@ -228,7 +228,6 @@ namespace PPEClientLourd
                 myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
             }
 
-
             DetailsPatricien DP = new DetailsPatricien(myKey);
 
             DP.Show();
