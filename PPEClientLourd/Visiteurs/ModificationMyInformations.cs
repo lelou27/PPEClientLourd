@@ -98,10 +98,6 @@ namespace PPEClientLourd
             cs.Suivant();
         }
 
-        private void ModificationMyInformations_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_retour_Click(object sender, EventArgs e)
         {

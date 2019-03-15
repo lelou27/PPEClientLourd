@@ -298,7 +298,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModificationMyInformations";
             this.Text = "Modifier mes informations";
-            this.Load += new System.EventHandler(this.ModificationMyInformations_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

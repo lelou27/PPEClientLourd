@@ -44,7 +44,6 @@
             this.voirToutLesPraticiensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercherUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierUnPraticienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.médicamentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnMédicamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consulterLesMédicamentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,8 +148,7 @@
             this.praticiensToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.voirToutLesPraticiensToolStripMenuItem,
             this.rechercherUnPraticienToolStripMenuItem,
-            this.ajouterUnPraticienToolStripMenuItem,
-            this.modifierUnPraticienToolStripMenuItem});
+            this.ajouterUnPraticienToolStripMenuItem});
             this.praticiensToolStripMenuItem.Name = "praticiensToolStripMenuItem";
             this.praticiensToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.praticiensToolStripMenuItem.Text = "Praticiens";
@@ -173,12 +171,6 @@
             this.ajouterUnPraticienToolStripMenuItem.Name = "ajouterUnPraticienToolStripMenuItem";
             this.ajouterUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.ajouterUnPraticienToolStripMenuItem.Text = "Ajouter un praticien";
-            // 
-            // modifierUnPraticienToolStripMenuItem
-            // 
-            this.modifierUnPraticienToolStripMenuItem.Name = "modifierUnPraticienToolStripMenuItem";
-            this.modifierUnPraticienToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.modifierUnPraticienToolStripMenuItem.Text = "Modifier un praticien";
             // 
             // médicamentsToolStripMenuItem
             // 
@@ -261,6 +253,5 @@
         private System.Windows.Forms.ToolStripMenuItem seDéconnecterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnVisiteurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnPraticienToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modifierUnPraticienToolStripMenuItem;
     }
 }
