@@ -9,10 +9,12 @@ namespace PPEClientLourd
     {
         string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        public DetailsPatricien(int NomPatriciens)
+        private string _previous;
+        public DetailsPatricien(int NomPatriciens, string previous = "AllPraticiens")
         {
 
             InitializeComponent();
+            _previous = previous;
 
             Curs cs2 = new Curs(connection);
             string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NomPatriciens.ToString();
@@ -37,8 +39,33 @@ namespace PPEClientLourd
         private void button_Fermer_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Close();
+            if (_previous == "AllPraticiens")
+            {
+                AllPraticiens ap = new AllPraticiens();
+                ap.Show();
+                this.Close();
+            }
         }
 
+        private void btn_modif_Click(object sender, EventArgs e)
+        {
+            textBox_num.ReadOnly = false;
+            textBox_nom.ReadOnly = false;
+            textBox_prenom.ReadOnly = false;
+            textBox_adresse.ReadOnly = false;
+            textBox_ville.ReadOnly = false;
+            textBox_CP.ReadOnly = false;
+            textBox_coef.ReadOnly = false;
+            textBox_lieu.ReadOnly = false;
+            btn_maj.Visible = true;
+            btn_modif.Visible = false; 
 
+
+        }
+
+        private void btn_maj_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

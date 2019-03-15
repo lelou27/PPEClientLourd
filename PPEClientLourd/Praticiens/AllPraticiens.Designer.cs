@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllPraticiens));
             this.dgv_praticiens = new System.Windows.Forms.DataGridView();
+            this.Retour = new System.Windows.Forms.Button();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,7 +39,6 @@
             this.Ville = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Coefnotoriete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Libelle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Retour = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_praticiens)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,46 +60,6 @@
             this.dgv_praticiens.TabIndex = 0;
             this.dgv_praticiens.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Numero
-            // 
-            this.Numero.HeaderText = "Numéro";
-            this.Numero.Name = "Numero";
-            // 
-            // Nom
-            // 
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            // 
-            // Prenom
-            // 
-            this.Prenom.HeaderText = "Prénom";
-            this.Prenom.Name = "Prenom";
-            // 
-            // Adresse
-            // 
-            this.Adresse.HeaderText = "Adresse";
-            this.Adresse.Name = "Adresse";
-            // 
-            // Cp
-            // 
-            this.Cp.HeaderText = "Code postal";
-            this.Cp.Name = "Cp";
-            // 
-            // Ville
-            // 
-            this.Ville.HeaderText = "Ville";
-            this.Ville.Name = "Ville";
-            // 
-            // Coefnotoriete
-            // 
-            this.Coefnotoriete.HeaderText = "Coefficient de notoriété";
-            this.Coefnotoriete.Name = "Coefnotoriete";
-            // 
-            // Libelle
-            // 
-            this.Libelle.HeaderText = "Libellé";
-            this.Libelle.Name = "Libelle";
-            // 
             // Retour
             // 
             this.Retour.Location = new System.Drawing.Point(769, 402);
@@ -109,6 +69,54 @@
             this.Retour.Text = "Retour";
             this.Retour.UseVisualStyleBackColor = true;
             this.Retour.Click += new System.EventHandler(this.Retour_Click);
+            // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numéro";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            // 
+            // Nom
+            // 
+            this.Nom.HeaderText = "Nom";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Prenom
+            // 
+            this.Prenom.HeaderText = "Prénom";
+            this.Prenom.Name = "Prenom";
+            this.Prenom.ReadOnly = true;
+            // 
+            // Adresse
+            // 
+            this.Adresse.HeaderText = "Adresse";
+            this.Adresse.Name = "Adresse";
+            this.Adresse.ReadOnly = true;
+            // 
+            // Cp
+            // 
+            this.Cp.HeaderText = "Code postal";
+            this.Cp.Name = "Cp";
+            this.Cp.ReadOnly = true;
+            // 
+            // Ville
+            // 
+            this.Ville.HeaderText = "Ville";
+            this.Ville.Name = "Ville";
+            this.Ville.ReadOnly = true;
+            // 
+            // Coefnotoriete
+            // 
+            this.Coefnotoriete.HeaderText = "Coefficient de notoriété";
+            this.Coefnotoriete.Name = "Coefnotoriete";
+            this.Coefnotoriete.ReadOnly = true;
+            // 
+            // Libelle
+            // 
+            this.Libelle.HeaderText = "Libellé";
+            this.Libelle.Name = "Libelle";
+            this.Libelle.ReadOnly = true;
             // 
             // AllPraticiens
             // 
@@ -129,6 +137,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_praticiens;
+        private System.Windows.Forms.Button Retour;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
@@ -137,6 +146,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ville;
         private System.Windows.Forms.DataGridViewTextBoxColumn Coefnotoriete;
         private System.Windows.Forms.DataGridViewTextBoxColumn Libelle;
-        private System.Windows.Forms.Button Retour;
     }
 }

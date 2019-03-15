@@ -20,25 +20,28 @@ namespace PPEClientLourd
             get { return chaineConnexion; }
             set { chaineConnexion = value; }
         }
-        private string _colNom, _colMatricule;
-        public AllPraticiens(string colNom, string colMat)
+        public AllPraticiens()
         {
             InitializeComponent();
-
-            this._colNom = colNom;
-            this._colMatricule = colMat;
         }
 
         private void Retour_Click(object sender, EventArgs e)
         {
             this.Close();
-
-            Home h = new Home(this._colMatricule, this._colNom);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string numero = dgv_praticiens[0, e.RowIndex].Value.ToString();
 
+            if (numero.Length != 0)
+            {
+                DetailsPatricien op = new DetailsPatricien(Convert.ToInt32(numero));
+                op.Show();
+
+                Hide();
+
+            }
         }
 
         private void dgv_praticiens_CellContentClick(object sender, DataGridViewCellEventArgs e)
