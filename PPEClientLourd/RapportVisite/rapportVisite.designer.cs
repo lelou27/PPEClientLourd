@@ -721,6 +721,7 @@
             this.button_modifier.Text = "Modifier";
             this.button_modifier.UseVisualStyleBackColor = true;
             this.button_modifier.Visible = false;
+            this.button_modifier.Click += new System.EventHandler(this.button_modifier_Click);
             // 
             // rapportVisite
             // 

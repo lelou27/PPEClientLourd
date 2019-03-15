@@ -5,17 +5,17 @@ using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
-    public partial class DetailsPatricien : Form
+    public partial class DetailsPraticien : Form
     {
         string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        public DetailsPatricien(int NomPatriciens)
+        public DetailsPraticien(int NomPraticiens)
         {
 
             InitializeComponent();
 
             Curs cs2 = new Curs(connection);
-            string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NomPatriciens.ToString();
+            string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NomPraticiens.ToString();
             cs2.ReqSelect(requete);
             while (!cs2.Fin())
             {

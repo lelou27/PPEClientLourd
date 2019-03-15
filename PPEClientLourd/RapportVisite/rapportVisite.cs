@@ -12,9 +12,12 @@ namespace PPEClientLourd
         private string _colMatricule;
         private string _previous;
         private string _colNom;
+        private int _numRap;
         private string _role;
         private string _colMatClic;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
+        private Dictionary<string, int> echantillons = new Dictionary<string, int>();
+        private Dictionary<string, int> echantillonsOffert = new Dictionary<string, int>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
 
         public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
@@ -23,6 +26,7 @@ namespace PPEClientLourd
             _previous = previous;
             _colNom = colNom;
             _colMatricule = colMat;
+            _numRap = numRap;
             _colMatClic = colMatClic;
             _role = role;
 
@@ -188,10 +192,10 @@ namespace PPEClientLourd
                     dataGridView_echantillonP.Rows.Add(item.Key, item.Value);
                 }
 
-                //if (role == "visiteur")
-                //{
-                //    button_modifier.Visible = true;
-                //}
+                if (_colMatClic == colMat)
+                {
+                    button_modifier.Visible = true;
+                }
             }
         }
 
@@ -251,12 +255,12 @@ namespace PPEClientLourd
                 myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
             }
 
-            DetailsPatricien DP = new DetailsPatricien(myKey);
+            DetailsPraticien DP = new DetailsPraticien(myKey);
 
             DP.Show();
         }
 
-        private void button_Nouveau_Click( object sender, EventArgs e )
+        private int dispatchErrors()
         {
             int err = 0;
 
@@ -296,11 +300,18 @@ namespace PPEClientLourd
                 err++;
             }
 
+            return err;
+        }
+
+        private int setDatasInDictionnarys()
+        {
+            int err = 0;
+
             List<object[]> Result = dataGridView_echantillonPresente.Rows.OfType<DataGridViewRow>().Select(
             r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
 
             List<string> erreurs = new List<string>();
-            Dictionary<string, int> echantillons = new Dictionary<string, int>();
+
 
             Result.RemoveAt(Result.Count - 1);
 
@@ -310,8 +321,15 @@ namespace PPEClientLourd
                 object nbMedoc = Echan.GetValue(1);
                 try
                 {
-                    Convert.ToInt32(nbMedoc.ToString().Trim());
-                    echantillons.Add(medoc.ToString(), Convert.ToInt32(nbMedoc.ToString().Trim()));
+                    int nbMedic = Convert.ToInt32(nbMedoc.ToString().Trim());
+                    if (!echantillons.ContainsKey(medoc.ToString()))
+                    {
+                        echantillons.Add(medoc.ToString(), nbMedic);
+                    }
+                    else
+                    {
+                        echantillons[medoc.ToString()] += nbMedic;
+                    }
                 }
                 catch (Exception)
                 {
@@ -325,7 +343,7 @@ namespace PPEClientLourd
                 r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
 
             List<string> erreursOffert = new List<string>();
-            Dictionary<string, int> echantillonsOffert = new Dictionary<string, int>();
+
 
             ResultOffert.RemoveAt(ResultOffert.Count - 1);
 
@@ -335,8 +353,15 @@ namespace PPEClientLourd
                 object nbMedoc = Echan.GetValue(1);
                 try
                 {
-                    Convert.ToInt32(nbMedoc.ToString().Trim());
-                    echantillonsOffert.Add(medoc.ToString(), Convert.ToInt32(nbMedoc.ToString().Trim()));
+                    int nbMedic = Convert.ToInt32(nbMedoc.ToString().Trim());
+                    if (!echantillonsOffert.ContainsKey(medoc.ToString()))
+                    {
+                        echantillonsOffert.Add(medoc.ToString(), nbMedic);
+                    }
+                    else
+                    {
+                        echantillonsOffert[medoc.ToString()] += nbMedic;
+                    }
                 }
                 catch (Exception)
                 {
@@ -347,15 +372,23 @@ namespace PPEClientLourd
 
             label_errechanOffert.Text = erreursOffert.Count != 0 ? ErreurSaisieNbEchan(erreursOffert) : "";
 
+            return err;
+        }
+
+        private void button_Nouveau_Click( object sender, EventArgs e )
+        {
+            int err = dispatchErrors();
+            err += setDatasInDictionnarys();
+
             if (err == 0)
             {
                 string dateJour = DateTime.Today.ToString("yyyy-MM-dd H:mm:ss");
                 string rapBilan = textBox_BilanRap.Text;
                 string rapMotif = comboBox_Motif.Text == "Autre" ? textBox_AutreMotif.Text : comboBox_Motif.Text;
-                bool rapConnaissancePatricienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text, result: out short connaissanceP);
-                string rapConnaissancePatricien = rapConnaissancePatricienFlag ? connaissanceP.ToString() : "NULL";
+                bool rapConnaissancePraticienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text, result: out short connaissanceP);
+                string rapConnaissancePraticien = rapConnaissancePraticienFlag ? connaissanceP.ToString() : "NULL";
                 bool rapConnaissanceLaboFlag = short.TryParse(s: comboBox_confianceLabo.Text, result: out short confianceL);
-                string rapConnaissanceLabo = rapConnaissancePatricienFlag ? confianceL.ToString() : "NULL";
+                string rapConnaissanceLabo = rapConnaissancePraticienFlag ? confianceL.ToString() : "NULL";
                 string rapDate = Convert.ToDateTime(dateTimePicker_DateRap.Value).ToString("yyyy-MM-dd H:mm:ss");
                 string rapDateProVisite = comboBox_NewRDV.Text == "Oui" ? Convert.ToDateTime(dateTimePicker_DateProVisite.Value).ToString("yyyy-MM-dd H:mm:ss") : "NULL";
                 string rapPresenceConcurence = "";
@@ -375,6 +408,14 @@ namespace PPEClientLourd
                         break;
                 }
                 string praNum = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key.ToString();
+
+                foreach (KeyValuePair<string, int> item in echantillonsOffert)
+                {
+                    if (echantillons.ContainsKey(item.Key))
+                    {
+                        echantillons.Remove(item.Key);
+                    }
+                }
 
 
                 string requete = "";
@@ -397,11 +438,17 @@ namespace PPEClientLourd
                 cs2.Fermer();
 
                 requete = comboBox_NewRDV.Text == "Oui"
-                    ? "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', '" + rapDateProVisite + "', " + rapPresenceConcurence + ", " + praNum + ")"
-                    : "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePatricien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', " + rapDateProVisite + ", " + rapPresenceConcurence + ", " + praNum + ")";
+                    ? "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePraticien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', '" + rapDateProVisite + "', " + rapPresenceConcurence + ", " + praNum + ")"
+                    : "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`) VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePraticien + ", " + rapConnaissanceLabo + ", '" + rapDate + "', " + rapDateProVisite + ", " + rapPresenceConcurence + ", " + praNum + ")";
+
                 Curs cs = new Curs(connection);
                 cs.ReqAdmin(requete);
                 cs.Fermer();
+                List<string> errEchan = new List<string>();
+                int countEchan = echantillons.Count;
+                Dictionary<int, int> ResultDictionary = new Dictionary<int, int>();
+
+
 
                 Insert_distribuer(echantillons, rapNum, false);
                 Insert_distribuer(echantillonsOffert, rapNum, true);
@@ -476,9 +523,16 @@ namespace PPEClientLourd
         {
             int myKey;
             myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
-            DetailsPatricien DP = new DetailsPatricien(myKey);
+            DetailsPraticien DP = new DetailsPraticien(myKey);
 
             DP.Show();
+        }
+
+        private void button_modifier_Click( object sender, EventArgs e )
+        {
+            rapportVisite rapport_modif = new rapportVisite(_colNom, _colMatricule, "Modif", _numRap);
+            Hide();
+            rapport_modif.Show();
         }
     }
 }
