@@ -36,7 +36,7 @@ namespace PPEClientLourd
 
             if (numero.Length != 0)
             {
-                DetailsPatricien op = new DetailsPatricien(Convert.ToInt32(numero));
+                DetailsPraticien op = new DetailsPraticien(Convert.ToInt32(numero));
                 op.Show();
 
                 Hide();

@@ -10,7 +10,7 @@ namespace PPEClientLourd
         string connection = ConnexionDb.chaineConnexion;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string _previous;
-        public DetailsPratricien(int NumPraticiens, string previous = "AllPraticiens")
+        public DetailsPraticien( int NumPraticiens, string previous = "AllPraticiens")
         {
             
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace PPEClientLourd
 
 
             Curs cs2 = new Curs(connection);
-            string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NomPraticiens.ToString();
+            string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NumPraticiens.ToString();
             Curs cs3 = new Curs(connection);
             string req = "SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien;";
             
