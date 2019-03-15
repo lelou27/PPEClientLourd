@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
-    public partial class rapportVisite : Form
+    public partial class RapportVisite : Form
     {
         private string _colMatricule;
         private string _previous;
@@ -16,11 +16,11 @@ namespace PPEClientLourd
         private string _role;
         private string _colMatClic;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        private Dictionary<string, int> echantillons = new Dictionary<string, int>();
+        private Dictionary<string, int> echantillonsPresente = new Dictionary<string, int>();
         private Dictionary<string, int> echantillonsOffert = new Dictionary<string, int>();
         private string connection = ConnexionDb.chaineConnexion;
 
-        public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
+        public RapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
         {
             InitializeComponent();
             _previous = previous;
@@ -42,12 +42,10 @@ namespace PPEClientLourd
                 {
                     Name = cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString();
                     praticiens.Add(Convert.ToInt16(cs.Champ("PRA_NUM").ToString()), Name);
-                    comboBox_Practiciens.Items.Add(Name);
+                    comboBox_Praticiens.Items.Add(Name);
                     cs.Suivant();
                 }
                 cs.Fermer();
-
-                dataGridView_echantillonPresente.ColumnCount = 2;
                 dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
                 dataGridView_echantillonPresente.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
@@ -79,7 +77,7 @@ namespace PPEClientLourd
 
                 textBox_paticien.Visible = true;
                 Btn_detailsPracticiens.Visible = true;
-                comboBox_Practiciens.Visible = false;
+                comboBox_Praticiens.Visible = false;
 
                 textBox_NewRDV.Visible = true;
                 comboBox_NewRDV.Visible = false;
@@ -199,188 +197,13 @@ namespace PPEClientLourd
             }
         }
 
-
-        private void ComboBox_NewRDV_SelectedIndexChanged( object sender, EventArgs e )
+        private void Button_Nouveau_Click( object sender, EventArgs e )
         {
-            switch (comboBox_NewRDV.Text)
-            {
-                case "Non":
-                    DateProVisite.Visible = false;
-                    dateTimePicker_DateProVisite.Visible = false;
-                    break;
-                case "Oui":
-                    DateProVisite.Visible = true;
-                    dateTimePicker_DateProVisite.Visible = true;
-                    break;
-            }
-            label_datepro.Text = "";
-        }
+            int Error = DispatchErrors();
+            Error += SetDatasInDictionnarys(dataGridView_echantillonOffert, true);
+            Error += SetDatasInDictionnarys(dataGridView_echantillonPresente, false);
 
-        private void ComboBox_Motif_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            switch (comboBox_Motif.Text)
-            {
-                case "Autre":
-                    AutreMotif.Visible = true;
-                    textBox_AutreMotif.Visible = true;
-                    break;
-                default:
-                    AutreMotif.Visible = false;
-                    textBox_AutreMotif.Visible = false;
-                    break;
-            }
-            label_motifvisite.Text = "";
-            label_autremotif.Text = "";
-        }
-
-
-        private void button_Fermer_Click_1( object sender, EventArgs e ) => Form.ActiveForm.Close();
-
-        private void comboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            Btn_detailsPracticiens.Visible = true;
-            Btn_detailsPracticiens.Show();
-            label_errPratricien.Text = "";
-        }
-
-        private void Btn_detailsPracticiens_Click( object sender, EventArgs e )
-        {
-            int myKey;
-            if (_previous == "Home")
-            {
-                myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
-            }
-            else
-            {
-                myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
-            }
-
-            DetailsPraticien DP = new DetailsPraticien(myKey);
-
-            DP.Show();
-        }
-
-        private int dispatchErrors()
-        {
-            int err = 0;
-
-            if (comboBox_Practiciens == null || comboBox_Practiciens.Text == "")
-            {
-                label_errPratricien.Text = "Veuillez choisir un praticien";
-                err++;
-            }
-
-            if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
-            {
-                label_datepro.Text = "Veuillez choisir une date correcte";
-                err++;
-            }
-
-            if (dateTimePicker_DateRap.Value > DateTime.Now)
-            {
-                label_DateRap.Text = "Veuillez choisir une date correcte";
-                err++;
-            }
-
-            if (comboBox_Motif == null || comboBox_Motif.Text == "")
-            {
-                label_motifvisite.Text = "Veuillez choisir un motif";
-                err++;
-            }
-
-            if (comboBox_Motif.Text == "Autre" && (textBox_AutreMotif.Text.Trim() == "" || textBox_AutreMotif.Text == null))
-            {
-                label_autremotif.Text = "Veuillez écrire un motif";
-                err++;
-            }
-
-            if (textBox_BilanRap.Text.Trim() == "" || textBox_BilanRap.Text == null)
-            {
-                label_bilan.Text = "Veuillez écrire un bilan";
-                err++;
-            }
-
-            return err;
-        }
-
-        private int setDatasInDictionnarys()
-        {
-            int err = 0;
-
-            List<object[]> Result = dataGridView_echantillonPresente.Rows.OfType<DataGridViewRow>().Select(
-            r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
-
-            List<string> erreurs = new List<string>();
-
-
-            Result.RemoveAt(Result.Count - 1);
-
-            foreach (object[] Echan in Result)
-            {
-                object medoc = Echan.GetValue(0);
-                object nbMedoc = Echan.GetValue(1);
-                try
-                {
-                    int nbMedic = Convert.ToInt32(nbMedoc.ToString().Trim());
-                    if (!echantillons.ContainsKey(medoc.ToString()))
-                    {
-                        echantillons.Add(medoc.ToString(), nbMedic);
-                    }
-                    else
-                    {
-                        echantillons[medoc.ToString()] += nbMedic;
-                    }
-                }
-                catch (Exception)
-                {
-                    erreurs.Add(medoc.ToString());
-                    err++;
-                }
-            }
-            label_errEchanPresente.Text = erreurs.Count != 0 ? ErreurSaisieNbEchan(erreurs) : "";
-
-            List<object[]> ResultOffert = dataGridView_echantillonOffert.Rows.OfType<DataGridViewRow>().Select(
-                r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
-
-            List<string> erreursOffert = new List<string>();
-
-
-            ResultOffert.RemoveAt(ResultOffert.Count - 1);
-
-            foreach (object[] Echan in ResultOffert)
-            {
-                object medoc = Echan.GetValue(0);
-                object nbMedoc = Echan.GetValue(1);
-                try
-                {
-                    int nbMedic = Convert.ToInt32(nbMedoc.ToString().Trim());
-                    if (!echantillonsOffert.ContainsKey(medoc.ToString()))
-                    {
-                        echantillonsOffert.Add(medoc.ToString(), nbMedic);
-                    }
-                    else
-                    {
-                        echantillonsOffert[medoc.ToString()] += nbMedic;
-                    }
-                }
-                catch (Exception)
-                {
-                    erreursOffert.Add(medoc.ToString());
-                    err++;
-                }
-            }
-
-            label_errechanOffert.Text = erreursOffert.Count != 0 ? ErreurSaisieNbEchan(erreursOffert) : "";
-
-            return err;
-        }
-
-        private void button_Nouveau_Click( object sender, EventArgs e )
-        {
-            int err = dispatchErrors();
-            err += setDatasInDictionnarys();
-
-            if (err == 0)
+            if (Error == 0)
             {
                 string dateJour = DateTime.Today.ToString("yyyy-MM-dd H:mm:ss");
                 string rapBilan = textBox_BilanRap.Text;
@@ -407,13 +230,13 @@ namespace PPEClientLourd
                         rapPresenceConcurence = "False";
                         break;
                 }
-                string praNum = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key.ToString();
+                string praNum = praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key.ToString();
 
                 foreach (KeyValuePair<string, int> item in echantillonsOffert)
                 {
-                    if (echantillons.ContainsKey(item.Key))
+                    if (echantillonsPresente.ContainsKey(item.Key))
                     {
-                        echantillons.Remove(item.Key);
+                        echantillonsPresente.Remove(item.Key);
                     }
                 }
 
@@ -445,12 +268,12 @@ namespace PPEClientLourd
                 cs.ReqAdmin(requete);
                 cs.Fermer();
                 List<string> errEchan = new List<string>();
-                int countEchan = echantillons.Count;
+                int countEchan = echantillonsPresente.Count;
                 Dictionary<int, int> ResultDictionary = new Dictionary<int, int>();
 
 
 
-                Insert_distribuer(echantillons, rapNum, false);
+                Insert_distribuer(echantillonsPresente, rapNum, false);
                 Insert_distribuer(echantillonsOffert, rapNum, true);
 
                 MessageBox.Show("Votre rapport à été enregistré !");
@@ -458,6 +281,30 @@ namespace PPEClientLourd
             }
         }
 
+        private string ErreurSaisieNbEchan( List<string> listErr )
+        {
+            string errResult = "";
+
+            foreach (string err in listErr)
+            {
+                errResult = listErr.IndexOf(err) == 0 ? "Vérifiez le nombre saisi pour le médicament : " + err : errResult + ", " + err;
+            }
+
+            return errResult;
+        }
+        private int DispatchErrors()
+        {
+            int Error = 0;
+
+            Error += Gestion_erreur_comboBox_Praticiens();
+            Error += GetGestion_erreur_dateTimePicker_DateRap();
+            Error += Gestion_erreur_comboBox_Motif();
+            Error += Gestion_erreur_dateTimePicker_DateProVisite();
+            Error += Gestion_erreur_textBox_AutreMotif();
+            Error += Gestion_erreur_textBox_BilanRap();
+
+            return Error;
+        }
         private void Insert_distribuer( Dictionary<string, int> ListEchantillon, string rapNum, bool offert )
         {
             foreach (KeyValuePair<string, int> item in ListEchantillon)
@@ -486,53 +333,206 @@ namespace PPEClientLourd
                 Insert_Distri.Appelfonctstockee();
             }
         }
-
-        private string ErreurSaisieNbEchan( List<string> listErr )
+        private int SetDatasInDictionnarys( DataGridView dataGrid, bool offert )
         {
-            string errResult = "";
+            int Error = 0;
 
-            foreach (string err in listErr)
+            List<object[]> Result = dataGrid.Rows.OfType<DataGridViewRow>().Select(
+                r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+
+            List<string> erreurs = new List<string>();
+
+            Result.RemoveAt(Result.Count - 1);
+            Dictionary<string, int> tempEchantillon = new Dictionary<string, int>();
+
+            foreach (object[] Echan in Result)
             {
-                errResult = listErr.IndexOf(err) == 0 ? "Vérifiez le nombre saisi pour le médicament : " + err : errResult + ", " + err;
+                object medoc = Echan.GetValue(0);
+                object nbMedoc = Echan.GetValue(1);
+                if (medoc == null)
+                {
+                    Error += 1;
+                }
+                else
+                {
+                    try
+                    {
+                        int nbMedic = Convert.ToInt32(nbMedoc.ToString().Trim());
+                        if (!tempEchantillon.ContainsKey(medoc.ToString()))
+                        {
+                            tempEchantillon.Add(medoc.ToString(), nbMedic);
+                        }
+                        else
+                        {
+                            tempEchantillon[medoc.ToString()] += nbMedic;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        erreurs.Add(medoc.ToString());
+                        Error += 1;
+                    }
+                }
+            }
+            if (offert)
+            {
+                echantillonsOffert = tempEchantillon;
+                label_errechanOffert.Text = erreurs.Count != 0 ? ErreurSaisieNbEchan(erreurs) : "";
+            }
+            else
+            {
+                echantillonsPresente = tempEchantillon;
+                label_errEchanPresente.Text = erreurs.Count != 0 ? ErreurSaisieNbEchan(erreurs) : "";
             }
 
-            return errResult;
+            return Error;
         }
 
-        private void dateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e ) => label_datepro.Text = "";
-
-        private void dateTimePicker_DateRap_ValueChanged( object sender, EventArgs e ) => label_DateRap.Text = "";
-
-        private void textBox_AutreMotif_TextChanged( object sender, EventArgs e )
+        private void DateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e ) => label_datepro.Text = "";
+        private void DateTimePicker_DateRap_ValueChanged( object sender, EventArgs e ) => label_DateRap.Text = "";
+        private void TextBox_AutreMotif_TextChanged( object sender, EventArgs e )
         {
             if (textBox_AutreMotif.Text.Trim() != "")
             {
                 label_autremotif.Text = "";
             }
         }
-
-        private void textBox_BilanRap_TextChanged( object sender, EventArgs e )
+        private void TextBox_BilanRap_TextChanged( object sender, EventArgs e )
         {
             if (textBox_BilanRap.Text.Trim() != "")
             {
                 label_bilan.Text = "";
             }
         }
+        private void ComboBox_Motif_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            switch (comboBox_Motif.Text)
+            {
+                case "Autre":
+                    AutreMotif.Visible = true;
+                    textBox_AutreMotif.Visible = true;
+                    break;
+                default:
+                    AutreMotif.Visible = false;
+                    textBox_AutreMotif.Visible = false;
+                    break;
+            }
+            label_motifvisite.Text = "";
+            label_autremotif.Text = "";
+        }
+        private void ComboBox_Practiciens_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            Btn_detailsPracticiens.Visible = true;
+            Btn_detailsPracticiens.Show();
+            label_errPratricien.Text = "";
+        }
+        private void ComboBox_NewRDV_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            switch (comboBox_NewRDV.Text)
+            {
+                case "Non":
+                    DateProVisite.Visible = false;
+                    dateTimePicker_DateProVisite.Visible = false;
+                    break;
+                case "Oui":
+                    DateProVisite.Visible = true;
+                    dateTimePicker_DateProVisite.Visible = true;
+                    break;
+            }
+            label_datepro.Text = "";
+        }
 
-        private void button_praticien2_Click( object sender, EventArgs e )
+        private void Button_praticien2_Click( object sender, EventArgs e )
         {
             int myKey;
-            myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Practiciens.Text).Key;
+            myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key;
             DetailsPraticien DP = new DetailsPraticien(myKey);
 
             DP.Show();
         }
-
-        private void button_modifier_Click( object sender, EventArgs e )
+        private void Button_modifier_Click( object sender, EventArgs e )
         {
-            rapportVisite rapport_modif = new rapportVisite(_colNom, _colMatricule, "Modif", _numRap);
+            RapportVisite rapport_modif = new RapportVisite(_colNom, _colMatricule, "Modif", _numRap);
             Hide();
             rapport_modif.Show();
+        }
+        private void Btn_detailsPracticiens_Click( object sender, EventArgs e )
+        {
+            int myKey;
+            if (_previous == "Home")
+            {
+                myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key;
+            }
+            else
+            {
+                myKey = praticiens.FirstOrDefault(x => x.Value == textBox_paticien.Text).Key;
+            }
+
+            DetailsPraticien DP = new DetailsPraticien(myKey);
+
+            DP.Show();
+        }
+        private void Button_Fermer_Click_1( object sender, EventArgs e ) => ActiveForm.Close();
+
+        private int Gestion_erreur_comboBox_Praticiens()
+        {
+            int Err = 0;
+            if (comboBox_Praticiens == null || comboBox_Praticiens.Text == "")
+            {
+                label_errPratricien.Text = "Veuillez choisir un praticien";
+                Err = 1;
+            }
+            return Err;
+        }
+        private int GetGestion_erreur_dateTimePicker_DateRap()
+        {
+            int Err = 0;
+            if (dateTimePicker_DateRap.Value.DayOfYear > DateTime.Now.DayOfYear)
+            {
+                label_DateRap.Text = "Veuillez choisir une date correcte";
+                Err = 1;
+            }
+            return Err;
+        }
+        private int Gestion_erreur_comboBox_Motif()
+        {
+            int Err = 0;
+            if (comboBox_Motif == null || comboBox_Motif.Text == "")
+            {
+                label_motifvisite.Text = "Veuillez choisir un motif";
+                Err = 1;
+            }
+            return Err;
+        }
+        private int Gestion_erreur_dateTimePicker_DateProVisite()
+        {
+            int Err = 0;
+            if (comboBox_NewRDV.Text == "Oui" && dateTimePicker_DateProVisite.Value < DateTime.Now)
+            {
+                label_datepro.Text = "Veuillez choisir une date correcte";
+                Err = 1;
+            }
+            return Err;
+        }
+        private int Gestion_erreur_textBox_AutreMotif()
+        {
+            int Err = 0;
+            if (comboBox_Motif.Text == "Autre" && (textBox_AutreMotif.Text.Trim() == "" || textBox_AutreMotif.Text == null))
+            {
+                label_autremotif.Text = "Veuillez écrire un motif";
+                Err = 1;
+            }
+            return Err;
+        }
+        private int Gestion_erreur_textBox_BilanRap()
+        {
+            int Err = 0;
+            if (textBox_BilanRap.Text.Trim() == "" || textBox_BilanRap.Text == null)
+            {
+                label_bilan.Text = "Veuillez écrire un bilan";
+                Err = 1;
+            }
+            return Err;
         }
     }
 }

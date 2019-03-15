@@ -1,6 +1,6 @@
 ﻿namespace PPEClientLourd
 {
-    partial class rapportVisite
+    partial class RapportVisite
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rapportVisite));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RapportVisite));
             this.Title_RapVisite = new System.Windows.Forms.Label();
             this.Practiciens = new System.Windows.Forms.Label();
             this.DateRap = new System.Windows.Forms.Label();
@@ -39,7 +39,7 @@
             this.textBox_BilanRap = new System.Windows.Forms.TextBox();
             this.textBox_AutreMotif = new System.Windows.Forms.TextBox();
             this.AutreMotif = new System.Windows.Forms.Label();
-            this.comboBox_Practiciens = new System.Windows.Forms.ComboBox();
+            this.comboBox_Praticiens = new System.Windows.Forms.ComboBox();
             this.Btn_detailsPracticiens = new System.Windows.Forms.Button();
             this.comboBox_Motif = new System.Windows.Forms.ComboBox();
             this.NewRDV = new System.Windows.Forms.Label();
@@ -182,7 +182,7 @@
             this.textBox_BilanRap.Name = "textBox_BilanRap";
             this.textBox_BilanRap.Size = new System.Drawing.Size(612, 362);
             this.textBox_BilanRap.TabIndex = 13;
-            this.textBox_BilanRap.TextChanged += new System.EventHandler(this.textBox_BilanRap_TextChanged);
+            this.textBox_BilanRap.TextChanged += new System.EventHandler(this.TextBox_BilanRap_TextChanged);
             // 
             // textBox_AutreMotif
             // 
@@ -194,7 +194,7 @@
             this.textBox_AutreMotif.Size = new System.Drawing.Size(1110, 93);
             this.textBox_AutreMotif.TabIndex = 14;
             this.textBox_AutreMotif.Visible = false;
-            this.textBox_AutreMotif.TextChanged += new System.EventHandler(this.textBox_AutreMotif_TextChanged);
+            this.textBox_AutreMotif.TextChanged += new System.EventHandler(this.TextBox_AutreMotif_TextChanged);
             // 
             // AutreMotif
             // 
@@ -209,16 +209,16 @@
             this.AutreMotif.Text = "Autre";
             this.AutreMotif.Visible = false;
             // 
-            // comboBox_Practiciens
+            // comboBox_Praticiens
             // 
-            this.comboBox_Practiciens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Practiciens.FormattingEnabled = true;
-            this.comboBox_Practiciens.Location = new System.Drawing.Point(224, 275);
-            this.comboBox_Practiciens.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.comboBox_Practiciens.Name = "comboBox_Practiciens";
-            this.comboBox_Practiciens.Size = new System.Drawing.Size(390, 39);
-            this.comboBox_Practiciens.TabIndex = 16;
-            this.comboBox_Practiciens.SelectedIndexChanged += new System.EventHandler(this.comboBox_Practiciens_SelectedIndexChanged);
+            this.comboBox_Praticiens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Praticiens.FormattingEnabled = true;
+            this.comboBox_Praticiens.Location = new System.Drawing.Point(224, 275);
+            this.comboBox_Praticiens.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.comboBox_Praticiens.Name = "comboBox_Praticiens";
+            this.comboBox_Praticiens.Size = new System.Drawing.Size(390, 39);
+            this.comboBox_Praticiens.TabIndex = 16;
+            this.comboBox_Praticiens.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Practiciens_SelectedIndexChanged);
             // 
             // Btn_detailsPracticiens
             // 
@@ -287,7 +287,7 @@
             this.button_Creer.TabIndex = 23;
             this.button_Creer.Text = "Créer";
             this.button_Creer.UseVisualStyleBackColor = true;
-            this.button_Creer.Click += new System.EventHandler(this.button_Nouveau_Click);
+            this.button_Creer.Click += new System.EventHandler(this.Button_Nouveau_Click);
             // 
             // button_Fermer
             // 
@@ -300,7 +300,7 @@
             this.button_Fermer.TabIndex = 24;
             this.button_Fermer.Text = "Fermer";
             this.button_Fermer.UseVisualStyleBackColor = true;
-            this.button_Fermer.Click += new System.EventHandler(this.button_Fermer_Click_1);
+            this.button_Fermer.Click += new System.EventHandler(this.Button_Fermer_Click_1);
             // 
             // dateTimePicker_DateRap
             // 
@@ -309,7 +309,7 @@
             this.dateTimePicker_DateRap.Name = "dateTimePicker_DateRap";
             this.dateTimePicker_DateRap.Size = new System.Drawing.Size(470, 38);
             this.dateTimePicker_DateRap.TabIndex = 25;
-            this.dateTimePicker_DateRap.ValueChanged += new System.EventHandler(this.dateTimePicker_DateRap_ValueChanged);
+            this.dateTimePicker_DateRap.ValueChanged += new System.EventHandler(this.DateTimePicker_DateRap_ValueChanged);
             // 
             // dateTimePicker_DateProVisite
             // 
@@ -319,7 +319,7 @@
             this.dateTimePicker_DateProVisite.Size = new System.Drawing.Size(494, 38);
             this.dateTimePicker_DateProVisite.TabIndex = 26;
             this.dateTimePicker_DateProVisite.Visible = false;
-            this.dateTimePicker_DateProVisite.ValueChanged += new System.EventHandler(this.dateTimePicker_DateProVisite_ValueChanged);
+            this.dateTimePicker_DateProVisite.ValueChanged += new System.EventHandler(this.DateTimePicker_DateProVisite_ValueChanged);
             // 
             // dataGridView_echantillonPresente
             // 
@@ -594,7 +594,7 @@
             this.button_praticien2.Text = "Détails";
             this.button_praticien2.UseVisualStyleBackColor = true;
             this.button_praticien2.Visible = false;
-            this.button_praticien2.Click += new System.EventHandler(this.button_praticien2_Click);
+            this.button_praticien2.Click += new System.EventHandler(this.Button_praticien2_Click);
             // 
             // textBox_NewRDV
             // 
@@ -721,7 +721,7 @@
             this.button_modifier.Text = "Modifier";
             this.button_modifier.UseVisualStyleBackColor = true;
             this.button_modifier.Visible = false;
-            this.button_modifier.Click += new System.EventHandler(this.button_modifier_Click);
+            this.button_modifier.Click += new System.EventHandler(this.Button_modifier_Click);
             // 
             // rapportVisite
             // 
@@ -765,7 +765,7 @@
             this.Controls.Add(this.NewRDV);
             this.Controls.Add(this.comboBox_Motif);
             this.Controls.Add(this.Btn_detailsPracticiens);
-            this.Controls.Add(this.comboBox_Practiciens);
+            this.Controls.Add(this.comboBox_Praticiens);
             this.Controls.Add(this.AutreMotif);
             this.Controls.Add(this.textBox_AutreMotif);
             this.Controls.Add(this.textBox_BilanRap);
@@ -803,7 +803,7 @@
         private System.Windows.Forms.TextBox textBox_BilanRap;
         private System.Windows.Forms.TextBox textBox_AutreMotif;
         private System.Windows.Forms.Label AutreMotif;
-        private System.Windows.Forms.ComboBox comboBox_Practiciens;
+        private System.Windows.Forms.ComboBox comboBox_Praticiens;
         private System.Windows.Forms.Button Btn_detailsPracticiens;
         private System.Windows.Forms.ComboBox comboBox_Motif;
         private System.Windows.Forms.Label NewRDV;
