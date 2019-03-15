@@ -88,15 +88,22 @@ namespace PPEClientLourd
             prenom = textBox_prenom.Text.Trim();
             adresse = textBox_adresse.Text.Trim();
             ville = textBox_ville.Text.Trim();
-
             cp = textBox_CP.Text.Trim();
-            coefnot = textBox_CP.Text.Trim();
-            lieu = textBox_CP.Text.Trim();
+            coefnot = textBox_coef.Text.Trim();
+            lieu = cbx_tp.SelectedItem.ToString();
+
+            //this.dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, lieu);
 
 
 
         }
 
-        
+        private void dispatchErrors()
+        {
+
+        }
+
+
+
     }
 }
