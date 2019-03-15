@@ -82,6 +82,7 @@
             this.dataGridView_echantillonP = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_modifier = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonPresente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonOffert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_echantillonO)).BeginInit();
@@ -574,7 +575,7 @@
             // 
             this.textBox_paticien.Enabled = false;
             this.textBox_paticien.Location = new System.Drawing.Point(224, 275);
-            this.textBox_paticien.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_paticien.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_paticien.Name = "textBox_paticien";
             this.textBox_paticien.ReadOnly = true;
             this.textBox_paticien.Size = new System.Drawing.Size(390, 38);
@@ -599,7 +600,7 @@
             // 
             this.textBox_NewRDV.Enabled = false;
             this.textBox_NewRDV.Location = new System.Drawing.Point(1728, 267);
-            this.textBox_NewRDV.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_NewRDV.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_NewRDV.Name = "textBox_NewRDV";
             this.textBox_NewRDV.ReadOnly = true;
             this.textBox_NewRDV.Size = new System.Drawing.Size(238, 38);
@@ -610,7 +611,7 @@
             // 
             this.textBox_motif.Enabled = false;
             this.textBox_motif.Location = new System.Drawing.Point(292, 480);
-            this.textBox_motif.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_motif.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_motif.Name = "textBox_motif";
             this.textBox_motif.ReadOnly = true;
             this.textBox_motif.Size = new System.Drawing.Size(2230, 38);
@@ -621,7 +622,7 @@
             // 
             this.textBox_concurence.Enabled = false;
             this.textBox_concurence.Location = new System.Drawing.Point(574, 568);
-            this.textBox_concurence.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_concurence.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_concurence.Name = "textBox_concurence";
             this.textBox_concurence.ReadOnly = true;
             this.textBox_concurence.Size = new System.Drawing.Size(238, 38);
@@ -632,7 +633,7 @@
             // 
             this.textBox_connaissance.Enabled = false;
             this.textBox_connaissance.Location = new System.Drawing.Point(574, 676);
-            this.textBox_connaissance.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_connaissance.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_connaissance.Name = "textBox_connaissance";
             this.textBox_connaissance.ReadOnly = true;
             this.textBox_connaissance.Size = new System.Drawing.Size(238, 38);
@@ -643,7 +644,7 @@
             // 
             this.textBox_confiance.Enabled = false;
             this.textBox_confiance.Location = new System.Drawing.Point(1862, 670);
-            this.textBox_confiance.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_confiance.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_confiance.Name = "textBox_confiance";
             this.textBox_confiance.ReadOnly = true;
             this.textBox_confiance.Size = new System.Drawing.Size(238, 38);
@@ -708,6 +709,19 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // button_modifier
+            // 
+            this.button_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_modifier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.button_modifier.Location = new System.Drawing.Point(1813, 1583);
+            this.button_modifier.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.button_modifier.Name = "button_modifier";
+            this.button_modifier.Size = new System.Drawing.Size(214, 72);
+            this.button_modifier.TabIndex = 54;
+            this.button_modifier.Text = "Modifier";
+            this.button_modifier.UseVisualStyleBackColor = true;
+            this.button_modifier.Visible = false;
+            // 
             // rapportVisite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -715,6 +729,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(163)))), ((int)(((byte)(235)))));
             this.ClientSize = new System.Drawing.Size(2664, 1786);
+            this.Controls.Add(this.button_modifier);
             this.Controls.Add(this.dataGridView_echantillonP);
             this.Controls.Add(this.dataGridView_echantillonO);
             this.Controls.Add(this.textBox_confiance);
@@ -830,6 +845,7 @@
         private System.Windows.Forms.DataGridView dataGridView_echantillonP;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button button_modifier;
     }
 }
 

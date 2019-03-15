@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowAllRaports));
             this.dgv_rapports = new System.Windows.Forms.DataGridView();
+            this.lbl_noResults = new System.Windows.Forms.Label();
+            this.btn_return = new System.Windows.Forms.Button();
             this.Collaborateur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoRapport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RapDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RapMotif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Praticien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_noResults = new System.Windows.Forms.Label();
-            this.btn_return = new System.Windows.Forms.Button();
+            this.Matricule = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_rapports)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,72 +51,90 @@
             this.NoRapport,
             this.RapDate,
             this.RapMotif,
-            this.Praticien});
-            this.dgv_rapports.Location = new System.Drawing.Point(12, 42);
+            this.Praticien,
+            this.Matricule});
+            this.dgv_rapports.Location = new System.Drawing.Point(32, 100);
+            this.dgv_rapports.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.dgv_rapports.Name = "dgv_rapports";
             this.dgv_rapports.ReadOnly = true;
-            this.dgv_rapports.Size = new System.Drawing.Size(604, 444);
+            this.dgv_rapports.Size = new System.Drawing.Size(1611, 1059);
             this.dgv_rapports.TabIndex = 0;
             this.dgv_rapports.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_rapports_CellContentClick);
             // 
+            // lbl_noResults
+            // 
+            this.lbl_noResults.AutoSize = true;
+            this.lbl_noResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_noResults.Location = new System.Drawing.Point(59, 29);
+            this.lbl_noResults.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.lbl_noResults.Name = "lbl_noResults";
+            this.lbl_noResults.Size = new System.Drawing.Size(0, 46);
+            this.lbl_noResults.TabIndex = 1;
+            // 
+            // btn_return
+            // 
+            this.btn_return.Location = new System.Drawing.Point(1443, 1199);
+            this.btn_return.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(200, 55);
+            this.btn_return.TabIndex = 2;
+            this.btn_return.Text = "&Retour";
+            this.btn_return.UseVisualStyleBackColor = true;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
             // Collaborateur
             // 
+            this.Collaborateur.Frozen = true;
             this.Collaborateur.HeaderText = "Collaborateur";
             this.Collaborateur.Name = "Collaborateur";
             this.Collaborateur.ReadOnly = true;
             // 
             // NoRapport
             // 
+            this.NoRapport.Frozen = true;
             this.NoRapport.HeaderText = "Numéro de rapport";
             this.NoRapport.Name = "NoRapport";
             this.NoRapport.ReadOnly = true;
             // 
             // RapDate
             // 
+            this.RapDate.Frozen = true;
             this.RapDate.HeaderText = "Date du rapport";
             this.RapDate.Name = "RapDate";
             this.RapDate.ReadOnly = true;
             // 
             // RapMotif
             // 
+            this.RapMotif.Frozen = true;
             this.RapMotif.HeaderText = "Motif de rapport";
             this.RapMotif.Name = "RapMotif";
             this.RapMotif.ReadOnly = true;
             // 
             // Praticien
             // 
+            this.Praticien.Frozen = true;
             this.Praticien.HeaderText = "Praticien visité";
             this.Praticien.Name = "Praticien";
             this.Praticien.ReadOnly = true;
             // 
-            // lbl_noResults
+            // Matricule
             // 
-            this.lbl_noResults.AutoSize = true;
-            this.lbl_noResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_noResults.Location = new System.Drawing.Point(22, 12);
-            this.lbl_noResults.Name = "lbl_noResults";
-            this.lbl_noResults.Size = new System.Drawing.Size(0, 20);
-            this.lbl_noResults.TabIndex = 1;
-            // 
-            // btn_return
-            // 
-            this.btn_return.Location = new System.Drawing.Point(541, 503);
-            this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(75, 23);
-            this.btn_return.TabIndex = 2;
-            this.btn_return.Text = "&Retour";
-            this.btn_return.UseVisualStyleBackColor = true;
-            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            this.Matricule.Frozen = true;
+            this.Matricule.HeaderText = "Matricule";
+            this.Matricule.Name = "Matricule";
+            this.Matricule.ReadOnly = true;
+            this.Matricule.Visible = false;
             // 
             // ShowAllRaports
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 538);
+            this.ClientSize = new System.Drawing.Size(1675, 1283);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.lbl_noResults);
             this.Controls.Add(this.dgv_rapports);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "ShowAllRaports";
             this.Text = "Voir tout les rapports";
             this.Load += new System.EventHandler(this.ShowAllRaports_Load);
@@ -128,12 +147,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_rapports;
+        private System.Windows.Forms.Label lbl_noResults;
+        private System.Windows.Forms.Button btn_return;
         private System.Windows.Forms.DataGridViewTextBoxColumn Collaborateur;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoRapport;
         private System.Windows.Forms.DataGridViewTextBoxColumn RapDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn RapMotif;
         private System.Windows.Forms.DataGridViewTextBoxColumn Praticien;
-        private System.Windows.Forms.Label lbl_noResults;
-        private System.Windows.Forms.Button btn_return;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Matricule;
     }
 }

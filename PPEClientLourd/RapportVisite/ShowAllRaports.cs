@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -24,23 +17,23 @@ namespace PPEClientLourd
             set => chaineConnexion = value;
         }
 
-        public ShowAllRaports(string matricule, string nom, string role)
+        public ShowAllRaports( string matricule, string nom, string role )
         {
             InitializeComponent();
 
-            this._matricule = matricule;
-            this._nom = nom;
-            this._role = role;
+            _matricule = matricule;
+            _nom = nom;
+            _role = role;
         }
 
-        private void ShowAllRaports_Load(object sender, EventArgs e)
+        private void ShowAllRaports_Load( object sender, EventArgs e )
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
             string req;
 
-            if (this._role == "responsable")
+            if (_role == "responsable")
             {
-                req = "SELECT c.COL_NOM, r.RAP_NUM, r.RAP_DATE, r.RAP_MOTIF, p.PRA_NOM " +
+                req = "SELECT c.COL_NOM, r.RAP_NUM, r.RAP_DATE, r.RAP_MOTIF, p.PRA_NOM, c.COL_MATRICULE " +
                              "FROM rapport_visite r " +
                              "  INNER JOIN collaborateur c ON r.COL_MATRICULE = c.COL_MATRICULE " +
                              "  INNER JOIN praticien p ON r.PRA_NUM = p.PRA_NUM" +
@@ -52,13 +45,13 @@ namespace PPEClientLourd
                              "FROM rapport_visite r " +
                              "  INNER JOIN collaborateur c ON r.COL_MATRICULE = c.COL_MATRICULE " +
                              "  INNER JOIN praticien p ON r.PRA_NUM = p.PRA_NUM" +
-                             "  WHERE c.COL_MATRICULE = '" + this._matricule + "'" +
+                             "  WHERE c.COL_MATRICULE = '" + _matricule + "'" +
                              "  ORDER BY r.RAP_DATE DESC";
             }
 
             cs.ReqSelect(req);
 
-            string colNom, rapNum, rapDate, rapMotif, praNom;
+            string colNom, rapNum, rapDate, rapMotif, praNom, colMat = "";
 
             while (!cs.Fin())
             {
@@ -67,11 +60,22 @@ namespace PPEClientLourd
                 rapDate = cs.Champ("RAP_DATE").ToString();
                 rapMotif = cs.Champ("RAP_MOTIF").ToString();
                 praNom = cs.Champ("PRA_NOM").ToString();
+                if (_role == "responsable")
+                {
+                    colMat = cs.Champ("COL_MATRICULE").ToString();
+                }
 
                 rapDate = Convert.ToDateTime(rapDate).ToString();
                 rapDate = rapDate.Split(' ')[0];
+                if (_role == "responsable")
+                {
+                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
+                }
+                else
+                {
+                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom);
+                }
 
-                dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom);
 
                 cs.Suivant();
             }
@@ -85,21 +89,19 @@ namespace PPEClientLourd
             }
         }
 
-        private void dgv_rapports_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_rapports_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
             string rapNum = dgv_rapports[1, e.RowIndex].Value.ToString();
+            string colMat = dgv_rapports[5, e.RowIndex].Value.ToString();
             int noRapport = Convert.ToInt16(rapNum);
 
             if (noRapport != 0)
             {
-                rapportVisite rv = new rapportVisite(this._nom, this._matricule, "ShowAllRaports", noRapport);
+                rapportVisite rv = new rapportVisite(_nom, _matricule, "ShowAllRaports", noRapport, colMat, _role);
                 rv.Show();
             }
         }
 
-        private void btn_return_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btn_return_Click( object sender, EventArgs e ) => Close();
     }
 }
