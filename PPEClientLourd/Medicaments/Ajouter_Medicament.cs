@@ -20,15 +20,13 @@ namespace PPEClientLourd
         private string effets;
         private string contreindic;
         private double prixechant;
-        //private curs connection;
 
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
 
         public Ajouter_Medicament()
         {
             InitializeComponent();
-            //this.InitConnexion();
         }
 
         public string Dépôt { get => dépôt; set => dépôt = value; }
@@ -38,12 +36,6 @@ namespace PPEClientLourd
         public string Effets { get => effets; set => effets = value; }
         public string Contreindic { get => contreindic; set => contreindic = value; }
         public double Prixechant { get => prixechant; set => prixechant = value; }
-
-        /*public void InitConnexion()
-        {
-            string connectionstring = "SERVER=127.0.0.1; DATABASE=clientlourdtest; UID=root; PASSWORD=; SslMode=none";
-            this.connection = new curs(connectionstring);
-        } */
 
         private void Ajouter_Medicament_Load(object sender, EventArgs e)
         {
@@ -84,7 +76,6 @@ namespace PPEClientLourd
                     cs.ReqAdmin(sql);
 
                     cs.Fermer();
-                    //MySqlCommand SelectCommand = new MySqlCommand(sql);
                     depot_legal_input.Text = "";
                     nom_input.Text = "";
                     code_input.Text = "";

@@ -5,7 +5,7 @@ namespace PPEClientLourd
 {
     public partial class OneVisiteur : Form
     {
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
         private string _previous;
 
         public string ChaineConnexion

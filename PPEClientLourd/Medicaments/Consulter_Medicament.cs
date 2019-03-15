@@ -5,7 +5,7 @@ namespace PPEClientLourd
 {
     public partial class Consulter_Medicament : Form
     {
-        string chaineconnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=; SslMode=none";
+        string chaineconnexion = ConnexionDb.chaineConnexion;
 
         public Consulter_Medicament(string idMedicament = "a")
         {

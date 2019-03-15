@@ -12,7 +12,7 @@ namespace PPEClientLourd
 {
     public partial class newPraticien : Form
     {
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
         private Dictionary<string, string> typePraticiens = new Dictionary<string, string>();
 
         public string ChaineConnexion

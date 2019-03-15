@@ -8,7 +8,7 @@ namespace PPEClientLourd
         private string _colMatricule;
         private string _colNom;
         private string _role = "visiteur";
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         public string ChaineConnexion
         {
@@ -82,7 +82,7 @@ namespace PPEClientLourd
 
         private void voirToutLesPraticiensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
+            AllPraticiens ap = new AllPraticiens();
             ap.Show();
         }
 
@@ -128,7 +128,7 @@ namespace PPEClientLourd
 
         private void voirToutLesPraticiensToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            AllPraticiens ap = new AllPraticiens(this._colNom, this._colMatricule);
+            AllPraticiens ap = new AllPraticiens();
             ap.Show();
         }
 

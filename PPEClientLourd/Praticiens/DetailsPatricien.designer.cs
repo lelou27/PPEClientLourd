@@ -46,6 +46,9 @@
             this.textBox_lieu = new System.Windows.Forms.TextBox();
             this.textBox_CP = new System.Windows.Forms.TextBox();
             this.button_Fermer = new System.Windows.Forms.Button();
+            this.btn_modif = new System.Windows.Forms.Button();
+            this.btn_maj = new System.Windows.Forms.Button();
+            this.cbx_tp = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Title
@@ -147,7 +150,7 @@
             // textBox_num
             // 
             this.textBox_num.Location = new System.Drawing.Point(162, 99);
-            this.textBox_num.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_num.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_num.Name = "textBox_num";
             this.textBox_num.ReadOnly = true;
             this.textBox_num.Size = new System.Drawing.Size(168, 20);
@@ -156,7 +159,7 @@
             // textBox_nom
             // 
             this.textBox_nom.Location = new System.Drawing.Point(162, 139);
-            this.textBox_nom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_nom.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_nom.Name = "textBox_nom";
             this.textBox_nom.ReadOnly = true;
             this.textBox_nom.Size = new System.Drawing.Size(168, 20);
@@ -165,7 +168,7 @@
             // textBox_prenom
             // 
             this.textBox_prenom.Location = new System.Drawing.Point(162, 174);
-            this.textBox_prenom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_prenom.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_prenom.Name = "textBox_prenom";
             this.textBox_prenom.ReadOnly = true;
             this.textBox_prenom.Size = new System.Drawing.Size(168, 20);
@@ -174,7 +177,7 @@
             // textBox_adresse
             // 
             this.textBox_adresse.Location = new System.Drawing.Point(162, 204);
-            this.textBox_adresse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_adresse.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_adresse.Name = "textBox_adresse";
             this.textBox_adresse.ReadOnly = true;
             this.textBox_adresse.Size = new System.Drawing.Size(168, 20);
@@ -183,7 +186,7 @@
             // textBox_ville
             // 
             this.textBox_ville.Location = new System.Drawing.Point(260, 239);
-            this.textBox_ville.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_ville.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ville.Name = "textBox_ville";
             this.textBox_ville.ReadOnly = true;
             this.textBox_ville.Size = new System.Drawing.Size(168, 20);
@@ -192,7 +195,7 @@
             // textBox_coef
             // 
             this.textBox_coef.Location = new System.Drawing.Point(162, 273);
-            this.textBox_coef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_coef.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_coef.Name = "textBox_coef";
             this.textBox_coef.ReadOnly = true;
             this.textBox_coef.Size = new System.Drawing.Size(168, 20);
@@ -201,7 +204,7 @@
             // textBox_lieu
             // 
             this.textBox_lieu.Location = new System.Drawing.Point(162, 314);
-            this.textBox_lieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_lieu.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_lieu.Name = "textBox_lieu";
             this.textBox_lieu.ReadOnly = true;
             this.textBox_lieu.Size = new System.Drawing.Size(168, 20);
@@ -210,7 +213,7 @@
             // textBox_CP
             // 
             this.textBox_CP.Location = new System.Drawing.Point(162, 239);
-            this.textBox_CP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_CP.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_CP.Name = "textBox_CP";
             this.textBox_CP.ReadOnly = true;
             this.textBox_CP.Size = new System.Drawing.Size(95, 20);
@@ -221,7 +224,7 @@
             this.button_Fermer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Fermer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
             this.button_Fermer.Location = new System.Drawing.Point(475, 372);
-            this.button_Fermer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Fermer.Margin = new System.Windows.Forms.Padding(2);
             this.button_Fermer.Name = "button_Fermer";
             this.button_Fermer.Size = new System.Drawing.Size(80, 30);
             this.button_Fermer.TabIndex = 25;
@@ -229,11 +232,51 @@
             this.button_Fermer.UseVisualStyleBackColor = true;
             this.button_Fermer.Click += new System.EventHandler(this.button_Fermer_Click);
             // 
+            // btn_modif
+            // 
+            this.btn_modif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_modif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btn_modif.Location = new System.Drawing.Point(365, 372);
+            this.btn_modif.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_modif.Name = "btn_modif";
+            this.btn_modif.Size = new System.Drawing.Size(80, 30);
+            this.btn_modif.TabIndex = 26;
+            this.btn_modif.Text = "Modifier";
+            this.btn_modif.UseVisualStyleBackColor = true;
+            this.btn_modif.Click += new System.EventHandler(this.btn_modif_Click);
+            // 
+            // btn_maj
+            // 
+            this.btn_maj.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_maj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btn_maj.Location = new System.Drawing.Point(365, 372);
+            this.btn_maj.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_maj.Name = "btn_maj";
+            this.btn_maj.Size = new System.Drawing.Size(90, 30);
+            this.btn_maj.TabIndex = 27;
+            this.btn_maj.Text = "Mettre à jour";
+            this.btn_maj.UseVisualStyleBackColor = true;
+            this.btn_maj.Visible = false;
+            this.btn_maj.Click += new System.EventHandler(this.btn_maj_Click);
+            // 
+            // cbx_tp
+            // 
+            this.cbx_tp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_tp.FormattingEnabled = true;
+            this.cbx_tp.Location = new System.Drawing.Point(162, 312);
+            this.cbx_tp.Name = "cbx_tp";
+            this.cbx_tp.Size = new System.Drawing.Size(243, 21);
+            this.cbx_tp.TabIndex = 29;
+            this.cbx_tp.Visible = false;
+            // 
             // DetailsPraticien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 432);
+            this.Controls.Add(this.cbx_tp);
+            this.Controls.Add(this.btn_maj);
+            this.Controls.Add(this.btn_modif);
             this.Controls.Add(this.button_Fermer);
             this.Controls.Add(this.textBox_CP);
             this.Controls.Add(this.textBox_lieu);
@@ -278,5 +321,8 @@
         private System.Windows.Forms.TextBox textBox_lieu;
         private System.Windows.Forms.TextBox textBox_CP;
         private System.Windows.Forms.Button button_Fermer;
+        private System.Windows.Forms.Button btn_modif;
+        private System.Windows.Forms.Button btn_maj;
+        private System.Windows.Forms.ComboBox cbx_tp;
     }
 }
