@@ -48,6 +48,7 @@
             this.button_Fermer = new System.Windows.Forms.Button();
             this.btn_modif = new System.Windows.Forms.Button();
             this.btn_maj = new System.Windows.Forms.Button();
+            this.cbx_tp = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Title
@@ -248,7 +249,7 @@
             // 
             this.btn_maj.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_maj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.btn_maj.Location = new System.Drawing.Point(355, 372);
+            this.btn_maj.Location = new System.Drawing.Point(365, 372);
             this.btn_maj.Margin = new System.Windows.Forms.Padding(2);
             this.btn_maj.Name = "btn_maj";
             this.btn_maj.Size = new System.Drawing.Size(90, 30);
@@ -258,11 +259,22 @@
             this.btn_maj.Visible = false;
             this.btn_maj.Click += new System.EventHandler(this.btn_maj_Click);
             // 
+            // cbx_tp
+            // 
+            this.cbx_tp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_tp.FormattingEnabled = true;
+            this.cbx_tp.Location = new System.Drawing.Point(162, 312);
+            this.cbx_tp.Name = "cbx_tp";
+            this.cbx_tp.Size = new System.Drawing.Size(243, 21);
+            this.cbx_tp.TabIndex = 29;
+            this.cbx_tp.Visible = false;
+            // 
             // DetailsPatricien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 432);
+            this.Controls.Add(this.cbx_tp);
             this.Controls.Add(this.btn_maj);
             this.Controls.Add(this.btn_modif);
             this.Controls.Add(this.button_Fermer);
@@ -311,5 +323,6 @@
         private System.Windows.Forms.Button button_Fermer;
         private System.Windows.Forms.Button btn_modif;
         private System.Windows.Forms.Button btn_maj;
+        private System.Windows.Forms.ComboBox cbx_tp;
     }
 }
