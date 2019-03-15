@@ -12,15 +12,19 @@ namespace PPEClientLourd
         private string _colMatricule;
         private string _previous;
         private string _colNom;
+        private string _role;
+        private string _colMatClic;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
 
-        public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0 )
+        public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
         {
             InitializeComponent();
             _previous = previous;
             _colNom = colNom;
             _colMatricule = colMat;
+            _colMatClic = colMatClic;
+            _role = role;
 
             if (previous == "Home")
             {
@@ -55,7 +59,7 @@ namespace PPEClientLourd
                 }
                 cs2.Fermer();
             }
-            else
+            else if (_previous == "ShowAllRaports")
             {
                 Curs cs = new Curs(connection);
                 string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM` FROM `praticien` ORDER BY `praticien`.`PRA_NOM`";
@@ -97,7 +101,14 @@ namespace PPEClientLourd
                 button_Creer.Visible = false;
                 dataGridView_echantillonO.Visible = true;
                 dataGridView_echantillonP.Visible = true;
-                requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap + " AND `rapport_visite`.`COL_MATRICULE` = '" + _colMatricule + "'";
+                if (_role == "responsable")
+                {
+                    requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap + " AND `rapport_visite`.`COL_MATRICULE` = '" + _colMatClic + "'";
+                }
+                else
+                {
+                    requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM` FROM `rapport_visite`,`praticien` WHERE `praticien`.`PRA_NUM` = `rapport_visite`.`PRA_NUM`AND  `rapport_visite`.`RAP_NUM` = " + numRap + " AND `rapport_visite`.`COL_MATRICULE` = '" + _colMatricule + "'";
+                }
 
                 Curs cs2 = new Curs(connection);
                 cs2.ReqSelect(requete);
@@ -140,7 +151,14 @@ namespace PPEClientLourd
                 }
                 cs2.Fermer();
 
-                requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL`,`distribuer`.`QUANTITE`,`distribuer`.`OFFERT` FROM `distribuer`,`echantillon`,`medicament` WHERE `distribuer`.`RAP_NUM` = " + numRap + " AND `echantillon`.`ECH_ID` = `distribuer`.`ECH_ID` AND `medicament`.`MED_DEPOTLEGAL` = `echantillon`.`MED_ID` AND `distribuer`.`COL_MATRICULE` = '" + _colMatricule + "'";
+                if (_role == "responsable")
+                {
+                    requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL`,`distribuer`.`QUANTITE`,`distribuer`.`OFFERT` FROM `distribuer`,`echantillon`,`medicament` WHERE `distribuer`.`RAP_NUM` = " + numRap + " AND `echantillon`.`ECH_ID` = `distribuer`.`ECH_ID` AND `medicament`.`MED_DEPOTLEGAL` = `echantillon`.`MED_ID` AND `distribuer`.`COL_MATRICULE` = '" + _colMatClic + "'";
+                }
+                else
+                {
+                    requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL`,`distribuer`.`QUANTITE`,`distribuer`.`OFFERT` FROM `distribuer`,`echantillon`,`medicament` WHERE `distribuer`.`RAP_NUM` = " + numRap + " AND `echantillon`.`ECH_ID` = `distribuer`.`ECH_ID` AND `medicament`.`MED_DEPOTLEGAL` = `echantillon`.`MED_ID` AND `distribuer`.`COL_MATRICULE` = '" + _colMatricule + "'";
+                }
                 Dictionary<string, int> EchantillionO = new Dictionary<string, int>();
                 Dictionary<string, int> EchantillionP = new Dictionary<string, int>();
 
@@ -148,7 +166,7 @@ namespace PPEClientLourd
                 cs3.ReqSelect(requete);
                 while (!cs3.Fin())
                 {
-                    var eiqhfdod = cs3.Champ("OFFERT").ToString();
+                    string eiqhfdod = cs3.Champ("OFFERT").ToString();
                     if (cs3.Champ("OFFERT").ToString() == "True")
                     {
                         EchantillionO.Add(cs3.Champ("MED_NOMCOMMERCIAL").ToString(), Convert.ToInt16(cs3.Champ("QUANTITE")));
@@ -169,6 +187,11 @@ namespace PPEClientLourd
                 {
                     dataGridView_echantillonP.Rows.Add(item.Key, item.Value);
                 }
+
+                //if (role == "visiteur")
+                //{
+                //    button_modifier.Visible = true;
+                //}
             }
         }
 
@@ -328,7 +351,7 @@ namespace PPEClientLourd
             {
                 string dateJour = DateTime.Today.ToString("yyyy-MM-dd H:mm:ss");
                 string rapBilan = textBox_BilanRap.Text;
-                string rapMotif = comboBox_Motif.Text == "autre" ? textBox_AutreMotif.Text : comboBox_Motif.Text;
+                string rapMotif = comboBox_Motif.Text == "Autre" ? textBox_AutreMotif.Text : comboBox_Motif.Text;
                 bool rapConnaissancePatricienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text, result: out short connaissanceP);
                 string rapConnaissancePatricien = rapConnaissancePatricienFlag ? connaissanceP.ToString() : "NULL";
                 bool rapConnaissanceLaboFlag = short.TryParse(s: comboBox_confianceLabo.Text, result: out short confianceL);
@@ -368,7 +391,7 @@ namespace PPEClientLourd
                 }
                 if (nbRapNum == -1)
                 {
-                    nbRapNum = 0;
+                    nbRapNum = 1;
                 }
                 rapNum = nbRapNum.ToString();
                 cs2.Fermer();
