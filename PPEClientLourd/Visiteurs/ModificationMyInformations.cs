@@ -18,7 +18,7 @@ namespace PPEClientLourd
         private Dictionary<string, string> labo = new Dictionary<string, string>();
         private Dictionary<string, string> secteur = new Dictionary<string, string>();
 
-        string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        string chaineConnexion = ConnexionDb.chaineConnexion;
 
 
         public ModificationMyInformations(string matricule, string nom, string role)

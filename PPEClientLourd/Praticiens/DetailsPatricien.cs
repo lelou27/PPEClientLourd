@@ -7,7 +7,7 @@ namespace PPEClientLourd
 {
     public partial class DetailsPatricien : Form
     {
-        string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
+        string connection = ConnexionDb.chaineConnexion;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string _previous;
         public DetailsPatricien(int NomPatriciens, string previous = "AllPraticiens")

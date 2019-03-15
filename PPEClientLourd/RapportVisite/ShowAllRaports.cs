@@ -9,7 +9,7 @@ namespace PPEClientLourd
         private string _nom;
         private string _role;
 
-        private string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         public string ChaineConnexion
         {

@@ -15,7 +15,7 @@ namespace PPEClientLourd
         private string _role;
         private string _colMatClic;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
-        private string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=;SslMode=none";
+        private string connection = ConnexionDb.chaineConnexion;
 
         public rapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
         {

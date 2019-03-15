@@ -12,7 +12,7 @@ namespace PPEClientLourd
 {
     public partial class SearchVisiteur : Form
     {
-        string chaineConnexion = "SERVER=127.0.0.1; DATABASE=applicationppe; UID=root; PASSWORD=;SslMode=none";  //ceci permettra la connexion à la base de données	Mysql
+        string chaineConnexion = ConnexionDb.chaineConnexion;
         Dictionary<string, string> visiteurs = new Dictionary<string, string>();
         private string _matricule;
 
