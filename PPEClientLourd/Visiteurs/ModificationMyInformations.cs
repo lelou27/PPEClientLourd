@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -17,20 +12,19 @@ namespace PPEClientLourd
         private string _role;
         private Dictionary<string, string> labo = new Dictionary<string, string>();
         private Dictionary<string, string> secteur = new Dictionary<string, string>();
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
-        string chaineConnexion = ConnexionDb.chaineConnexion;
 
-
-        public ModificationMyInformations(string matricule, string nom, string role)
+        public ModificationMyInformations( string matricule, string nom, string role )
         {
             InitializeComponent();
-            this._matricule = matricule;
-            this._nom = nom;
-            this._role = role;
+            _matricule = matricule;
+            _nom = nom;
+            _role = role;
 
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
-            if(this._role == "visiteur")
+            if (_role == "visiteur")
             {
                 lbl_secteur.Hide();
                 cbx_secteur.Hide();
@@ -38,7 +32,7 @@ namespace PPEClientLourd
             else
             {
                 cs.ReqSelect("SELECT SEC_CODE, SEC_LIBELLE FROM secteur");
-                while(!cs.Fin())
+                while (!cs.Fin())
                 {
                     secteur.Add(cs.Champ("SEC_CODE").ToString(), cs.Champ("SEC_LIBELLE").ToString());
                     cbx_secteur.Items.Add(cs.Champ("SEC_LIBELLE").ToString());
@@ -47,13 +41,13 @@ namespace PPEClientLourd
                 cs.Fermer();
             }
 
-            string laboCode = this.setChamps(matricule);
-            this.addItemsToLabo(laboCode);
+            string laboCode = setChamps(matricule);
+            addItemsToLabo(laboCode);
         }
 
-        private string setChamps(string matricule)
+        private string setChamps( string matricule )
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT * FROM collaborateur WHERE COL_MATRICULE = '" + matricule + "';");
             string laboCode = "";
@@ -69,7 +63,9 @@ namespace PPEClientLourd
                 laboCode = cs.Champ("LAB_CODE").ToString();
 
                 if (_role == "responsable")
+                {
                     cbx_secteur.SelectedItem = secteur[cs.Champ("SEC_CODE").ToString()];
+                }
 
                 cs.Suivant();
             }
@@ -78,20 +74,22 @@ namespace PPEClientLourd
             return laboCode;
         }
 
-        private void addItemsToLabo(string laboCode)
+        private void addItemsToLabo( string laboCode )
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT LAB_CODE, LAB_NOM FROM labo");
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
-                this.labo.Add(cs.Champ("LAB_CODE").ToString(), cs.Champ("LAB_NOM").ToString());
+                labo.Add(cs.Champ("LAB_CODE").ToString(), cs.Champ("LAB_NOM").ToString());
 
                 cbx_labo.Items.Add(cs.Champ("LAB_NOM").ToString());
 
                 if (laboCode == cs.Champ("LAB_CODE").ToString())
+                {
                     cbx_labo.SelectedItem = cs.Champ("LAB_NOM").ToString();
+                }
 
                 cs.Suivant();
             }
@@ -99,15 +97,11 @@ namespace PPEClientLourd
         }
 
 
-        private void btn_retour_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btn_retour_Click( object sender, EventArgs e ) => Close();
 
-        private void btn_modifier_Click(object sender, EventArgs e)
+        private void btn_modifier_Click( object sender, EventArgs e )
         {
             string nom, prenom, adresse, ville, cp, secteur, labo;
-            int codePostal;
 
             nom = txb_nom.Text.Trim();
             prenom = txb_prenom.Text.Trim();
@@ -116,27 +110,31 @@ namespace PPEClientLourd
             cp = txb_cp.Text.Trim();
 
             if (_role == "responsable")
+            {
                 secteur = cbx_secteur.SelectedItem.ToString();
+            }
             else
+            {
                 secteur = null;
+            }
 
             labo = cbx_labo.SelectedItem.ToString();
 
-            this.dispatchErrors(nom, prenom, adresse, ville, cp, secteur, labo);
+            dispatchErrors(nom, prenom, adresse, ville, cp, secteur, labo);
 
-            if(nom.Length != 0 && prenom.Length != 0 && ville.Length != 0 && cp.Length != 0 && labo.Length != 0)
+            if (nom.Length != 0 && prenom.Length != 0 && ville.Length != 0 && cp.Length != 0 && labo.Length != 0)
             {
                 bool error = false;
 
-                if (!Int32.TryParse(cp, out codePostal))
+                if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
                 }
 
-                if(!error)
+                if (!error)
                 {
-                    Curs cs = new Curs(this.chaineConnexion);
+                    Curs cs = new Curs(chaineConnexion);
 
                     labo = this.labo.FirstOrDefault(x => x.Value == labo).Key;
 
@@ -148,14 +146,14 @@ namespace PPEClientLourd
 
                         req = "UPDATE collaborateur SET COL_NOM = '" + nom + "', COL_PRENOM = '" + prenom + "', COL_ADRESSE = '" + adresse + "'" +
                         ", COL_VILLE = '" + ville + "', COL_CP = '" + cp + "', LAB_CODE = '" + labo + "', SEC_CODE = '" + secteur + "'" +
-                        " WHERE COL_MATRICULE = '"+_matricule+"';";
+                        " WHERE COL_MATRICULE = '" + _matricule + "';";
 
                     }
                     else
                     {
                         req = "UPDATE collaborateur SET COL_NOM = '" + nom + "', COL_PRENOM = '" + prenom + "', COL_ADRESSE = '" + adresse + "'" +
                         ", COL_VILLE = '" + ville + "', COL_CP = '" + cp + "', LAB_CODE = '" + labo + "'" +
-                        " WHERE COL_MATRICULE = '"+_matricule+"';";
+                        " WHERE COL_MATRICULE = '" + _matricule + "';";
                     }
 
                     try
@@ -165,7 +163,7 @@ namespace PPEClientLourd
 
                         MessageBox.Show("Mise à jour effectué", "Success lors de la mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Close();
+                        Close();
                     }
                     catch (Exception)
                     {
@@ -175,15 +173,18 @@ namespace PPEClientLourd
             }
         }
 
-        private void dispatchErrors(string nom, string prenom, string adresse, string ville, string cp, string secteur, string labo)
+        private void dispatchErrors( string nom, string prenom, string adresse, string ville, string cp, string secteur, string labo )
         {
             lbl_error_nom.Text = nom.Length == 0 ? "Veuillez renseigner un nom" : "";
             lbl_error_prenom.Text = prenom.Length == 0 ? "Veuillez renseigner un prénom" : "";
             lbl_error_adresse.Text = adresse.Length == 0 ? "Veuillez renseigner une adresse" : "";
             lbl_error_ville.Text = ville.Length == 0 ? "Veuillez renseigner une ville" : "";
             lbl_error_cp.Text = cp.Length == 0 ? "Veuillez renseigner un code postal" : "";
-            if(_role == "responsable")
+            if (_role == "responsable")
+            {
                 lbl_error_secteur.Text = secteur.Length == 0 ? "Veuillez renseigner un secteur" : "";
+            }
+
             lbl_error_labo.Text = labo.Length == 0 ? "Veuillez renseigner un laboratoire" : "";
         }
     }

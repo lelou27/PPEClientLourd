@@ -5,12 +5,12 @@ namespace PPEClientLourd
 {
     public partial class Connexion : Form
     {
-        string chaineConnexion = ConnexionDb.chaineConnexion;
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         public string ChaineConnexion
         {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
+            get => chaineConnexion;
+            set => chaineConnexion = value;
         }
         public Connexion()
         {
@@ -19,12 +19,12 @@ namespace PPEClientLourd
             lbl_error_password.Hide();
         }
 
-        private void Label1_Click(object sender, EventArgs e)
+        private void Label1_Click( object sender, EventArgs e )
         {
 
         }
 
-        private void Btn_send_Click(object sender, EventArgs e)
+        private void Btn_send_Click( object sender, EventArgs e )
         {
             string username = txb_login.Text.ToString();
             string password = txb_password.Text.ToString();
@@ -36,13 +36,13 @@ namespace PPEClientLourd
                 {
                     lbl_error_password.Hide();
 
-                    Curs cs = new Curs(this.chaineConnexion);
+                    Curs cs = new Curs(chaineConnexion);
 
                     cs.ReqSelect("" +
                         "SELECT v.COL_MATRICULE, c.COL_NOM FROM visiteur v " +
                            " INNER JOIN collaborateur c ON v.COL_MATRICULE = c.COL_MATRICULE " +
-                        " WHERE c.COL_NOM = '"+username+"' " +
-                        " AND DATE_FORMAT(c.COL_DATEEMBAUCHE, '%Y-%b-%d') = '"+password+"'; "
+                        " WHERE c.COL_NOM = '" + username + "' " +
+                        " AND DATE_FORMAT(c.COL_DATEEMBAUCHE, '%Y-%b-%d') = '" + password + "'; "
                         );
                     string nom = "";
                     string matricule = "";
@@ -51,11 +51,11 @@ namespace PPEClientLourd
                     {
                         matricule = cs.Champ("COL_MATRICULE").ToString();
                         nom = cs.Champ("COL_NOM").ToString();
-                        
-                        if(matricule.Length != 0 && nom.Length != 0)
+
+                        if (matricule.Length != 0 && nom.Length != 0)
                         {
                             Home homeForm = new Home(matricule, nom);
-                            this.Hide();
+                            Hide();
                             homeForm.Show();
                         }
                         else
@@ -83,12 +83,12 @@ namespace PPEClientLourd
             }
         }
 
-        private void Lbl_error_login_Click(object sender, EventArgs e)
+        private void Lbl_error_login_Click( object sender, EventArgs e )
         {
 
         }
 
-        private void Connexion_Load(object sender, EventArgs e)
+        private void Connexion_Load( object sender, EventArgs e )
         {
 
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -74,7 +73,7 @@ namespace PPEClientLourd
                 cs.Suivant();
             }
 
-            if(dgv_visiteurs.Rows.Count == 0)
+            if (dgv_visiteurs.Rows.Count == 0)
             {
                 dgv_visiteurs.Rows.Add("Désolé, aucun visiteur n'a été trouvé");
             }
