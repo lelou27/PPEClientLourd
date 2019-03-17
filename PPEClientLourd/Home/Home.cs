@@ -57,7 +57,7 @@ namespace PPEClientLourd
 
         private void créerUnCompteRenduToolStripMenuItem_Click_1( object sender, EventArgs e )
         {
-            rapportVisite rv = new rapportVisite(_colNom, _colMatricule);
+            RapportVisite rv = new RapportVisite(_colNom, _colMatricule);
             rv.Show();
         }
 
@@ -80,13 +80,13 @@ namespace PPEClientLourd
 
         }
 
-        private void voirToutLesPraticiensToolStripMenuItem_Click(object sender, EventArgs e)
+        private void voirToutLesPraticiensToolStripMenuItem_Click( object sender, EventArgs e )
         {
             AllPraticiens ap = new AllPraticiens();
             ap.Show();
         }
 
-        private void ajouterUnMédicamentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ajouterUnMédicamentToolStripMenuItem_Click( object sender, EventArgs e )
         {
             Ajouter_Medicament am = new Ajouter_Medicament();
             am.Show();
@@ -103,48 +103,48 @@ namespace PPEClientLourd
             sv.Show();
         }
 
-        private void consulterToutsLesMédicamentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void consulterToutsLesMédicamentsToolStripMenuItem_Click( object sender, EventArgs e )
         {
             Consulter_Tous_Medicaments ctm = new Consulter_Tous_Medicaments();
             ctm.Show();
         }
-        private void ajouterUnVisiteurToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ajouterUnVisiteurToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CreerVisiteur cv = new CreerVisiteur();
             cv.Show();
         }
 
-        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_2(object sender, EventArgs e)
+        private void modifierLesInformationsDunVisiteurToolStripMenuItem_Click_2( object sender, EventArgs e )
         {
-            ModificationMyInformations mmy = new ModificationMyInformations(this._colMatricule, this._colNom, this._role);
+            ModificationMyInformations mmy = new ModificationMyInformations(_colMatricule, _colNom, _role);
             mmy.Show();
         }
 
-        private void ajouterUnVisiteurToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void ajouterUnVisiteurToolStripMenuItem_Click_1( object sender, EventArgs e )
         {
             CreerVisiteur cv = new CreerVisiteur();
             cv.Show();
         }
 
-        private void voirToutLesPraticiensToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void voirToutLesPraticiensToolStripMenuItem_Click_1( object sender, EventArgs e )
         {
             AllPraticiens ap = new AllPraticiens();
             ap.Show();
         }
 
-        private void voirToutLesCompteRendusToolStripMenuItem_Click(object sender, EventArgs e)
+        private void voirToutLesCompteRendusToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowAllRaports sar = new ShowAllRaports(this._colMatricule, this._colNom, this._role);
+            ShowAllRaports sar = new ShowAllRaports(_colMatricule, _colNom, _role);
             sar.Show();
         }
 
-        private void ajouterUnPraticienToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ajouterUnPraticienToolStripMenuItem_Click( object sender, EventArgs e )
         {
             newPraticien np = new newPraticien();
             np.Show();
         }
 
-        private void rechercherUnPraticienToolStripMenuItem_Click(object sender, EventArgs e)
+        private void rechercherUnPraticienToolStripMenuItem_Click( object sender, EventArgs e )
         {
             SearchPraticien sp = new SearchPraticien();
             sp.Show();

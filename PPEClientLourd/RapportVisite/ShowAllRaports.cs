@@ -97,7 +97,7 @@ namespace PPEClientLourd
 
             if (noRapport != 0)
             {
-                rapportVisite rv = new rapportVisite(_nom, _matricule, "ShowAllRaports", noRapport, colMat, _role);
+                RapportVisite rv = new RapportVisite(_nom, _matricule, "ShowAllRaports", noRapport, colMat, _role);
                 rv.Show();
             }
         }
