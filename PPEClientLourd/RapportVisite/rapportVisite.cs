@@ -343,7 +343,7 @@ namespace PPEClientLourd
                             {
                                 tempEchantillon.Add(medoc.ToString(), nbMedic);
                             }
-                            else
+                            else if (nbMedic != 0)
                             {
                                 erreurs.Add(medoc.ToString());
                                 Error += 1;
