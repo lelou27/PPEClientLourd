@@ -46,7 +46,19 @@
             this.textBox_lieu = new System.Windows.Forms.TextBox();
             this.textBox_CP = new System.Windows.Forms.TextBox();
             this.button_Fermer = new System.Windows.Forms.Button();
-            this.but_modif = new System.Windows.Forms.Button();
+            this.btn_modif = new System.Windows.Forms.Button();
+            this.btn_maj = new System.Windows.Forms.Button();
+            this.cbx_tp = new System.Windows.Forms.ComboBox();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.lbl_error_num = new System.Windows.Forms.Label();
+            this.lbl_error_nom = new System.Windows.Forms.Label();
+            this.lbl_error_prenom = new System.Windows.Forms.Label();
+            this.lbl_error_cp = new System.Windows.Forms.Label();
+            this.lbl_error_ville = new System.Windows.Forms.Label();
+            this.lbl_error_coefnot = new System.Windows.Forms.Label();
+            this.lbl_error_lieu = new System.Windows.Forms.Label();
+            this.lbl_error_adresse = new System.Windows.Forms.Label();
+            this.lbl_error_general = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Title
@@ -59,7 +71,7 @@
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(120, 15);
             this.Title.TabIndex = 5;
-            this.Title.Text = "Détails Patriciens";
+            this.Title.Text = "Détails Praticiens";
             // 
             // label_num
             // 
@@ -174,7 +186,7 @@
             // 
             // textBox_adresse
             // 
-            this.textBox_adresse.Location = new System.Drawing.Point(162, 204);
+            this.textBox_adresse.Location = new System.Drawing.Point(162, 203);
             this.textBox_adresse.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_adresse.Name = "textBox_adresse";
             this.textBox_adresse.ReadOnly = true;
@@ -192,7 +204,7 @@
             // 
             // textBox_coef
             // 
-            this.textBox_coef.Location = new System.Drawing.Point(162, 273);
+            this.textBox_coef.Location = new System.Drawing.Point(162, 275);
             this.textBox_coef.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_coef.Name = "textBox_coef";
             this.textBox_coef.ReadOnly = true;
@@ -230,24 +242,156 @@
             this.button_Fermer.UseVisualStyleBackColor = true;
             this.button_Fermer.Click += new System.EventHandler(this.button_Fermer_Click);
             // 
-            // but_modif
+            // btn_modif
             // 
-            this.but_modif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_modif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.but_modif.Location = new System.Drawing.Point(372, 372);
-            this.but_modif.Margin = new System.Windows.Forms.Padding(2);
-            this.but_modif.Name = "but_modif";
-            this.but_modif.Size = new System.Drawing.Size(80, 30);
-            this.but_modif.TabIndex = 26;
-            this.but_modif.Text = "Modifier";
-            this.but_modif.UseVisualStyleBackColor = true;
+            this.btn_modif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_modif.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btn_modif.Location = new System.Drawing.Point(365, 372);
+            this.btn_modif.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_modif.Name = "btn_modif";
+            this.btn_modif.Size = new System.Drawing.Size(80, 30);
+            this.btn_modif.TabIndex = 26;
+            this.btn_modif.Text = "Modifier";
+            this.btn_modif.UseVisualStyleBackColor = true;
+            this.btn_modif.Click += new System.EventHandler(this.btn_modif_Click);
+            // 
+            // btn_maj
+            // 
+            this.btn_maj.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_maj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.btn_maj.Location = new System.Drawing.Point(365, 372);
+            this.btn_maj.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_maj.Name = "btn_maj";
+            this.btn_maj.Size = new System.Drawing.Size(90, 30);
+            this.btn_maj.TabIndex = 27;
+            this.btn_maj.Text = "Mettre à jour";
+            this.btn_maj.UseVisualStyleBackColor = true;
+            this.btn_maj.Visible = false;
+            this.btn_maj.Click += new System.EventHandler(this.btn_maj_Click);
+            // 
+            // cbx_tp
+            // 
+            this.cbx_tp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_tp.FormattingEnabled = true;
+            this.cbx_tp.Items.AddRange(new object[] {
+            "Médecine de Ville",
+            "Médecin Hospitalier",
+            "Personnel de santé",
+            "Pharmacien Hospitalier",
+            "Pharmacien Officine"});
+            this.cbx_tp.Location = new System.Drawing.Point(162, 312);
+            this.cbx_tp.Name = "cbx_tp";
+            this.cbx_tp.Size = new System.Drawing.Size(243, 21);
+            this.cbx_tp.TabIndex = 29;
+            this.cbx_tp.Visible = false;
+            // 
+            // lbl_error_num
+            // 
+            this.lbl_error_num.AutoSize = true;
+            this.lbl_error_num.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_num.Location = new System.Drawing.Point(335, 102);
+            this.lbl_error_num.Name = "lbl_error_num";
+            this.lbl_error_num.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_num.TabIndex = 30;
+            this.lbl_error_num.Text = "  ";
+            // 
+            // lbl_error_nom
+            // 
+            this.lbl_error_nom.AutoSize = true;
+            this.lbl_error_nom.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_nom.Location = new System.Drawing.Point(335, 142);
+            this.lbl_error_nom.Name = "lbl_error_nom";
+            this.lbl_error_nom.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_nom.TabIndex = 31;
+            this.lbl_error_nom.Text = "  ";
+            // 
+            // lbl_error_prenom
+            // 
+            this.lbl_error_prenom.AutoSize = true;
+            this.lbl_error_prenom.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_prenom.Location = new System.Drawing.Point(335, 176);
+            this.lbl_error_prenom.Name = "lbl_error_prenom";
+            this.lbl_error_prenom.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_prenom.TabIndex = 32;
+            this.lbl_error_prenom.Text = "  ";
+            // 
+            // lbl_error_cp
+            // 
+            this.lbl_error_cp.AutoSize = true;
+            this.lbl_error_cp.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_cp.Location = new System.Drawing.Point(159, 261);
+            this.lbl_error_cp.Name = "lbl_error_cp";
+            this.lbl_error_cp.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_cp.TabIndex = 33;
+            this.lbl_error_cp.Text = "  ";
+            // 
+            // lbl_error_ville
+            // 
+            this.lbl_error_ville.AutoSize = true;
+            this.lbl_error_ville.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_ville.Location = new System.Drawing.Point(433, 242);
+            this.lbl_error_ville.Name = "lbl_error_ville";
+            this.lbl_error_ville.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_ville.TabIndex = 34;
+            this.lbl_error_ville.Text = "  ";
+            // 
+            // lbl_error_coefnot
+            // 
+            this.lbl_error_coefnot.AutoSize = true;
+            this.lbl_error_coefnot.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_coefnot.Location = new System.Drawing.Point(344, 273);
+            this.lbl_error_coefnot.Name = "lbl_error_coefnot";
+            this.lbl_error_coefnot.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_coefnot.TabIndex = 35;
+            this.lbl_error_coefnot.Text = "  ";
+            // 
+            // lbl_error_lieu
+            // 
+            this.lbl_error_lieu.AutoSize = true;
+            this.lbl_error_lieu.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_lieu.Location = new System.Drawing.Point(415, 312);
+            this.lbl_error_lieu.Name = "lbl_error_lieu";
+            this.lbl_error_lieu.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_lieu.TabIndex = 36;
+            this.lbl_error_lieu.Text = "  ";
+            // 
+            // lbl_error_adresse
+            // 
+            this.lbl_error_adresse.AutoSize = true;
+            this.lbl_error_adresse.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_adresse.Location = new System.Drawing.Point(335, 209);
+            this.lbl_error_adresse.Name = "lbl_error_adresse";
+            this.lbl_error_adresse.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_adresse.TabIndex = 37;
+            this.lbl_error_adresse.Text = "  ";
+            // 
+            // lbl_error_general
+            // 
+            this.lbl_error_general.AutoSize = true;
+            this.lbl_error_general.ForeColor = System.Drawing.Color.Red;
+            this.lbl_error_general.Location = new System.Drawing.Point(159, 381);
+            this.lbl_error_general.Name = "lbl_error_general";
+            this.lbl_error_general.Size = new System.Drawing.Size(13, 13);
+            this.lbl_error_general.TabIndex = 38;
+            this.lbl_error_general.Text = "  ";
             // 
             // DetailsPraticien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 432);
-            this.Controls.Add(this.but_modif);
+            this.Controls.Add(this.lbl_error_general);
+            this.Controls.Add(this.lbl_error_adresse);
+            this.Controls.Add(this.lbl_error_lieu);
+            this.Controls.Add(this.lbl_error_coefnot);
+            this.Controls.Add(this.lbl_error_ville);
+            this.Controls.Add(this.lbl_error_cp);
+            this.Controls.Add(this.lbl_error_prenom);
+            this.Controls.Add(this.lbl_error_nom);
+            this.Controls.Add(this.lbl_error_num);
+            this.Controls.Add(this.cbx_tp);
+            this.Controls.Add(this.btn_maj);
+            this.Controls.Add(this.btn_modif);
             this.Controls.Add(this.button_Fermer);
             this.Controls.Add(this.textBox_CP);
             this.Controls.Add(this.textBox_lieu);
@@ -269,7 +413,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DetailsPraticien";
             this.Text = "DetailsPraticien";
-            this.Load += new System.EventHandler(this.DetailsPatricien_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +436,18 @@
         private System.Windows.Forms.TextBox textBox_lieu;
         private System.Windows.Forms.TextBox textBox_CP;
         private System.Windows.Forms.Button button_Fermer;
-        private System.Windows.Forms.Button but_modif;
+        private System.Windows.Forms.Button btn_modif;
+        private System.Windows.Forms.Button btn_maj;
+        private System.Windows.Forms.ComboBox cbx_tp;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.Label lbl_error_num;
+        private System.Windows.Forms.Label lbl_error_nom;
+        private System.Windows.Forms.Label lbl_error_prenom;
+        private System.Windows.Forms.Label lbl_error_cp;
+        private System.Windows.Forms.Label lbl_error_ville;
+        private System.Windows.Forms.Label lbl_error_coefnot;
+        private System.Windows.Forms.Label lbl_error_lieu;
+        private System.Windows.Forms.Label lbl_error_adresse;
+        private System.Windows.Forms.Label lbl_error_general;
     }
 }
