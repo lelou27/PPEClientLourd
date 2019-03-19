@@ -6,6 +6,7 @@ namespace PPEClientLourd
 {
     public partial class CreerVisiteur : Form
     {
+        // Dictionnaire pour contenir les laboratoires
         private Dictionary<string, string> laboratoire = new Dictionary<string, string>();
         private string chaineConnexion = ConnexionDb.chaineConnexion;
 
@@ -15,17 +16,20 @@ namespace PPEClientLourd
             set => chaineConnexion = value;
         }
 
+        // Constructeur
         public CreerVisiteur()
         {
             InitializeComponent();
+            // Par défaut le secteur est masqué
             lbl_secteur.Visible = false;
             cbx_secteur.Visible = false;
         }
 
+        // Au chargement du formulaire
         private void CreerVisiteur_Load( object sender, EventArgs e )
         {
             Curs cs = new Curs(chaineConnexion);
-
+            // Récupération des laboratoires
             string req = "SELECT LAB_CODE, LAB_NOM FROM labo";
 
             cs.ReqSelect(req);
@@ -37,6 +41,7 @@ namespace PPEClientLourd
                 laboCode = cs.Champ("LAB_CODE").ToString();
                 laboNom = cs.Champ("LAB_NOM").ToString();
 
+                // Ajout au dictionnaire
                 laboratoire.Add(laboCode, laboNom);
                 cmbx_labo.Items.Add(laboNom);
 
@@ -46,6 +51,7 @@ namespace PPEClientLourd
             cs.Fermer();
 
             cs = new Curs(chaineConnexion);
+            // Sélection des secteurs
             req = "SELECT SEC_LIBELLE FROM secteur";
             cs.ReqSelect(req);
 
@@ -57,11 +63,13 @@ namespace PPEClientLourd
             cs.Fermer();
         }
 
+        // Lors d'un click sur le bouton valider
         private void btn_valider_Click( object sender, EventArgs e )
         {
             string matricule, nom, prenom, adresse, cp, ville, dateEmbauche, labo, secteur;
             int delegue;
 
+            // Si il est délégué
             if (cb_delegue.Checked)
             {
                 delegue = 1;
@@ -71,6 +79,7 @@ namespace PPEClientLourd
                 delegue = 0;
             }
 
+            // Récupération des secteurs
             secteur = getSecteurDB();
 
             // Check and trim all inputs
@@ -108,12 +117,14 @@ namespace PPEClientLourd
                 }
                 cs.Fermer();
 
+                // Parse du cp
                 if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
                 }
 
+                // Si pas d'erreur
                 if (!error)
                 {
                     // GET LABO FOR INSERTION
@@ -129,16 +140,19 @@ namespace PPEClientLourd
                     cs.Fermer();
 
                     cs = new Curs(chaineConnexion);
+                    // Insertion dans collaborateur
                     insertIntoCollaborateur(dateEmbauche, matricule, nom, prenom, adresse, cp, ville, labo, secteur, delegue, cs);
 
                 }
                 else
                 {
+                    // Dispatch error
                     lbl_error_general.Text = "Un utilisateur existe avec ce matricule";
                 }
             }
         }
 
+        // Récupère le secteur
         private string getSecteurDB()
         {
             string secteur;
@@ -166,9 +180,11 @@ namespace PPEClientLourd
             return secteur;
         }
 
+        // Insere en base
         private void insertIntoCollaborateur( string dateEmbauche, string matricule, string nom, string prenom, string adresse,
             string cp, string ville, string labo, string secteur, int delegue, Curs cs )
         {
+            // Conversion de la date
             string dateEmbaucheParsed = Convert.ToDateTime(dateEmbauche).ToString("yyyy-MM-dd H:mm:ss");
 
             string concatInsert = "'" + matricule + "','" + nom + "','" + prenom + "','" + adresse + "','" + ville + "','" + cp + "','" + dateEmbaucheParsed + "','" + labo + "','" + secteur + "'";
@@ -200,6 +216,7 @@ namespace PPEClientLourd
             }
         }
 
+        // Affiche les erreurs si il y en a
         private void dispatchError( string matricule, string nom, string prenom, string adresse, string cp,
             string ville, string labo )
         {
@@ -214,31 +231,40 @@ namespace PPEClientLourd
 
         private void btn_retour_Click( object sender, EventArgs e ) => Close();
 
+        // Au changement de la checkbox responsable
         private void cb_responsable_CheckedChanged( object sender, EventArgs e )
         {
+            // Si il est responsable
             if (cb_responsable.Checked)
             {
+                // Affichage du secteur
                 lbl_secteur.Visible = true;
                 cbx_secteur.Visible = true;
+                // pas délégué donc on le check pas
                 cb_delegue.Checked = false;
                 cb_delegue.Visible = false;
             }
             else
             {
+                // Pas responsable donc on cache le secteur et on fait apparaitre délégué
                 lbl_secteur.Visible = false;
                 cbx_secteur.Visible = false;
                 cb_delegue.Visible = true;
             }
         }
 
+        // Quand délégué change d'état
         private void cb_delegue_CheckedChanged( object sender, EventArgs e )
         {
+            // si pas checké
             if (!cb_delegue.Checked)
             {
+                // On fait apparaitre responsable
                 cb_responsable.Visible = true;
             }
             else
             {
+                // On enleve tout
                 cb_responsable.Visible = false;
                 lbl_secteur.Visible = false;
                 cbx_secteur.Visible = false;
