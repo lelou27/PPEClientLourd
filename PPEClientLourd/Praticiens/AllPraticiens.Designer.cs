@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllPraticiens));
             this.dgv_praticiens = new System.Windows.Forms.DataGridView();
-            this.Retour = new System.Windows.Forms.Button();
             this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +38,7 @@
             this.Ville = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Coefnotoriete = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Libelle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Retour = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_praticiens)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,16 +59,6 @@
             this.dgv_praticiens.Size = new System.Drawing.Size(860, 396);
             this.dgv_praticiens.TabIndex = 0;
             this.dgv_praticiens.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Retour
-            // 
-            this.Retour.Location = new System.Drawing.Point(769, 402);
-            this.Retour.Name = "Retour";
-            this.Retour.Size = new System.Drawing.Size(91, 36);
-            this.Retour.TabIndex = 1;
-            this.Retour.Text = "Retour";
-            this.Retour.UseVisualStyleBackColor = true;
-            this.Retour.Click += new System.EventHandler(this.Retour_Click);
             // 
             // Numero
             // 
@@ -117,6 +107,16 @@
             this.Libelle.HeaderText = "Libellé";
             this.Libelle.Name = "Libelle";
             this.Libelle.ReadOnly = true;
+            // 
+            // Retour
+            // 
+            this.Retour.Location = new System.Drawing.Point(769, 402);
+            this.Retour.Name = "Retour";
+            this.Retour.Size = new System.Drawing.Size(91, 36);
+            this.Retour.TabIndex = 1;
+            this.Retour.Text = "Retour";
+            this.Retour.UseVisualStyleBackColor = true;
+            this.Retour.Click += new System.EventHandler(this.Retour_Click);
             // 
             // AllPraticiens
             // 
