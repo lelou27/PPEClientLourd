@@ -28,29 +28,36 @@ namespace PPEClientLourd
 
         }
 
+        // Lors d'un clique sur une cellule
         private void dgv_visiteurs_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
+            // Récupération du matricule du visiteur séléctionné
             string matricule = dgv_visiteurs[0, e.RowIndex].Value.ToString();
 
             if (matricule.Length != 0)
             {
+                // On ouvre la page sur la visualisation d'un visiteur
                 OneVisiteur ov = new OneVisiteur(_colMatricule, matricule);
                 ov.Show();
 
-                Hide();
+
+                Close();
 
             }
         }
 
+        // Lors d'un appui sur le bouton retour
         private void btn_retour_Click( object sender, EventArgs e )
         {
             Close();
-
+            // Retour vers l'accueil
             Home h = new Home(_colMatricule, _colNom);
         }
 
+        // Au chargement du formulaire
         private void AllVisiteurs_Load( object sender, EventArgs e )
         {
+            // Sélection de tout les visiteurs
             Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT c.COL_MATRICULE, c.COL_NOM, c.COL_PRENOM, c.COL_DATEEMBAUCHE FROM collaborateur c " +
@@ -64,16 +71,17 @@ namespace PPEClientLourd
                 nom = cs.Champ("COL_NOM").ToString();
                 prenom = cs.Champ("COL_PRENOM").ToString();
                 dateEmbauche = cs.Champ("COL_DATEEMBAUCHE").ToString();
-
+                // Conversion de la date d'embauche dans un format plus lisible
                 dateEmbauche = Convert.ToDateTime(dateEmbauche).ToString();
                 dateEmbauche = dateEmbauche.Split(' ')[0];
 
-
+                // Ajout à la dataGridView
                 dgv_visiteurs.Rows.Add(matricule, nom, prenom, dateEmbauche);
 
                 cs.Suivant();
             }
 
+            // Si aucun visiteurs
             if(dgv_visiteurs.Rows.Count == 0)
             {
                 dgv_visiteurs.Rows.Add("Désolé, aucun visiteur n'a été trouvé");

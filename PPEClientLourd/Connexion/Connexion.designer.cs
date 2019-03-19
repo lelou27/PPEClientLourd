@@ -50,7 +50,6 @@
             this.lbl_connexion.Size = new System.Drawing.Size(469, 34);
             this.lbl_connexion.TabIndex = 0;
             this.lbl_connexion.Text = "Connexion à l\'application du laboratoire";
-            this.lbl_connexion.Click += new System.EventHandler(this.Label1_Click);
             // 
             // txb_login
             // 
@@ -110,7 +109,6 @@
             this.lbl_error_login.Name = "lbl_error_login";
             this.lbl_error_login.Size = new System.Drawing.Size(0, 16);
             this.lbl_error_login.TabIndex = 6;
-            this.lbl_error_login.Click += new System.EventHandler(this.Lbl_error_login_Click);
             // 
             // lbl_error_password
             // 
@@ -150,7 +148,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Connexion";
             this.Text = "Application Laboratoire";
-            this.Load += new System.EventHandler(this.Connexion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
