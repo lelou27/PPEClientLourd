@@ -52,6 +52,7 @@
             this.cbx_praticien.Name = "cbx_praticien";
             this.cbx_praticien.Size = new System.Drawing.Size(317, 21);
             this.cbx_praticien.TabIndex = 1;
+            this.cbx_praticien.SelectedIndexChanged += new System.EventHandler(this.cbx_praticien_SelectedIndexChanged);
             // 
             // btn_showInformations
             // 
