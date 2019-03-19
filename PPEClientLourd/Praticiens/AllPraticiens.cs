@@ -57,7 +57,7 @@ namespace PPEClientLourd
                 Coefnotoriete = Math.Round(Convert.ToDouble(cs.Champ("PRA_COEFNOTORIETE")), 2);
                 Libelle = cs.Champ("TYP_LIBELLE").ToString();
 
-                dgv_praticiens.Rows.Add(Numero, Nom, Prenom, Adresse, Cp, Ville, Libelle, Coefnotoriete);
+                dgv_praticiens.Rows.Add(Numero, Nom, Prenom, Adresse, Cp, Ville, Coefnotoriete, Libelle);
 
                 cs.Suivant();
 

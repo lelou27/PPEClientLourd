@@ -45,8 +45,8 @@ namespace PPEClientLourd
             }
             else
             {
-                string praNum = praticiens.FirstOrDefault(x => x.Value == itemSelected).Key;
-                DetailsPraticien dp = new DetailsPraticien(Convert.ToInt16(praNum));
+                var praNum = this.praticiens.FirstOrDefault(x => x.Value == itemSelected).Key;
+                DetailsPraticien dp = new DetailsPraticien(Convert.ToInt16(praNum), "SearchPraticien");
                 dp.Show();
             }
         }
