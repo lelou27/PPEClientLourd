@@ -1,6 +1,6 @@
 ﻿namespace PPEClientLourd
 {
-    partial class DetailsPatricien
+    partial class DetailsPraticien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsPatricien));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsPraticien));
             this.Title = new System.Windows.Forms.Label();
             this.label_num = new System.Windows.Forms.Label();
             this.label_nom = new System.Windows.Forms.Label();
@@ -242,7 +242,7 @@
             this.but_modif.Text = "Modifier";
             this.but_modif.UseVisualStyleBackColor = true;
             // 
-            // DetailsPatricien
+            // DetailsPraticien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -267,8 +267,8 @@
             this.Controls.Add(this.Title);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "DetailsPatricien";
-            this.Text = "DetailsPatricien";
+            this.Name = "DetailsPraticien";
+            this.Text = "DetailsPraticien";
             this.Load += new System.EventHandler(this.DetailsPatricien_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

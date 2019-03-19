@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
-    public partial class DetailsPatricien : Form
+    public partial class DetailsPraticien : Form
     {
         string connection = "server=127.0.0.1; DATABASE=applicationppe; user=root; PASSWORD=root;SslMode=none";
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string _previous;
-        public DetailsPatricien(int NumPatriciens, string previous = "AllPraticiens")
+        public DetailsPraticien(int NumPatriciens, string previous = "AllPraticiens")
         {
 
             InitializeComponent();
