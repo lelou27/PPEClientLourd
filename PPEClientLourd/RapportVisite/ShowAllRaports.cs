@@ -91,14 +91,17 @@ namespace PPEClientLourd
 
         private void dgv_rapports_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
-            string rapNum = dgv_rapports[1, e.RowIndex].Value.ToString();
-            string colMat = dgv_rapports[5, e.RowIndex].Value.ToString();
-            int noRapport = Convert.ToInt16(rapNum);
-
-            if (noRapport != 0)
+            if (e.RowIndex >=0)
             {
-                RapportVisite rv = new RapportVisite(_nom, _matricule, "ShowAllRaports", noRapport, colMat, _role);
-                rv.Show();
+                string rapNum = dgv_rapports[1, e.RowIndex].Value.ToString();
+                string colMat = dgv_rapports[5, e.RowIndex].Value.ToString();
+                int noRapport = Convert.ToInt16(rapNum);
+
+                if (noRapport != 0)
+                {
+                    RapportVisite rv = new RapportVisite(_nom, _matricule, "ShowAllRaports", noRapport, colMat, _role);
+                    rv.Show();
+                }
             }
         }
 

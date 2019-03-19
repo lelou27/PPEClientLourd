@@ -39,12 +39,15 @@ namespace PPEClientLourd
 
         private void dataGridView1_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
-            string depotLegal = dgv_allMedicaments[3, e.RowIndex].Value.ToString();
+            if (e.RowIndex >= 0)
+            {
+                string depotLegal = dgv_allMedicaments[3, e.RowIndex].Value.ToString();
 
-            Consulter_Medicament cm = new Consulter_Medicament(depotLegal);
-            cm.Show();
+                Consulter_Medicament cm = new Consulter_Medicament(depotLegal);
+                cm.Show();
 
-            Close();
+                Close();
+            }
         }
 
         private void btn_close_Click( object sender, EventArgs e ) => Close();

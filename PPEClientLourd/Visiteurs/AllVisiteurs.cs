@@ -30,18 +30,19 @@ namespace PPEClientLourd
         // Lors d'un clique sur une cellule
         private void dgv_visiteurs_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
-            // Récupération du matricule du visiteur séléctionné
-            string matricule = dgv_visiteurs[0, e.RowIndex].Value.ToString();
-
-            if (matricule.Length != 0)
+            if (e.RowIndex >= 0)
             {
-                // On ouvre la page sur la visualisation d'un visiteur
-                OneVisiteur ov = new OneVisiteur(_colMatricule, matricule);
-                ov.Show();
+                // Récupération du matricule du visiteur séléctionné
+                string matricule = dgv_visiteurs[0, e.RowIndex].Value.ToString();
 
+                if (matricule.Length != 0)
+                {
+                    // On ouvre la page sur la visualisation d'un visiteur
+                    OneVisiteur ov = new OneVisiteur(_colMatricule, matricule);
+                    ov.Show();
 
-                Close();
-
+                    Close();
+                }
             }
         }
 
@@ -81,7 +82,7 @@ namespace PPEClientLourd
             }
 
             // Si aucun visiteurs
-            if(dgv_visiteurs.Rows.Count == 0)
+            if (dgv_visiteurs.Rows.Count == 0)
             {
                 dgv_visiteurs.Rows.Add("Désolé, aucun visiteur n'a été trouvé");
             }
