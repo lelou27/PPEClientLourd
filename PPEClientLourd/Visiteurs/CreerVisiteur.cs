@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -14,13 +7,12 @@ namespace PPEClientLourd
     public partial class CreerVisiteur : Form
     {
         private Dictionary<string, string> laboratoire = new Dictionary<string, string>();
-
-        string chaineConnexion = ConnexionDb.chaineConnexion;
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         public string ChaineConnexion
         {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
+            get => chaineConnexion;
+            set => chaineConnexion = value;
         }
 
         public CreerVisiteur()
@@ -30,9 +22,9 @@ namespace PPEClientLourd
             cbx_secteur.Visible = false;
         }
 
-        private void CreerVisiteur_Load(object sender, EventArgs e)
+        private void CreerVisiteur_Load( object sender, EventArgs e )
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             string req = "SELECT LAB_CODE, LAB_NOM FROM labo";
 
@@ -40,7 +32,7 @@ namespace PPEClientLourd
 
             string laboCode, laboNom;
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
                 laboCode = cs.Champ("LAB_CODE").ToString();
                 laboNom = cs.Champ("LAB_NOM").ToString();
@@ -53,11 +45,11 @@ namespace PPEClientLourd
 
             cs.Fermer();
 
-            cs = new Curs(this.chaineConnexion);
+            cs = new Curs(chaineConnexion);
             req = "SELECT SEC_LIBELLE FROM secteur";
             cs.ReqSelect(req);
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
                 cbx_secteur.Items.Add(cs.Champ("SEC_LIBELLE").ToString());
                 cs.Suivant();
@@ -65,17 +57,21 @@ namespace PPEClientLourd
             cs.Fermer();
         }
 
-        private void btn_valider_Click(object sender, EventArgs e)
+        private void btn_valider_Click( object sender, EventArgs e )
         {
             string matricule, nom, prenom, adresse, cp, ville, dateEmbauche, labo, secteur;
-            int delegue, codePostal;
+            int delegue;
 
             if (cb_delegue.Checked)
+            {
                 delegue = 1;
+            }
             else
+            {
                 delegue = 0;
+            }
 
-            secteur = this.getSecteurDB();
+            secteur = getSecteurDB();
 
             // Check and trim all inputs
             matricule = txb_matricule.Text.Trim();
@@ -88,29 +84,31 @@ namespace PPEClientLourd
             labo = cmbx_labo.Text.Trim();
 
             // dispatch all errors if have errors
-            this.dispatchError(matricule, nom, prenom, adresse, cp, ville, labo);
+            dispatchError(matricule, nom, prenom, adresse, cp, ville, labo);
 
             if (matricule.Length != 0 && nom.Length != 0 && prenom.Length != 0 && adresse.Length != 0
-                && cp.Length != 0 && ville.Length  != 0 && ville.Length !=0 && dateEmbauche.Length != 0 
+                && cp.Length != 0 && ville.Length != 0 && ville.Length != 0 && dateEmbauche.Length != 0
                 && labo.Length != 0)
             {
                 // error for matricule if exist in DB
                 bool error = false;
 
                 //Verif matricule
-                Curs cs = new Curs(this.chaineConnexion);
+                Curs cs = new Curs(chaineConnexion);
                 cs.ReqSelect("SELECT COL_MATRICULE FROM collaborateur WHERE COL_MATRICULE = '" + matricule + "';");
-                
-                while(!cs.Fin())
+
+                while (!cs.Fin())
                 {
-                    if(cs.Champ("COL_MATRICULE").ToString().Length != 0)
+                    if (cs.Champ("COL_MATRICULE").ToString().Length != 0)
+                    {
                         error = true;
+                    }
 
                     cs.Suivant();
                 }
                 cs.Fermer();
 
-                if (!Int32.TryParse(cp, out codePostal))
+                if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
@@ -119,7 +117,7 @@ namespace PPEClientLourd
                 if (!error)
                 {
                     // GET LABO FOR INSERTION
-                    cs = new Curs(this.chaineConnexion);
+                    cs = new Curs(chaineConnexion);
                     string req = "SELECT LAB_CODE FROM labo WHERE LAB_NOM = '" + labo + "';";
                     cs.ReqSelect(req);
 
@@ -130,8 +128,8 @@ namespace PPEClientLourd
                     }
                     cs.Fermer();
 
-                    cs = new Curs(this.chaineConnexion);
-                    this.insertIntoCollaborateur(dateEmbauche, matricule, nom, prenom, adresse, cp, ville, labo, secteur, delegue, cs);
+                    cs = new Curs(chaineConnexion);
+                    insertIntoCollaborateur(dateEmbauche, matricule, nom, prenom, adresse, cp, ville, labo, secteur, delegue, cs);
 
                 }
                 else
@@ -149,7 +147,7 @@ namespace PPEClientLourd
                 secteur = cbx_secteur.SelectedItem.ToString();
 
                 // GET SECTOR FOR RESPONSABLE INSERTION
-                Curs cs = new Curs(this.chaineConnexion);
+                Curs cs = new Curs(chaineConnexion);
                 cs.ReqSelect("SELECT SEC_CODE FROM secteur WHERE SEC_LIBELLE = '" + secteur + "';");
 
                 while (!cs.Fin())
@@ -161,13 +159,15 @@ namespace PPEClientLourd
                 cs.Fermer();
             }
             else
+            {
                 secteur = null;
+            }
 
             return secteur;
         }
 
-        private void insertIntoCollaborateur(string dateEmbauche, string matricule, string nom, string prenom, string adresse,
-            string cp, string ville, string labo, string secteur, int delegue, Curs cs)
+        private void insertIntoCollaborateur( string dateEmbauche, string matricule, string nom, string prenom, string adresse,
+            string cp, string ville, string labo, string secteur, int delegue, Curs cs )
         {
             string dateEmbaucheParsed = Convert.ToDateTime(dateEmbauche).ToString("yyyy-MM-dd H:mm:ss");
 
@@ -184,15 +184,15 @@ namespace PPEClientLourd
                 // UPDATE IF DELEGUE
                 if (delegue == 1)
                 {
-                    cs = new Curs(this.chaineConnexion);
-                    req = "UPDATE visiteur SET DELEGUE = '" + delegue + "' WHERE COL_MATRICULE = '"+matricule+"';";
+                    cs = new Curs(chaineConnexion);
+                    req = "UPDATE visiteur SET DELEGUE = '" + delegue + "' WHERE COL_MATRICULE = '" + matricule + "';";
                     cs.ReqAdmin(req);
                     cs.Fermer();
                 }
 
                 MessageBox.Show("Enregistrement effectué", "Success lors de l'enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                this.Close();
+                Close();
             }
             catch (Exception errorInsert)
             {
@@ -200,8 +200,8 @@ namespace PPEClientLourd
             }
         }
 
-        private void dispatchError(string matricule, string nom, string prenom, string adresse, string cp, 
-            string ville, string labo)
+        private void dispatchError( string matricule, string nom, string prenom, string adresse, string cp,
+            string ville, string labo )
         {
             lbl_error_matricule.Text = (matricule.Length == 0) ? "Veuillez renseigner un matricule" : "";
             lbl_error_nom.Text = (nom.Length == 0) ? "Veuillez renseigner un nom" : "";
@@ -212,14 +212,11 @@ namespace PPEClientLourd
             lbl_error_labo.Text = (labo.Length == 0) ? "Veuillez renseigner un labo" : "";
         }
 
-        private void btn_retour_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btn_retour_Click( object sender, EventArgs e ) => Close();
 
-        private void cb_responsable_CheckedChanged(object sender, EventArgs e)
+        private void cb_responsable_CheckedChanged( object sender, EventArgs e )
         {
-            if(cb_responsable.Checked)
+            if (cb_responsable.Checked)
             {
                 lbl_secteur.Visible = true;
                 cbx_secteur.Visible = true;
@@ -234,7 +231,7 @@ namespace PPEClientLourd
             }
         }
 
-        private void cb_delegue_CheckedChanged(object sender, EventArgs e)
+        private void cb_delegue_CheckedChanged( object sender, EventArgs e )
         {
             if (!cb_delegue.Checked)
             {
