@@ -66,6 +66,12 @@
     <Compile Include="Medicaments\Ajouter_Medicament.designer.cs">
       <DependentUpon>Ajouter_Medicament.cs</DependentUpon>
     </Compile>
+    <Compile Include="Praticiens\DetailsPraticien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Praticiens\DetailsPraticien.designer.cs">
+      <DependentUpon>DetailsPraticien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Praticiens\newPraticien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,12 +127,6 @@
       <DependentUpon>CreerVisiteur.cs</DependentUpon>
     </Compile>
     <Compile Include="curs.cs" />
-    <Compile Include="Praticiens\DetailsPatricien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Praticiens\DetailsPatricien.designer.cs">
-      <DependentUpon>DetailsPatricien.cs</DependentUpon>
-    </Compile>
     <Compile Include="Home\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +162,9 @@
     <Compile Include="Visiteurs\SearchVisiteur.Designer.cs">
       <DependentUpon>SearchVisiteur.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Praticiens\DetailsPraticien.resx">
+      <DependentUpon>DetailsPraticien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Praticiens\newPraticien.resx">
       <DependentUpon>newPraticien.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visiteurs\CreerVisiteur.resx">
       <DependentUpon>CreerVisiteur.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Praticiens\DetailsPatricien.resx">
-      <DependentUpon>DetailsPatricien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
