@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -19,8 +14,8 @@ namespace PPEClientLourd
 
         public string ChaineConnexion
         {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
+            get => chaineConnexion;
+            set => chaineConnexion = value;
         }
 
         // Constructeur
@@ -28,7 +23,7 @@ namespace PPEClientLourd
         {
             InitializeComponent();
 
-            this._matricule = matricule;
+            _matricule = matricule;
         }
 
         // Au chargement du formulaire
@@ -44,7 +39,7 @@ namespace PPEClientLourd
 
             string nomComplet;
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
                 // Concaténation du nom + prénom
                 nomComplet = cs.Champ("COL_PRENOM").ToString() + " " + cs.Champ("COL_NOM").ToString();
@@ -67,17 +62,17 @@ namespace PPEClientLourd
             var visiteur = cmbx_visiteurs.Text;
             string matricule;
 
-            if(visiteur.Length != 0)
+            if (visiteur.Length != 0)
             {
                 // Récupération du matricule dans le dictionnaire
                 matricule = visiteurs.FirstOrDefault(x => x.Value == visiteur).Key;
                 // Ouverture du formulaire pour consulter un visiteur 
                 OneVisiteur ov = new OneVisiteur(this._matricule, matricule, "SearchVisiteur");
 
-                this.Close();
+                Close();
 
                 ov.Show();
-            } 
+            }
             else
             {
                 // Erreur

@@ -11,8 +11,8 @@ namespace PPEClientLourd
         // getter setter de la chaine de connexion
         public string ChaineConnexion
         {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
+            get => chaineConnexion;
+            set => chaineConnexion = value;
         }
         // Constructeur
         public Connexion()
@@ -22,6 +22,7 @@ namespace PPEClientLourd
             lbl_error_login.Hide();
             lbl_error_password.Hide();
         }
+
 
         // Au click sur le bouton valider
         private void Btn_send_Click(object sender, EventArgs e)
@@ -43,8 +44,8 @@ namespace PPEClientLourd
                     cs.ReqSelect("" +
                         "SELECT v.COL_MATRICULE, c.COL_NOM FROM visiteur v " +
                            " INNER JOIN collaborateur c ON v.COL_MATRICULE = c.COL_MATRICULE " +
-                        " WHERE c.COL_NOM = '"+username+"' " +
-                        " AND DATE_FORMAT(c.COL_DATEEMBAUCHE, '%Y-%b-%d') = '"+password+"'; "
+                        " WHERE c.COL_NOM = '" + username + "' " +
+                        " AND DATE_FORMAT(c.COL_DATEEMBAUCHE, '%Y-%b-%d') = '" + password + "'; "
                         );
                     string nom = "";
                     string matricule = "";
@@ -58,7 +59,7 @@ namespace PPEClientLourd
                         if(matricule.Length != 0 && nom.Length != 0)
                         {
                             Home homeForm = new Home(matricule, nom);
-                            this.Hide();
+                            Hide();
                             homeForm.Show();
                         }
                         else
@@ -86,5 +87,16 @@ namespace PPEClientLourd
                 lbl_error_login.Show();
             }
         }
+
+        private void Lbl_error_login_Click( object sender, EventArgs e )
+        {
+
+        }
+
+        private void Connexion_Load( object sender, EventArgs e )
+        {
+
+        }
+
     }
 }

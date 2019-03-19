@@ -5,9 +5,9 @@ namespace PPEClientLourd
 {
     public partial class Consulter_Medicament : Form
     {
-        string chaineconnexion = ConnexionDb.chaineConnexion;
+        private string chaineconnexion = ConnexionDb.chaineConnexion;
 
-        public Consulter_Medicament(string idMedicament = "a")
+        public Consulter_Medicament( string idMedicament = "a" )
         {
             InitializeComponent();
 
@@ -26,12 +26,12 @@ namespace PPEClientLourd
 
             if (idMedicament != "a")
             {
-                cs = new Curs(this.chaineconnexion);
+                cs = new Curs(chaineconnexion);
 
-                cs.ReqSelect("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_DEPOTLEGAL = '" + idMedicament +"';");
+                cs.ReqSelect("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_DEPOTLEGAL = '" + idMedicament + "';");
 
                 string medicamentParameter;
-                while(!cs.Fin())
+                while (!cs.Fin())
                 {
                     medicamentParameter = cs.Champ("MED_NOMCOMMERCIAL").ToString();
                     Consulter_medicament_combobox.SelectedItem = medicamentParameter;
@@ -43,7 +43,7 @@ namespace PPEClientLourd
 
         }
 
-        private void Consulter_medicament_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void Consulter_medicament_combobox_SelectedIndexChanged( object sender, EventArgs e )
         {
             string nommed = Consulter_medicament_combobox.Text;
 
@@ -59,6 +59,6 @@ namespace PPEClientLourd
             Consulter_medicament_hidden_prixechant.Text = cs.Champ("MED_PRIXECHANTILLON").ToString();
             cs.Fermer();
         }
-        
+
     }
 }

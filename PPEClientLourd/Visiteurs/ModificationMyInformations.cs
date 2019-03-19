@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
@@ -19,20 +14,19 @@ namespace PPEClientLourd
         private Dictionary<string, string> labo = new Dictionary<string, string>();
         // Dictionnaire permettant d'enregistrer la relation numéro de secteur, nom du secteur
         private Dictionary<string, string> secteur = new Dictionary<string, string>();
-
-        string chaineConnexion = ConnexionDb.chaineConnexion;
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         // Constructeur, le rôle est important pour savoir si on donne l'autorisation de modifier le secteur
         public ModificationMyInformations(string matricule, string nom, string role)
         {
             InitializeComponent();
-            this._matricule = matricule;
-            this._nom = nom;
-            this._role = role;
+            _matricule = matricule;
+            _nom = nom;
+            _role = role;
 
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
-            if(this._role == "visiteur")
+            if (_role == "visiteur")
             {
                 // Si l'utilisateur est un visiteur, inutile d'afficher le secteur (responsable)
                 lbl_secteur.Hide();
@@ -42,7 +36,7 @@ namespace PPEClientLourd
             {
                 // Sinon récupération des secteurs
                 cs.ReqSelect("SELECT SEC_CODE, SEC_LIBELLE FROM secteur");
-                while(!cs.Fin())
+                while (!cs.Fin())
                 {
                     // Ajout au dictionnaire de secteurs
                     secteur.Add(cs.Champ("SEC_CODE").ToString(), cs.Champ("SEC_LIBELLE").ToString());
@@ -52,14 +46,14 @@ namespace PPEClientLourd
                 cs.Fermer();
             }
 
-            string laboCode = this.setChamps(matricule);
-            this.addItemsToLabo(laboCode);
+            string laboCode = setChamps(matricule);
+            addItemsToLabo(laboCode);
         }
 
         // Permet de remplir les champs de formulaire
         private string setChamps(string matricule)
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             // Récupération du collaborateur
             cs.ReqSelect("SELECT * FROM collaborateur WHERE COL_MATRICULE = '" + matricule + "';");
@@ -78,7 +72,9 @@ namespace PPEClientLourd
 
                 // Si responsable, remplissage du secteur
                 if (_role == "responsable")
+                {
                     cbx_secteur.SelectedItem = secteur[cs.Champ("SEC_CODE").ToString()];
+                }
 
                 cs.Suivant();
             }
@@ -90,12 +86,12 @@ namespace PPEClientLourd
         // Ajoute les laboratoire au comboBox labo
         private void addItemsToLabo(string laboCode)
         {
-            Curs cs = new Curs(this.chaineConnexion);
+            Curs cs = new Curs(chaineConnexion);
 
             // Récupération des labos
             cs.ReqSelect("SELECT LAB_CODE, LAB_NOM FROM labo");
 
-            while(!cs.Fin())
+            while (!cs.Fin())
             {
                 // Ajout au dictionnaire
                 this.labo.Add(cs.Champ("LAB_CODE").ToString(), cs.Champ("LAB_NOM").ToString());
@@ -104,7 +100,9 @@ namespace PPEClientLourd
 
                 // Si le labo récupérer est le même que celui de l'utilisateur, on le sélectionne
                 if (laboCode == cs.Champ("LAB_CODE").ToString())
+                {
                     cbx_labo.SelectedItem = cs.Champ("LAB_NOM").ToString();
+                }
 
                 cs.Suivant();
             }
@@ -112,16 +110,12 @@ namespace PPEClientLourd
         }
 
 
-        private void btn_retour_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btn_retour_Click( object sender, EventArgs e ) => Close();
 
         // Lors de l'appui sur le bouton modifier
         private void btn_modifier_Click(object sender, EventArgs e)
         {
             string nom, prenom, adresse, ville, cp, secteur, labo;
-            int codePostal;
 
             // Récupération des champs
             nom = txb_nom.Text.Trim();
@@ -131,9 +125,13 @@ namespace PPEClientLourd
             cp = txb_cp.Text.Trim();
 
             if (_role == "responsable")
+            {
                 secteur = cbx_secteur.SelectedItem.ToString();
+            }
             else
+            {
                 secteur = null;
+            }
 
             labo = cbx_labo.SelectedItem.ToString();
 
@@ -168,14 +166,14 @@ namespace PPEClientLourd
 
                         req = "UPDATE collaborateur SET COL_NOM = '" + nom + "', COL_PRENOM = '" + prenom + "', COL_ADRESSE = '" + adresse + "'" +
                         ", COL_VILLE = '" + ville + "', COL_CP = '" + cp + "', LAB_CODE = '" + labo + "', SEC_CODE = '" + secteur + "'" +
-                        " WHERE COL_MATRICULE = '"+_matricule+"';";
+                        " WHERE COL_MATRICULE = '" + _matricule + "';";
 
                     }
                     else
                     {
                         req = "UPDATE collaborateur SET COL_NOM = '" + nom + "', COL_PRENOM = '" + prenom + "', COL_ADRESSE = '" + adresse + "'" +
                         ", COL_VILLE = '" + ville + "', COL_CP = '" + cp + "', LAB_CODE = '" + labo + "'" +
-                        " WHERE COL_MATRICULE = '"+_matricule+"';";
+                        " WHERE COL_MATRICULE = '" + _matricule + "';";
                     }
 
                     try
@@ -187,7 +185,7 @@ namespace PPEClientLourd
                         // Message de confirmation
                         MessageBox.Show("Mise à jour effectué", "Success lors de la mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Close();
+                        Close();
                     }
                     catch (Exception)
                     {
@@ -207,8 +205,11 @@ namespace PPEClientLourd
             lbl_error_adresse.Text = adresse.Length == 0 ? "Veuillez renseigner une adresse" : "";
             lbl_error_ville.Text = ville.Length == 0 ? "Veuillez renseigner une ville" : "";
             lbl_error_cp.Text = cp.Length == 0 ? "Veuillez renseigner un code postal" : "";
-            if(_role == "responsable")
+            if (_role == "responsable")
+            {
                 lbl_error_secteur.Text = secteur.Length == 0 ? "Veuillez renseigner un secteur" : "";
+            }
+
             lbl_error_labo.Text = labo.Length == 0 ? "Veuillez renseigner un laboratoire" : "";
         }
     }

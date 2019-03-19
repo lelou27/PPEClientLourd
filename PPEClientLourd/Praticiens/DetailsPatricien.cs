@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
     public partial class DetailsPraticien : Form
     {
-        string connection = ConnexionDb.chaineConnexion;
+        private string connection = ConnexionDb.chaineConnexion;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private string _previous;
-        public DetailsPraticien( int NumPraticiens, string previous = "AllPraticiens")
+        public DetailsPraticien( int NumPraticiens, string previous = "AllPraticiens" )
         {
-            
+
             InitializeComponent();
             _previous = previous;
 
@@ -21,7 +20,7 @@ namespace PPEClientLourd
             string requete = "SELECT `praticien`.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM `praticien`,`type_praticien` WHERE `type_praticien`.`TYP_CODE` = `praticien`.`TYP_CODE` AND `praticien`.`PRA_NUM` = " + NumPraticiens.ToString();
             Curs cs3 = new Curs(connection);
             string req = "SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien;";
-            
+
             cs2.ReqSelect(requete);
             cs3.ReqSelect(req);
             while (!cs2.Fin())
@@ -46,22 +45,25 @@ namespace PPEClientLourd
             }
             cs3.Fermer();
 
-
+            if (_previous == "RapportVisite")
+            {
+                btn_modif.Visible = false;
+            }
         }
 
-       
-        private void button_Fermer_Click(object sender, EventArgs e)
+
+        private void button_Fermer_Click( object sender, EventArgs e )
         {
             Form.ActiveForm.Close();
             if (_previous == "AllPraticiens")
             {
                 AllPraticiens ap = new AllPraticiens();
                 ap.Show();
-                this.Close();
+                Close();
             }
         }
 
-        private void btn_modif_Click(object sender, EventArgs e)
+        private void btn_modif_Click( object sender, EventArgs e )
         {
             textBox_num.ReadOnly = false;
             textBox_nom.ReadOnly = false;
@@ -78,10 +80,9 @@ namespace PPEClientLourd
 
         }
 
-        private void btn_maj_Click(object sender, EventArgs e)
+        private void btn_maj_Click( object sender, EventArgs e )
         {
             string numero, nom, prenom, adresse, cp, ville, coefnot, lieu;
-            int codePostal;
 
             numero = textBox_num.Text.Trim();
             nom = textBox_nom.Text.Trim();
