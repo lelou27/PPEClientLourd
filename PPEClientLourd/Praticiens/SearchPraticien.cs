@@ -35,7 +35,7 @@ namespace PPEClientLourd
             while(!cs.Fin())
             {
                 this.praticiens.Add(cs.Champ("PRA_NUM").ToString(), cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString());
-                cbx_praticien.Items.Add(cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString());
+                cbx_praticien.Items.Add(cs.Champ("PRA_NOM").ToString() + " " + cs.Champ("PRA_PRENOM").ToString());  
 
                 cs.Suivant();
             }
