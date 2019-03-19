@@ -6,6 +6,8 @@ namespace PPEClientLourd
     public partial class OneVisiteur : Form
     {
         private string chaineConnexion = ConnexionDb.chaineConnexion;
+        // Ce formulaire sert à plusieurs pages précédentes, donc, j'ai décidé de faire une variable previous et
+        // de moifier le comportement en fonction de la page précédente
         private string _previous;
 
         public string ChaineConnexion
@@ -18,6 +20,7 @@ namespace PPEClientLourd
         private string _matriculePersonne;
         private string _nom;
 
+        // Constructeur avec un previous par défaut venant de la page tous les visiteurs
         public OneVisiteur( string matricule, string matriculePersonne, string previous = "AllVisiteur" )
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace PPEClientLourd
             _previous = previous;
 
             Curs cs = new Curs(chaineConnexion);
-
+            // Récupération du collaborateur
             cs.ReqSelect("SELECT c.*, l.LAB_NOM FROM collaborateur c INNER JOIN labo l ON c.LAB_CODE = l.LAB_CODE" +
                 " WHERE c.COL_MATRICULE = '" + matriculePersonne + "';");
 
@@ -42,6 +45,7 @@ namespace PPEClientLourd
                 txb_cp.Text = cs.Champ("COL_CP").ToString();
 
                 dateEmbauche = cs.Champ("COL_DATEEMBAUCHE").ToString();
+                // Conversion de la date pour être plus lisible
                 dateEmbauche = Convert.ToDateTime(dateEmbauche).ToString();
                 dateEmbauche = dateEmbauche.Split(' ')[0];
 
@@ -65,10 +69,12 @@ namespace PPEClientLourd
 
         }
 
+        // Click sur le bouton retour
         private void btn_retour_Click( object sender, EventArgs e )
         {
             Close();
 
+            // Ouverture du formulaire de la page précédente
             if (_previous == "AllVisiteur")
             {
                 AllVisiteurs av = new AllVisiteurs(_nom, _matricule);

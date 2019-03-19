@@ -5,27 +5,29 @@ namespace PPEClientLourd
 {
     public partial class Connexion : Form
     {
-        private string chaineConnexion = ConnexionDb.chaineConnexion;
+        // Initialisation de la chaine de connexion à la base de données
+        string chaineConnexion = ConnexionDb.chaineConnexion;
 
+        // getter setter de la chaine de connexion
         public string ChaineConnexion
         {
             get => chaineConnexion;
             set => chaineConnexion = value;
         }
+        // Constructeur
         public Connexion()
         {
             InitializeComponent();
+            // Par défaut, on cache les label d'erreurs
             lbl_error_login.Hide();
             lbl_error_password.Hide();
         }
 
-        private void Label1_Click( object sender, EventArgs e )
-        {
 
-        }
-
-        private void Btn_send_Click( object sender, EventArgs e )
+        // Au click sur le bouton valider
+        private void Btn_send_Click(object sender, EventArgs e)
         {
+            // Récupération des donées
             string username = txb_login.Text.ToString();
             string password = txb_password.Text.ToString();
 
@@ -36,8 +38,9 @@ namespace PPEClientLourd
                 {
                     lbl_error_password.Hide();
 
-                    Curs cs = new Curs(chaineConnexion);
-
+                    // Sélection de l'utilisateur en base pour savoir si il existe bien
+                    Curs cs = new Curs(this.chaineConnexion);
+                    
                     cs.ReqSelect("" +
                         "SELECT v.COL_MATRICULE, c.COL_NOM FROM visiteur v " +
                            " INNER JOIN collaborateur c ON v.COL_MATRICULE = c.COL_MATRICULE " +
@@ -51,8 +54,9 @@ namespace PPEClientLourd
                     {
                         matricule = cs.Champ("COL_MATRICULE").ToString();
                         nom = cs.Champ("COL_NOM").ToString();
-
-                        if (matricule.Length != 0 && nom.Length != 0)
+                        
+                        // Vérification de l'utilisateur
+                        if(matricule.Length != 0 && nom.Length != 0)
                         {
                             Home homeForm = new Home(matricule, nom);
                             Hide();
@@ -60,6 +64,7 @@ namespace PPEClientLourd
                         }
                         else
                         {
+                            // Erreur lors de la connexion
                             lbl_error_connexion.Text = "Impossible de vous connecter, les informations ne sont pas corrects";
                         }
                         cs.Suivant();
@@ -92,5 +97,6 @@ namespace PPEClientLourd
         {
 
         }
+
     }
 }

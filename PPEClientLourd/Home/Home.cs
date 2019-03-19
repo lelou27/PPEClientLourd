@@ -22,6 +22,7 @@ namespace PPEClientLourd
             _colMatricule = colMat;
             _colNom = colNom;
 
+            // Requete de récupération de rôle
             Curs cs = new Curs(chaineConnexion);
 
             cs.ReqSelect("SELECT COL_MATRICULE FROM responsable WHERE COL_MATRICULE = '" + colMat + "';");
@@ -34,6 +35,7 @@ namespace PPEClientLourd
 
                 if (matricule.Length != 0)
                 {
+                    // Si un utilisateur correspond, il est forcémment responsable
                     _role = "responsable";
                 }
 
@@ -44,6 +46,7 @@ namespace PPEClientLourd
 
             if (_role == "visiteur")
             {
+                // Si le role = visiteur, on cache certains items des menus car le visiteur n'a pas besoin de ceux-ci
                 ajouterUnVisiteurToolStripMenuItem.Visible = false;
                 toutLesVisiteursToolStripMenuItem.Visible = false;
                 chercherUnVisiteurToolStripMenuItem.Visible = false;
