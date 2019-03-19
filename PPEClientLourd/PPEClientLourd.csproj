@@ -192,9 +192,6 @@
     <EmbeddedResource Include="Visiteurs\CreerVisiteur.resx">
       <DependentUpon>CreerVisiteur.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Praticiens\DetailsPatricien.resx">
-      <DependentUpon>DetailsPatricien.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
