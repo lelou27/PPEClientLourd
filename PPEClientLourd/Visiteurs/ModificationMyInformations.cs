@@ -142,6 +142,7 @@ namespace PPEClientLourd
             if(nom.Length != 0 && prenom.Length != 0 && ville.Length != 0 && cp.Length != 0 && labo.Length != 0)
             {
                 bool error = false;
+                int codePostal;
 
                 // Try parse en numérique
                 if (!Int32.TryParse(cp, out codePostal))
