@@ -251,6 +251,11 @@ namespace PPEClientLourd
             dataGridView[0, nbRows].Value = Medoc;
             dataGridView[1, nbRows].Value = nbMedoc;
         }
+        /// <summary>
+        /// Permet la saisie des erreurs pour les médicaments
+        /// </summary>
+        /// <param name="listErr">Liste des médicaments aec erreurs</param>
+        /// <returns>Le message d'erreur</returns>
         private string ErreurSaisieNbEchan( List<string> listErr )
         {
             string errResult = "";
@@ -262,6 +267,10 @@ namespace PPEClientLourd
 
             return errResult;
         }
+        /// <summary>
+        /// Permet de calculer le nombre d'erreur lors de la saisie lors de la création
+        /// </summary>
+        /// <returns>Le nombre d'erreur</returns>
         private int DispatchErrors_Creer()
         {
             int Error = 0;
@@ -278,6 +287,10 @@ namespace PPEClientLourd
 
             return Error;
         }
+        /// <summary>
+        /// Permet de calculer le nombre d'erreur lors de la saisie lors de la modification
+        /// </summary>
+        /// <returns>Le nombre d'erreur</returns>
         private int DispatchErrors_Modif()
         {
             int Error = 0;
@@ -291,6 +304,11 @@ namespace PPEClientLourd
 
             return Error;
         }
+        /// <summary>
+        /// Lance les tests afin de vérifier les erreurs
+        /// </summary>
+        /// <param name="Action">"Creer" pour vérifier la création et "Modif" pour vérifier la modification</param>
+        /// <returns>Le nombre d'erreur</returns>
         private int Verif_error( string Action )
         {
             int err = 0;
@@ -307,6 +325,12 @@ namespace PPEClientLourd
 
             return err;
         }
+        /// <summary>
+        /// Permet d'insérer dans la table distribuer
+        /// </summary>
+        /// <param name="ListEchantillon">Le dictionnaire d'échantillon</param>
+        /// <param name="rapNum">Le numéro du rapport</param>
+        /// <param name="offert">true si l'échantillon est offert</param>
         private void Insert_distribuer( Dictionary<string, int> ListEchantillon, string rapNum, bool offert )
         {
             foreach (KeyValuePair<string, int> item in ListEchantillon)
@@ -335,6 +359,12 @@ namespace PPEClientLourd
                 Insert_Distri.Appelfonctstockee();
             }
         }
+        /// <summary>
+        /// Permet de remplir les dictionnaires d'échantillon et calcule le nombre d'erreur
+        /// </summary>
+        /// <param name="dataGrid">Le dataGridView d'origine</param>
+        /// <param name="offert">true si l'échantillon est offert</param>
+        /// <returns></returns>
         private int SetDatasInDictionnarys( DataGridView dataGrid, bool offert )
         {
             int Error = 0;
@@ -455,8 +485,7 @@ namespace PPEClientLourd
         private void Btn_detailsPracticiens_Click( object sender, EventArgs e )
         {
             int myKey;
-            myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key;
-
+            myKey = Convert.ToInt16(Recup_comboBox_Praticiens());
             DetailsPraticien DP = new DetailsPraticien(myKey, "RapportVisite");
 
             DP.Show();
@@ -464,7 +493,7 @@ namespace PPEClientLourd
         private void Button_praticien2_Click( object sender, EventArgs e )
         {
             int myKey;
-            myKey = praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key;
+            myKey = Convert.ToInt16(Recup_comboBox_Praticiens());
             DetailsPraticien DP = new DetailsPraticien(myKey, "RapportVisite");
 
             DP.Show();
@@ -522,7 +551,6 @@ namespace PPEClientLourd
 
                 if (Error == 0)
                 {
-
                     string dateJour = DateTime.Today.ToString("yyyy-MM-dd H:mm:ss");
                     List<string> Recup_All_Value = new List<string>();
                     Recup_All_Value = Recup_All();
@@ -567,6 +595,10 @@ namespace PPEClientLourd
         }
         private void Button_Fermer_Click_1( object sender, EventArgs e ) => ActiveForm.Close();
 
+        /// <summary>
+        /// Permet de récupérer tout les valeurs
+        /// </summary>
+        /// <returns>Une liste de toutes valeurs</returns>
         private List<string> Recup_All()
         {
             string requete;
@@ -616,13 +648,29 @@ namespace PPEClientLourd
             return Result;
         }
         //textBox
+        /// <summary>
+        /// Récupère la valeur du textBox_BilanRap
+        /// </summary>
+        /// <returns>string du textBox_BilanRap</returns>
         private string Recup_textBox_BilanRap() => textBox_BilanRap.Text;
         //comboBox
+        /// <summary>
+        /// Récupère la valeur du comboBox_Praticiens
+        /// </summary>
+        /// <returns></returns>
         private string Recup_comboBox_Praticiens() => praticiens.FirstOrDefault(x => x.Value == comboBox_Praticiens.Text).Key.ToString();
-        private string Recup_comboBox_Motif() => comboBox_Motif.Text == "Autre" ? textBox_AutreMotif.Text : comboBox_Motif.Text;
+        /// <summary>
+        /// Récupère la valeur du comboBox_Motif ou textBox_AutreMotif
+        /// </summary>
+        /// <returns>string du comboBox_Motif ou textBox_AutreMotif</returns>
+        private string Recup_comboBox_Motif() => comboBox_Motif.Text == "Autre" ? textBox_AutreMotif.Text.Trim().Replace("'"," ") : comboBox_Motif.Text;
+        /// <summary>
+        /// Récupère la valeur du comboBox_connaissancePraticien
+        /// </summary>
+        /// <returns>string du comboBox_connaissancePraticien</returns>
         private string Recup_comboBox_connaissancePraticien()
         {
-            bool rapConnaissancePraticienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text, result: out short connaissanceP);
+            bool rapConnaissancePraticienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text.Trim().Replace("'", " "), result: out short connaissanceP);
             return rapConnaissancePraticienFlag ? connaissanceP.ToString() : "NULL";
         }
         private string Recup_comboBox_confianceLabo()
