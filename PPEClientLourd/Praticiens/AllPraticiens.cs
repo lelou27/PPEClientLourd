@@ -5,6 +5,9 @@ namespace PPEClientLourd
 {
     public partial class AllPraticiens : Form
     {
+        /// <summary>
+        /// Affichage de liste de tous les praticiens, affichage des détails d'un praticien
+        /// </summary>
         private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         public string ChaineConnexion
@@ -16,6 +19,11 @@ namespace PPEClientLourd
 
         private void Retour_Click( object sender, EventArgs e ) => Close();
 
+        /// <summary>
+        /// Permet d'afficher les détails d'un praticien
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
             if (e.RowIndex >= 0)
@@ -32,6 +40,12 @@ namespace PPEClientLourd
             }
         }
 
+
+        /// <summary>
+        /// Remplissage du datagridView et du comboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AllPraticiens_Load_1( object sender, EventArgs e )
         {
             Curs cs = new Curs(chaineConnexion);
