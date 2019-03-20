@@ -74,35 +74,11 @@ namespace PPEClientLourd
                  this.typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
              }
 
-            if (previous == "RapportVisite")
+            if (_previous == "RapportVisite")
             {
                 btn_modif.Visible = false;
             }
 
-        }
-
-
-
-        private void addItemsToTypePraticiens( string tpCode )
-        {
-            Curs cs = new Curs(connection);
-
-            cs.ReqSelect("SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien");
-
-            while (!cs.Fin())
-            {
-                typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
-
-                cbx_tp.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
-
-                // Si le type de praticien récupérer est le même que celui de l'utilisateur, on le sélectionne
-                if (tpCode == cs.Champ("TYP_CODE").ToString())
-                     cbx_tp.SelectedItem = cs.Champ("TYP_LIBELLE").ToString();
-                }
-
-                cs.Suivant();
-            }
-            cs.Fin();
         }
 
         private void button_Fermer_Click( object sender, EventArgs e )
@@ -153,6 +129,7 @@ namespace PPEClientLourd
             if (numero.Length != 0 && nom.Length != 0 && prenom.Length != 0 && adresse.Length != 0 && ville.Length != 0 && cp.Length != 0 && coefnot.Length != 0 && typePraticiens.Length != 0)
             {
                 bool error = false;
+                int codePostal;
 
                 // Try parse en numérique
                 if (!Int32.TryParse(cp, out codePostal))
