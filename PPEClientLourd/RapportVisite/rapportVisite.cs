@@ -157,7 +157,7 @@ namespace PPEClientLourd
                 //Textbox
                 textBox_BilanRap.Text = cs2.Champ("RAP_BILAN").ToString();
                 //dateTime
-                dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE").ToString());
+                dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE_VISITE").ToString());
 
                 bool verifDate = cs2.Champ("RAP_DATE_PROCHAINE_VISITE").ToString() == "" ? false : true;
                 if (!verifDate)
@@ -640,6 +640,7 @@ namespace PPEClientLourd
             Result.Add(Recup_comboBox_connaissancePraticien());
             Result.Add(Recup_comboBox_confianceLabo());
             Result.Add(Recup_dateTimePicker_DateRap());
+            string zyggeurhzpeb = Recup_dateTimePicker_DateRap();
             Result.Add(Recup_dateTimePicker_DateProVisite());
             Result.Add(Recup_comboBox_presenceconcurrence());
             Result.Add(Recup_comboBox_Praticiens());

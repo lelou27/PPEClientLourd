@@ -7,13 +7,13 @@ namespace PPEClientLourd
 {
     public partial class DetailsPraticien : Form
     {
-        string connection = ConnexionDb.chaineConnexion;
+        private string connection = ConnexionDb.chaineConnexion;
         private Dictionary<string, string> typePraticiens = new Dictionary<string, string>();
         private string _previous;
         private int _NumPraticiens;
-        public DetailsPraticien(int NumPraticiens, string previous = "AllPraticiens")
+        public DetailsPraticien( int NumPraticiens, string previous = "AllPraticiens" )
         {
-            
+
             InitializeComponent();
             _previous = previous;
             _NumPraticiens = NumPraticiens;
@@ -47,44 +47,50 @@ namespace PPEClientLourd
             }
             cs3.Fermer();
 
+            if (previous == "RapportVisite")
+            {
+                btn_modif.Visible = false;
+            }
 
         }
 
 
 
-        private void addItemsToTypePraticiens(string tpCode)
-         {
-             Curs cs = new Curs(this.connection);
+        private void addItemsToTypePraticiens( string tpCode )
+        {
+            Curs cs = new Curs(connection);
 
-             cs.ReqSelect("SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien");
+            cs.ReqSelect("SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien");
 
-             while (!cs.Fin())
-             {
-                 this.typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
+            while (!cs.Fin())
+            {
+                typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
 
-                 cbx_tp.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
+                cbx_tp.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
 
-                 if (tpCode == cs.Champ("TYP_CODE").ToString())
-                     cbx_tp.SelectedItem = cs.Champ("TYP_LIBELLE").ToString();
+                if (tpCode == cs.Champ("TYP_CODE").ToString())
+                {
+                    cbx_tp.SelectedItem = cs.Champ("TYP_LIBELLE").ToString();
+                }
 
-                 cs.Suivant();
-             }
-             cs.Fin();
-         }
+                cs.Suivant();
+            }
+            cs.Fin();
+        }
 
 
-        private void button_Fermer_Click(object sender, EventArgs e)
+        private void button_Fermer_Click( object sender, EventArgs e )
         {
             Form.ActiveForm.Close();
             if (_previous == "AllPraticiens")
             {
                 AllPraticiens ap = new AllPraticiens();
                 ap.Show();
-                this.Close();
+                Close();
             }
         }
 
-        private void btn_modif_Click(object sender, EventArgs e)
+        private void btn_modif_Click( object sender, EventArgs e )
         {
             textBox_nom.ReadOnly = false;
             textBox_prenom.ReadOnly = false;
@@ -98,10 +104,9 @@ namespace PPEClientLourd
             cbx_tp.Visible = true;
         }
 
-        private void btn_maj_Click(object sender, EventArgs e)
+        private void btn_maj_Click( object sender, EventArgs e )
         {
             string numero, nom, prenom, adresse, cp, ville, coefnot, typePraticiens;
-            int codePostal;
 
 
             numero = textBox_num.Text.Trim();
@@ -110,15 +115,15 @@ namespace PPEClientLourd
             adresse = textBox_adresse.Text.Trim();
             ville = textBox_ville.Text.Trim();
             cp = textBox_CP.Text.Trim();
-            coefnot = textBox_coef.Text.Trim().Replace(',' , '.');
+            coefnot = textBox_coef.Text.Trim().Replace(',', '.');
             typePraticiens = cbx_tp.SelectedItem.ToString();
 
-            this.dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, typePraticiens);
+            dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, typePraticiens);
             if (numero.Length != 0 && nom.Length != 0 && prenom.Length != 0 && adresse.Length != 0 && ville.Length != 0 && cp.Length != 0 && coefnot.Length != 0 && typePraticiens.Length != 0)
             {
                 bool error = false;
 
-                if (!Int32.TryParse(cp, out codePostal))
+                if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
@@ -126,15 +131,15 @@ namespace PPEClientLourd
 
                 if (!error)
                 {
-                    Curs cs = new Curs(this.connection);
+                    Curs cs = new Curs(connection);
 
                     typePraticiens = this.typePraticiens.FirstOrDefault(x => x.Value == typePraticiens).Key;
 
                     string req;
 
-                        req = "UPDATE praticien SET PRA_NUM = " + numero + ", PRA_NOM = '" + nom + "', PRA_PRENOM = '" + prenom + "'" +
-                        ", PRA_ADRESSE = '" + adresse + "', PRA_VILLE = '" + ville + "', PRA_CP = '" + cp + "', PRA_COEFNOTORIETE = " + coefnot + ", TYP_CODE = '" + typePraticiens + "'" +
-                        " WHERE PRA_NUM = " + _NumPraticiens.ToString() + ";";
+                    req = "UPDATE praticien SET PRA_NUM = " + numero + ", PRA_NOM = '" + nom + "', PRA_PRENOM = '" + prenom + "'" +
+                    ", PRA_ADRESSE = '" + adresse + "', PRA_VILLE = '" + ville + "', PRA_CP = '" + cp + "', PRA_COEFNOTORIETE = " + coefnot + ", TYP_CODE = '" + typePraticiens + "'" +
+                    " WHERE PRA_NUM = " + _NumPraticiens.ToString() + ";";
 
                     try
                     {
@@ -143,7 +148,7 @@ namespace PPEClientLourd
 
                         MessageBox.Show("Mise à jour effectué", "Success lors de la mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Close();
+                        Close();
                     }
                     catch (Exception)
                     {
@@ -154,7 +159,7 @@ namespace PPEClientLourd
 
         }
 
-        private void dispatchErrors(string numero, string nom, string prenom, string adresse, string ville, string cp, string coefnot, string lieu)
+        private void dispatchErrors( string numero, string nom, string prenom, string adresse, string ville, string cp, string coefnot, string lieu )
         {
             lbl_error_num.Text = nom.Length == 0 ? "Veuillez renseigner un numéro" : "";
             lbl_error_nom.Text = nom.Length == 0 ? "Veuillez renseigner un nom" : "";
