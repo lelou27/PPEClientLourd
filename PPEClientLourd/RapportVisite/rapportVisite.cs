@@ -640,7 +640,6 @@ namespace PPEClientLourd
             Result.Add(Recup_comboBox_connaissancePraticien());
             Result.Add(Recup_comboBox_confianceLabo());
             Result.Add(Recup_dateTimePicker_DateRap());
-            string zyggeurhzpeb = Recup_dateTimePicker_DateRap();
             Result.Add(Recup_dateTimePicker_DateProVisite());
             Result.Add(Recup_comboBox_presenceconcurrence());
             Result.Add(Recup_comboBox_Praticiens());
