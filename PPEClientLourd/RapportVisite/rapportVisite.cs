@@ -157,7 +157,7 @@ namespace PPEClientLourd
                 //Textbox
                 textBox_BilanRap.Text = cs2.Champ("RAP_BILAN").ToString();
                 //dateTime
-                dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE").ToString());
+                dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE_VISITE").ToString());
 
                 bool verifDate = cs2.Champ("RAP_DATE_PROCHAINE_VISITE").ToString() == "" ? false : true;
                 if (!verifDate)
@@ -673,11 +673,19 @@ namespace PPEClientLourd
             bool rapConnaissancePraticienFlag = short.TryParse(s: comboBox_connaissancePraticien.Text.Trim().Replace("'", " "), result: out short connaissanceP);
             return rapConnaissancePraticienFlag ? connaissanceP.ToString() : "NULL";
         }
+        /// <summary>
+        /// Récupère la valeur du comboBox_confianceLabo
+        /// </summary>
+        /// <returns>string du comboBox_confianceLabo</returns>
         private string Recup_comboBox_confianceLabo()
         {
             bool rapConnaissanceLaboFlag = short.TryParse(s: comboBox_confianceLabo.Text, result: out short confianceL);
             return rapConnaissanceLaboFlag ? confianceL.ToString() : "NULL";
         }
+        /// <summary>
+        /// Récupère la valeur du comboBox_presenceconcurrence
+        /// </summary>
+        /// <returns>string du comboBox_presenceconcurrence</returns>
         private string Recup_comboBox_presenceconcurrence()
         {
             switch (comboBox_presenceconcurrence.Text.Trim())
@@ -694,9 +702,21 @@ namespace PPEClientLourd
             return "NULL";
         }
         //DateTime
+        /// <summary>
+        /// Récupère la valeur du dateTimePicker_DateRap
+        /// </summary>
+        /// <returns>string du dateTimePicker_DateRap</returns>
         private string Recup_dateTimePicker_DateRap() => Convert.ToDateTime(dateTimePicker_DateRap.Value).ToString("yyyy-MM-dd H:mm:ss");
+        /// <summary>
+        /// Récupère la valeur du dateTimePicker_DateProVisite
+        /// </summary>
+        /// <returns>string du dateTimePicker_DateProVisite</returns>
         private string Recup_dateTimePicker_DateProVisite() => comboBox_NewRDV.Text == "Oui" ? Convert.ToDateTime(dateTimePicker_DateProVisite.Value).ToString("yyyy-MM-dd H:mm:ss") : "NULL";
 
+        /// <summary>
+        /// Gestion d'erreur sur comboBox_Praticiens
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int Gestion_erreur_comboBox_Praticiens()
         {
             int Err = 0;
@@ -707,6 +727,10 @@ namespace PPEClientLourd
             }
             return Err;
         }
+        /// <summary>
+        /// Gestion d'erreur sur comboBox_Motif
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int Gestion_erreur_comboBox_Motif()
         {
             int Err = 0;
@@ -717,6 +741,10 @@ namespace PPEClientLourd
             }
             return Err;
         }
+        /// <summary>
+        /// Gestion d'erreur sur dateTimePicker_DateRap
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int GetGestion_erreur_dateTimePicker_DateRap()
         {
             int Err = 0;
@@ -727,6 +755,10 @@ namespace PPEClientLourd
             }
             return Err;
         }
+        /// <summary>
+        /// Gestion d'erreur sur dateTimePicker_DateProVisite
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int Gestion_erreur_dateTimePicker_DateProVisite()
         {
             int Err = 0;
@@ -737,6 +769,10 @@ namespace PPEClientLourd
             }
             return Err;
         }
+        /// <summary>
+        /// Gestion d'erreur sur textBox_AutreMotif
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int Gestion_erreur_textBox_AutreMotif()
         {
             int Err = 0;
@@ -747,6 +783,10 @@ namespace PPEClientLourd
             }
             return Err;
         }
+        /// <summary>
+        /// Gestion d'erreur sur textBox_BilanRap
+        /// </summary>
+        /// <returns>0 si pas d'erreur</returns>
         private int Gestion_erreur_textBox_BilanRap()
         {
             int Err = 0;

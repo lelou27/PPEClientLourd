@@ -41,7 +41,7 @@ namespace PPEClientLourd
             }
             else
             {
-                req = "SELECT c.COL_NOM, r.RAP_NUM, r.RAP_DATE, r.RAP_MOTIF, p.PRA_NOM " +
+                req = "SELECT c.COL_NOM, c.COL_MATRICULE, r.RAP_NUM, r.RAP_DATE, r.RAP_MOTIF, p.PRA_NOM " +
                              "FROM rapport_visite r " +
                              "  INNER JOIN collaborateur c ON r.COL_MATRICULE = c.COL_MATRICULE " +
                              "  INNER JOIN praticien p ON r.PRA_NUM = p.PRA_NUM" +
@@ -60,22 +60,11 @@ namespace PPEClientLourd
                 rapDate = cs.Champ("RAP_DATE").ToString();
                 rapMotif = cs.Champ("RAP_MOTIF").ToString();
                 praNom = cs.Champ("PRA_NOM").ToString();
-                if (_role == "responsable")
-                {
-                    colMat = cs.Champ("COL_MATRICULE").ToString();
-                }
+                colMat = cs.Champ("COL_MATRICULE").ToString();
 
                 rapDate = Convert.ToDateTime(rapDate).ToString();
                 rapDate = rapDate.Split(' ')[0];
-                if (_role == "responsable")
-                {
-                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
-                }
-                else
-                {
-                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom);
-                }
-
+                dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
 
                 cs.Suivant();
             }

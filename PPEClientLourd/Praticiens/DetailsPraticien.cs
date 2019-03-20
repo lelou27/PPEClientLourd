@@ -7,7 +7,7 @@ namespace PPEClientLourd
 {
     public partial class DetailsPraticien : Form
     {
-        string connection = ConnexionDb.chaineConnexion;
+        private string connection = ConnexionDb.chaineConnexion;
         private Dictionary<string, string> typePraticiens = new Dictionary<string, string>();
         private string _previous;
         private int _NumPraticiens;
@@ -19,7 +19,7 @@ namespace PPEClientLourd
         /// <param name="previous">valeur de la page précédente</param>
         public DetailsPraticien(int NumPraticiens, string previous = "AllPraticiens")
         {
-            
+
             InitializeComponent();
             //On remplit les variables
             _previous = previous;
@@ -72,27 +72,47 @@ namespace PPEClientLourd
              {
                 //Ajout des valeurs 
                  this.typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
+             }
 
-                 cbx_tp.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
+            if (previous == "RapportVisite")
+            {
+                btn_modif.Visible = false;
+            }
+
+        }
+
+
+
+        private void addItemsToTypePraticiens( string tpCode )
+        {
+            Curs cs = new Curs(connection);
+
+            cs.ReqSelect("SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien");
+
+            while (!cs.Fin())
+            {
+                typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
+
+                cbx_tp.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
 
                 // Si le type de praticien récupérer est le même que celui de l'utilisateur, on le sélectionne
                 if (tpCode == cs.Champ("TYP_CODE").ToString())
                      cbx_tp.SelectedItem = cs.Champ("TYP_LIBELLE").ToString();
+                }
 
-                 cs.Suivant();
-             }
-             cs.Fin();
-         }
+                cs.Suivant();
+            }
+            cs.Fin();
+        }
 
-        
-        private void button_Fermer_Click(object sender, EventArgs e)
+        private void button_Fermer_Click( object sender, EventArgs e )
         {
             Form.ActiveForm.Close();
             if (_previous == "AllPraticiens")
             {
                 AllPraticiens ap = new AllPraticiens();
                 ap.Show();
-                this.Close();
+                Close();
             }
         }
 
@@ -111,12 +131,10 @@ namespace PPEClientLourd
             cbx_tp.Visible = true;
         }
 
-
         //Modification des informations suite à la pression du bouton "mettre à jour"
         private void btn_maj_Click(object sender, EventArgs e)
         {
             string numero, nom, prenom, adresse, cp, ville, coefnot, typePraticiens;
-            int codePostal;
 
             //Récupération des champs et suppression des espaces blancs ("trim()")
             numero = textBox_num.Text.Trim();
@@ -125,9 +143,8 @@ namespace PPEClientLourd
             adresse = textBox_adresse.Text.Trim();
             ville = textBox_ville.Text.Trim();
             cp = textBox_CP.Text.Trim();
-            coefnot = textBox_coef.Text.Trim().Replace(',' , '.');
+            coefnot = textBox_coef.Text.Trim().Replace(',', '.');
             typePraticiens = cbx_tp.SelectedItem.ToString();
-
 
             // Remplis les erreurs si il y en a
             this.dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, typePraticiens);
@@ -147,16 +164,16 @@ namespace PPEClientLourd
                 // Si pas d'erreurs
                 if (!error)
                 {
-                    Curs cs = new Curs(this.connection);
+                    Curs cs = new Curs(connection);
 
                     // Récupération du type de praticien dans le dictionnaire
                     typePraticiens = this.typePraticiens.FirstOrDefault(x => x.Value == typePraticiens).Key;
 
                     string req;
 
-                        req = "UPDATE praticien SET PRA_NUM = " + numero + ", PRA_NOM = '" + nom + "', PRA_PRENOM = '" + prenom + "'" +
-                        ", PRA_ADRESSE = '" + adresse + "', PRA_VILLE = '" + ville + "', PRA_CP = '" + cp + "', PRA_COEFNOTORIETE = " + coefnot + ", TYP_CODE = '" + typePraticiens + "'" +
-                        " WHERE PRA_NUM = " + _NumPraticiens.ToString() + ";";
+                    req = "UPDATE praticien SET PRA_NUM = " + numero + ", PRA_NOM = '" + nom + "', PRA_PRENOM = '" + prenom + "'" +
+                    ", PRA_ADRESSE = '" + adresse + "', PRA_VILLE = '" + ville + "', PRA_CP = '" + cp + "', PRA_COEFNOTORIETE = " + coefnot + ", TYP_CODE = '" + typePraticiens + "'" +
+                    " WHERE PRA_NUM = " + _NumPraticiens.ToString() + ";";
 
                     try
                     {
@@ -167,7 +184,7 @@ namespace PPEClientLourd
                         //Message de validation si la mise à jour est bonne
                         MessageBox.Show("Mise à jour effectué", "Success lors de la mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Close();
+                        Close();
                     }
                     catch (Exception)
                     {
@@ -178,7 +195,6 @@ namespace PPEClientLourd
             }
 
         }
-
 
         //Affichage des erreurs
         private void dispatchErrors(string numero, string nom, string prenom, string adresse, string ville, string cp, string coefnot, string lieu)
