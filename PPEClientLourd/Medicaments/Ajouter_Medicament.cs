@@ -36,10 +36,10 @@ namespace PPEClientLourd
             string depot_legal = depot_legal_input.Text.Trim();
             string nom = nom_input.Text.Trim();
             string code = code_input.Text.Trim();
-            string composition = composition_input.Text.Trim();
-            string effets = effets_input.Text.Trim();
-            string contreindic = contreindic_input.Text.Trim();
-            string prixech = prixech_input.Text.Trim();
+            string composition = composition_input.Text.Trim().Replace("'", "\'");
+            string effets = effets_input.Text.Trim().Replace("'", "\'");
+            string contreindic = contreindic_input.Text.Trim().Replace("'", "\'");
+            string prixech = prixech_input.Text.Trim().Replace(',','.');
 
             if ((depot_legal.Length == 0) || (nom.Length == 0) || (code.Length == 0) || (composition.Length == 0) || (effets.Length == 0) || (contreindic.Length == 0) || (prixech.ToString().Length == 0))
             {
@@ -60,8 +60,7 @@ namespace PPEClientLourd
 
                     Aj_med_error_code.Hide();
                     Aj_med_error_prix.Hide();
-                    double prix = double.Parse(prixech_input.Text);
-                    string sql = "INSERT INTO medicament VALUES ('" + depot_legal_input.Text + "','" + nom_input.Text + "','" + code_input.Text + "','" + composition_input.Text + "','" + effets_input.Text + "','" + contreindic_input.Text + "'," + prix + ");";
+                    string sql = "INSERT INTO medicament VALUES ('" + depot_legal + "','" + nom + "','" + code + "','" + composition + "','" + effets + "','" + contreindic + "'," + prixech + ");";
                     cs.ReqAdmin(sql);
 
                     cs.Fermer();
