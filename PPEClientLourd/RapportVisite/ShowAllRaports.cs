@@ -67,15 +67,7 @@ namespace PPEClientLourd
 
                 rapDate = Convert.ToDateTime(rapDate).ToString();
                 rapDate = rapDate.Split(' ')[0];
-                if (_role == "responsable")
-                {
-                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
-                }
-                else
-                {
-                    dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom);
-                }
-
+                dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
 
                 cs.Suivant();
             }
