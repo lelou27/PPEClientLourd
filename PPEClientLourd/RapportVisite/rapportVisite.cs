@@ -8,20 +8,26 @@ namespace PPEClientLourd
 {
     public partial class RapportVisite : Form
     {
-        private string _colMatricule;
-        private string _previous;
-        private string _colNom;
+        //création des variables
+        private string connection = ConnexionDb.chaineConnexion, _colMatricule, _previous, _colNom, _role, _colMatClic;
         private int _numRap;
-        private string _role;
-        private string _colMatClic;
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private Dictionary<string, int> echantillonsPresente = new Dictionary<string, int>();
         private Dictionary<string, int> echantillonsOffert = new Dictionary<string, int>();
-        private string connection = ConnexionDb.chaineConnexion;
 
+        /// <summary>
+        /// Création, Affichage et Modification d'un rapport de visite
+        /// </summary>
+        /// <param name="colNom">Nom du collaborateur connecté</param>
+        /// <param name="colMat">Matricule du collaborateur connecté</param>
+        /// <param name="previous">"Home" pour création, "ShowAllRaports" pour affichage, "Modif" pour modification</param>
+        /// <param name="numRap">Le numéro du rapport (affichage/modification)</param>
+        /// <param name="colMatClic">Le matricule du collaborateur sélectionné (affichage/modification)</param>
+        /// <param name="role">Le rôle du collaborateur sélectionné (affichage/modification)</param>
         public RapportVisite( string colNom, string colMat, string previous = "Home", int numRap = 0, string colMatClic = "", string role = "" )
         {
             InitializeComponent();
+            //On remplit les variables
             _previous = previous;
             _colNom = colNom;
             _colMatricule = colMat;
@@ -29,13 +35,14 @@ namespace PPEClientLourd
             _colMatClic = colMatClic;
             _role = role;
 
+            //Si on vient de la page d'accueil
             if (_previous == "Home")
             {
                 Add_comboBox_Praticiens();
                 Btn_detailsPracticiens.Visible = false;
                 Add_comboBox_Medicament();
-
             }
+            //Si on vient de la page ShowAllRapport
             else if (_previous == "ShowAllRaports")
             {
                 //Combobox
@@ -69,6 +76,7 @@ namespace PPEClientLourd
                     button_modifier.Visible = true;
                 }
             }
+            //Si on choisit de modifier le rapport
             else if (_previous == "Modif")
             {
                 button_Creer.Visible = false;
@@ -80,10 +88,11 @@ namespace PPEClientLourd
             }
         }
 
-
+        /// <summary>
+        /// Rempli le dataGridViewComboBox pour médicaments présentés et offert
+        /// </summary>
         private void Add_comboBox_Medicament()
         {
-            //Pour remplir le combobox dans les datagridview des medicaments
             Curs cs2 = new Curs(connection);
             string requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` " +
                 "FROM `medicament` " +
@@ -97,10 +106,12 @@ namespace PPEClientLourd
             }
             cs2.Fermer();
         }
+        /// <summary>
+        /// Rempli le dictionnaire de données des praticiens et rempli le comboBox_Praticiens
+        /// </summary>
         private void Add_comboBox_Praticiens()
         {
             string Name = "";
-            //Pour remplir le combobox des Pratitiens
             Curs cs = new Curs(connection);
             string requete = "SELECT `praticien`.`PRA_NUM`, `praticien`.`PRA_NOM`, `praticien`.`PRA_PRENOM`" +
                 " FROM `praticien`" +
@@ -115,6 +126,9 @@ namespace PPEClientLourd
             }
             cs.Fermer();
         }
+        /// <summary>
+        /// Rempli tout les champs sauf les dataGridViews
+        /// </summary>
         private void Add_allChamp()
         {
             string requete = "SELECT `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`,`PRA_NUM`" +
@@ -180,6 +194,9 @@ namespace PPEClientLourd
             }
             cs2.Fermer();
         }
+        /// <summary>
+        /// Requetes nécessaire pour remplir les dataGridViews selon un numéro de rapport
+        /// </summary>
         private void Prefill_Medicament()
         {
             string requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL`,`distribuer`.`QUANTITE`,`distribuer`.`OFFERT`" +
@@ -190,8 +207,7 @@ namespace PPEClientLourd
                 " AND `distribuer`.`COL_MATRICULE` = '";
 
             string Medicament = "";
-            int NbMedicament = 0;
-            int indexOffert = 0, IndexPresente = 0;
+            int NbMedicament = 0, indexOffert = 0, IndexPresente = 0;
 
             if (_role == "responsable")
             {
@@ -222,6 +238,13 @@ namespace PPEClientLourd
             }
             cs3.Fermer();
         }
+        /// <summary>
+        /// Rempli un dataGridView avec un nom de médicament, un nombre entier de médicament et un numéro de ligne
+        /// </summary>
+        /// <param name="dataGridView">Le dataGridView à remplir</param>
+        /// <param name="Medoc">Le nom du médicament</param>
+        /// <param name="nbMedoc">Le nombre de médicament</param>
+        /// <param name="nbRows">Le numéro de la ligne</param>
         private void Fill_Combobox_Medicament( DataGridView dataGridView, string Medoc, int nbMedoc, int nbRows )
         {
             dataGridView.Rows.Add();
@@ -374,7 +397,7 @@ namespace PPEClientLourd
 
             return Error;
         }
-
+        
         private void DateTimePicker_DateProVisite_ValueChanged( object sender, EventArgs e ) => label_datepro.Text = "";
         private void DateTimePicker_DateRap_ValueChanged( object sender, EventArgs e ) => label_DateRap.Text = "";
         private void TextBox_AutreMotif_TextChanged( object sender, EventArgs e )
