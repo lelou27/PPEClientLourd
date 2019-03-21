@@ -30,7 +30,7 @@ namespace PPEClientLourd
         {
             Curs cs = new Curs(chaineConnexion);
             string req;
-
+            // Récupération des rapports de visites selon le rôle
             if (_role == "responsable")
             {
                 req = "SELECT c.COL_NOM, r.RAP_NUM, r.RAP_DATE, r.RAP_MOTIF, p.PRA_NOM, c.COL_MATRICULE " +
@@ -61,7 +61,7 @@ namespace PPEClientLourd
                 rapMotif = cs.Champ("RAP_MOTIF").ToString();
                 praNom = cs.Champ("PRA_NOM").ToString();
                 colMat = cs.Champ("COL_MATRICULE").ToString();
-
+                // Conversion en dateTime
                 rapDate = Convert.ToDateTime(rapDate).ToString();
                 rapDate = rapDate.Split(' ')[0];
                 dgv_rapports.Rows.Add(colNom, rapNum, rapDate, rapMotif, praNom, colMat);
@@ -70,18 +70,19 @@ namespace PPEClientLourd
             }
 
             cs.Fermer();
-
+            // Si pas de rapports
             if (dgv_rapports.Rows.Count == 0)
             {
                 dgv_rapports.Hide();
                 lbl_noResults.Text = "Aucun rapports correspondants";
             }
         }
-
+        // Lors d'un click sur une cellule
         private void dgv_rapports_CellContentClick( object sender, DataGridViewCellEventArgs e )
         {
             if (e.RowIndex >=0)
             {
+                // Récupération des informations du dgv
                 string rapNum = dgv_rapports[1, e.RowIndex].Value.ToString();
                 string colMat = dgv_rapports[5, e.RowIndex].Value.ToString();
                 int noRapport = Convert.ToInt16(rapNum);

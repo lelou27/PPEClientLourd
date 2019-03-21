@@ -17,6 +17,7 @@ namespace PPEClientLourd
         private void Consulter_Tous_Medicaments_Load( object sender, EventArgs e )
         {
             Curs cs = new Curs(chaineConnexion);
+            // Sélection des médicaments
             string sql = "SELECT MED_NOMCOMMERCIAL, FAM_LIBELLE, MED_COMPOSITION, MED_DEPOTLEGAL " +
                             " FROM medicament " +
                             "       INNER JOIN famille ON medicament.FAM_CODE = famille.FAM_CODE ;";
@@ -28,7 +29,7 @@ namespace PPEClientLourd
                 familleLibelle = cs.Champ("FAM_LIBELLE").ToString();
                 composition = cs.Champ("MED_COMPOSITION").ToString();
                 depot = cs.Champ("MED_DEPOTLEGAL").ToString();
-
+                // Ajout des médicaments dans la datagridview
                 dgv_allMedicaments.Rows.Add(nom, familleLibelle, composition, depot);
 
                 cs.Suivant();
@@ -41,6 +42,7 @@ namespace PPEClientLourd
         {
             if (e.RowIndex >= 0)
             {
+                // Récupération du dépot légal
                 string depotLegal = dgv_allMedicaments[3, e.RowIndex].Value.ToString();
 
                 Consulter_Medicament cm = new Consulter_Medicament(depotLegal);

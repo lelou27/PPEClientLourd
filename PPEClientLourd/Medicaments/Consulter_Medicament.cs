@@ -6,24 +6,26 @@ namespace PPEClientLourd
     public partial class Consulter_Medicament : Form
     {
         private string chaineconnexion = ConnexionDb.chaineConnexion;
-
+        // Constructeur
         public Consulter_Medicament( string idMedicament = "a" )
         {
             InitializeComponent();
 
             Curs cs = new Curs(chaineconnexion);
+            // Sélection des médicaments
             string requete = "SELECT `medicament`.`MED_NOMCOMMERCIAL` FROM `medicament` ORDER BY `medicament`.`MED_NOMCOMMERCIAL`";
             cs.ReqSelect(requete);
             string nom = "";
             while (!cs.Fin())
             {
                 nom = cs.Champ("MED_NOMCOMMERCIAL").ToString();
+                // Ajout des items
                 Consulter_medicament_combobox.Items.Add(nom);
                 cs.Suivant();
             }
 
             cs.Fermer();
-
+            // Si un id est définit
             if (idMedicament != "a")
             {
                 cs = new Curs(chaineconnexion);
@@ -42,7 +44,7 @@ namespace PPEClientLourd
             }
 
         }
-
+        // Au chagement d'état
         private void Consulter_medicament_combobox_SelectedIndexChanged( object sender, EventArgs e )
         {
             string nommed = Consulter_medicament_combobox.Text;
