@@ -57,29 +57,13 @@ namespace PPEClientLourd
                 cs3.Suivant();
             }
             cs3.Fermer();
-        }
-
-        //Ajoute les types de praticiens au comboBox
-        private void addItemsToTypePraticiens(string tpCode)
-         {
-             Curs cs = new Curs(this.connection);
-
-            //Récupération des libellé
-             cs.ReqSelect("SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien");
-
-
-             while (!cs.Fin())
-             {
-                //Ajout des valeurs 
-                 this.typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
-             }
 
             if (_previous == "RapportVisite")
             {
                 btn_modif.Visible = false;
             }
-
         }
+
 
         private void button_Fermer_Click( object sender, EventArgs e )
         {
