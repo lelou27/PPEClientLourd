@@ -32,6 +32,7 @@ namespace PPEClientLourd
                 dgv_allMedicaments.Rows.Add(nom, familleLibelle, composition, depot);
 
                 cs.Suivant();
+
             }
 
             cs.Fermer();

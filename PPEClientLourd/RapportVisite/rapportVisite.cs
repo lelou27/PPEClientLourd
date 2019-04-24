@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace PPEClientLourd
 {
+
     public partial class RapportVisite : Form
     {
         //création des variables
@@ -14,6 +15,7 @@ namespace PPEClientLourd
         private Dictionary<int, string> praticiens = new Dictionary<int, string>();
         private Dictionary<string, int> echantillonsPresente = new Dictionary<string, int>();
         private Dictionary<string, int> echantillonsOffert = new Dictionary<string, int>();
+        private DateTime test;
 
         /// <summary>
         /// Création, Affichage et Modification d'un rapport de visite
@@ -89,7 +91,7 @@ namespace PPEClientLourd
         }
 
         /// <summary>
-        /// Rempli le dataGridViewComboBox pour médicaments présentés et offert
+        /// Rempli le dataGridViewComboBox pour médicaments présentés et offerts
         /// </summary>
         private void Add_comboBox_Medicament()
         {
@@ -157,7 +159,18 @@ namespace PPEClientLourd
                 //Textbox
                 textBox_BilanRap.Text = cs2.Champ("RAP_BILAN").ToString();
                 //dateTime
-                dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE_VISITE").ToString());
+                
+                try
+                {
+                    dateTimePicker_DateRap.Value = DateTime.Parse(cs2.Champ("RAP_DATE_VISITE").ToString());
+                }
+                catch (Exception)
+                {
+                    DateTime.TryParse(cs2.Champ("RAP_DATE_VISITE").ToString(),out test);
+                    dateTimePicker_DateRap.Value = test.AddYears(1980);
+                }
+
+
 
                 bool verifDate = cs2.Champ("RAP_DATE_PROCHAINE_VISITE").ToString() == "" ? false : true;
                 if (!verifDate)
@@ -519,8 +532,10 @@ namespace PPEClientLourd
                 string praNum = Recup_All_Value[7];
                 string rapNum = Recup_All_Value[8];
 
-                requete = "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`, `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`)" +
-                    " VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePraticien + ", " + rapConnaissanceLabo + ", '" + rapDate + "',";
+                requete = "INSERT INTO `rapport_visite`(`COL_MATRICULE`, `RAP_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`, `RAP_CONNAISSANCE_PRACTICIEN`," +
+                    " `RAP_CONFIANCE_LABO`, `RAP_DATE_VISITE`, `RAP_DATE_PROCHAINE_VISITE`, `RAP_PRESENCE_CONCURENCE`, `PRA_NUM`)" +
+                    " VALUES ('" + _colMatricule + "', '" + rapNum + "', '" + dateJour + "', '" + rapBilan + "', '" + rapMotif + "', " + rapConnaissancePraticien +
+                    ", " + rapConnaissanceLabo + ", '" + rapDate + "',";
                 requete += comboBox_NewRDV.Text == "Oui"
                     ? "'" + rapDateProVisite + "'"
                     : rapDateProVisite;

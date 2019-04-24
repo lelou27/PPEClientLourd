@@ -21,18 +21,14 @@ namespace PPEClientLourd
         private void newPraticien_Load( object sender, EventArgs e )
         {
             Curs cs = new Curs(chaineConnexion);
-
             string req = "SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien;";
             cs.ReqSelect(req);
-
             while (!cs.Fin())
             {
                 typePraticiens.Add(cs.Champ("TYP_CODE").ToString(), cs.Champ("TYP_LIBELLE").ToString());
                 cbx_typePraticien.Items.Add(cs.Champ("TYP_LIBELLE").ToString());
-
                 cs.Suivant();
             }
-
             cs.Fermer();
         }
 
@@ -82,11 +78,9 @@ namespace PPEClientLourd
             }
         }
 
-        private bool dispatchErrors( string nom, string prenom, string ville, int cp, string adresse, string typePraticien
-                                    , double coefNotoriete )
+        private bool dispatchErrors( string nom, string prenom, string ville, int cp, string adresse, string typePraticien, double coefNotoriete )
         {
             bool error = false;
-
             lbl_errorNom.Text = (nom.Length == 0) ? "Veuillez renseigner un nom" : "";
             lbl_error_prenom.Text = (prenom.Length == 0) ? "Veuillez renseigner un prénom" : "";
             lbl_error_ville.Text = (ville.Length == 0) ? "Veuillez renseigner une ville" : "";
@@ -94,13 +88,10 @@ namespace PPEClientLourd
             lbl_error_adresse.Text = (adresse.Length == 0) ? "Veuillez renseigner une adresse" : "";
             lbl_error_typePraticien.Text = (typePraticien.Length == 0) ? "Veuillez renseigner un type de praticien" : "";
             lbl_error_notoriete.Text = (coefNotoriete == 0) ? "Veuillez renseigner un coefficient de notoriété" : "";
-
-            if (nom.Length == 0 || prenom.Length == 0 || ville.Length == 0 || cp == 0 || adresse.Length == 0 || typePraticien.Length == 0
-                || coefNotoriete == 0)
+            if (nom.Length == 0 || prenom.Length == 0 || ville.Length == 0 || cp == 0 || adresse.Length == 0 || typePraticien.Length == 0 || coefNotoriete == 0)
             {
                 error = true;
             }
-
             return error;
         }
     }

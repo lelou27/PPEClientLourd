@@ -39,9 +39,10 @@ namespace PPEClientLourd
             string composition = composition_input.Text.Trim().Replace("'", "\'");
             string effets = effets_input.Text.Trim().Replace("'", "\'");
             string contreindic = contreindic_input.Text.Trim().Replace("'", "\'");
-            string prixech = prixech_input.Text.Trim().Replace(',','.');
+            string prixech = prixech_input.Text.Trim().Replace(',', '.');
 
-            if ((depot_legal.Length == 0) || (nom.Length == 0) || (code.Length == 0) || (composition.Length == 0) || (effets.Length == 0) || (contreindic.Length == 0) || (prixech.ToString().Length == 0))
+            if ((depot_legal.Length == 0) || (nom.Length == 0) || (code.Length == 0) || (composition.Length == 0) || (effets.Length == 0)
+                || (contreindic.Length == 0) || (prixech.ToString().Length == 0))
             {
                 Aj_med_error_label.Text = "Veuillez remplir tous les champs";
                 Aj_med_error_label.Show();

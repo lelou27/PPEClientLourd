@@ -17,7 +17,6 @@ namespace PPEClientLourd
         public AllVisiteurs( string colNom, string colMat )
         {
             InitializeComponent();
-
             _colNom = colNom;
             _colMatricule = colMat;
         }

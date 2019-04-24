@@ -73,7 +73,6 @@ namespace PPEClientLourd
         private void btn_retour_Click( object sender, EventArgs e )
         {
             Close();
-
             // Ouverture du formulaire de la page précédente
             if (_previous == "AllVisiteur")
             {
