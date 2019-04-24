@@ -17,7 +17,7 @@ namespace PPEClientLourd
         private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         // Constructeur, le rôle est important pour savoir si on donne l'autorisation de modifier le secteur
-        public ModificationMyInformations(string matricule, string nom, string role)
+        public ModificationMyInformations( string matricule, string nom, string role )
         {
             InitializeComponent();
             _matricule = matricule;
@@ -51,7 +51,7 @@ namespace PPEClientLourd
         }
 
         // Permet de remplir les champs de formulaire
-        private string setChamps(string matricule)
+        private string setChamps( string matricule )
         {
             Curs cs = new Curs(chaineConnexion);
 
@@ -84,7 +84,7 @@ namespace PPEClientLourd
         }
 
         // Ajoute les laboratoire au comboBox labo
-        private void addItemsToLabo(string laboCode)
+        private void addItemsToLabo( string laboCode )
         {
             Curs cs = new Curs(chaineConnexion);
 
@@ -94,7 +94,7 @@ namespace PPEClientLourd
             while (!cs.Fin())
             {
                 // Ajout au dictionnaire
-                this.labo.Add(cs.Champ("LAB_CODE").ToString(), cs.Champ("LAB_NOM").ToString());
+                labo.Add(cs.Champ("LAB_CODE").ToString(), cs.Champ("LAB_NOM").ToString());
 
                 cbx_labo.Items.Add(cs.Champ("LAB_NOM").ToString());
 
@@ -113,7 +113,7 @@ namespace PPEClientLourd
         private void btn_retour_Click( object sender, EventArgs e ) => Close();
 
         // Lors de l'appui sur le bouton modifier
-        private void btn_modifier_Click(object sender, EventArgs e)
+        private void btn_modifier_Click( object sender, EventArgs e )
         {
             string nom, prenom, adresse, ville, cp, secteur, labo;
 
@@ -136,25 +136,24 @@ namespace PPEClientLourd
             labo = cbx_labo.SelectedItem.ToString();
 
             // Remplis les erreurs si il y en a
-            this.dispatchErrors(nom, prenom, adresse, ville, cp, secteur, labo);
+            dispatchErrors(nom, prenom, adresse, ville, cp, secteur, labo);
 
             // Vérification de champs vides
-            if(nom.Length != 0 && prenom.Length != 0 && ville.Length != 0 && cp.Length != 0 && labo.Length != 0)
+            if (nom.Length != 0 && prenom.Length != 0 && ville.Length != 0 && cp.Length != 0 && labo.Length != 0)
             {
                 bool error = false;
-                int codePostal;
 
                 // Try parse en numérique
-                if (!Int32.TryParse(cp, out codePostal))
+                if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
                 }
 
                 // Si pas d'erreurs
-                if(!error)
+                if (!error)
                 {
-                    Curs cs = new Curs(this.chaineConnexion);
+                    Curs cs = new Curs(chaineConnexion);
                     // Récupération du labo dans le dictionnaire
                     labo = this.labo.FirstOrDefault(x => x.Value == labo).Key;
 
@@ -197,9 +196,9 @@ namespace PPEClientLourd
             }
         }
 
-        // Permet d'afficher les erreurs si il y en a
-        private void dispatchErrors(string nom, string prenom, string adresse, string ville, string cp, string secteur, string labo)
+        private void dispatchErrors( string nom, string prenom, string adresse, string ville, string cp, string secteur, string labo )
         {
+            // Permet d'afficher les erreurs si il y en a
             // Ternaires affichant les erreurs
             lbl_error_nom.Text = nom.Length == 0 ? "Veuillez renseigner un nom" : "";
             lbl_error_prenom.Text = prenom.Length == 0 ? "Veuillez renseigner un prénom" : "";
@@ -210,7 +209,6 @@ namespace PPEClientLourd
             {
                 lbl_error_secteur.Text = secteur.Length == 0 ? "Veuillez renseigner un secteur" : "";
             }
-
             lbl_error_labo.Text = labo.Length == 0 ? "Veuillez renseigner un laboratoire" : "";
         }
     }

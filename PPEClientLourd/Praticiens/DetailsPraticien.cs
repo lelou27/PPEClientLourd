@@ -17,7 +17,7 @@ namespace PPEClientLourd
         /// </summary>
         /// <param name="NumPraticiens">numéro du praticien </param>
         /// <param name="previous">valeur de la page précédente</param>
-        public DetailsPraticien(int NumPraticiens, string previous = "AllPraticiens")
+        public DetailsPraticien( int NumPraticiens, string previous = "AllPraticiens" )
         {
 
             InitializeComponent();
@@ -25,9 +25,11 @@ namespace PPEClientLourd
             _previous = previous;
             _NumPraticiens = NumPraticiens;
 
-          // Récuperation des données du praticien
+            // Récuperation des données du praticien
             Curs cs2 = new Curs(connection);
-            string requete = "SELECT praticien.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`,`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM praticien,`type_praticien` WHERE type_praticien.`TYP_CODE` = praticien.`TYP_CODE` AND praticien.`PRA_NUM` = " + NumPraticiens.ToString();
+            string requete = "SELECT praticien.`PRA_NUM`,`praticien`.`PRA_NOM`,`praticien`.`PRA_PRENOM`,`praticien`.`PRA_ADRESSE`,`praticien`.`PRA_CP`" +
+                ",`praticien`.`PRA_VILLE`,`praticien`.`PRA_COEFNOTORIETE`,`type_praticien`.`TYP_LIBELLE` FROM praticien,`type_praticien`" +
+                " WHERE type_praticien.`TYP_CODE` = praticien.`TYP_CODE` AND praticien.`PRA_NUM` = " + NumPraticiens.ToString();
             Curs cs3 = new Curs(connection);
             string req = "SELECT TYP_CODE, TYP_LIBELLE FROM type_praticien;";
 
@@ -77,7 +79,7 @@ namespace PPEClientLourd
         }
 
         //Possibilité de modifier les champs après pression du bouton modifier
-        private void btn_modif_Click(object sender, EventArgs e)
+        private void btn_modif_Click( object sender, EventArgs e )
         {
             textBox_nom.ReadOnly = false;
             textBox_prenom.ReadOnly = false;
@@ -92,7 +94,7 @@ namespace PPEClientLourd
         }
 
         //Modification des informations suite à la pression du bouton "mettre à jour"
-        private void btn_maj_Click(object sender, EventArgs e)
+        private void btn_maj_Click( object sender, EventArgs e )
         {
             string numero, nom, prenom, adresse, cp, ville, coefnot, typePraticiens;
 
@@ -107,16 +109,15 @@ namespace PPEClientLourd
             typePraticiens = cbx_tp.SelectedItem.ToString();
 
             // Remplis les erreurs si il y en a
-            this.dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, typePraticiens);
+            dispatchErrors(numero, nom, prenom, adresse, ville, cp, coefnot, typePraticiens);
 
             // Vérification de champs vides
             if (numero.Length != 0 && nom.Length != 0 && prenom.Length != 0 && adresse.Length != 0 && ville.Length != 0 && cp.Length != 0 && coefnot.Length != 0 && typePraticiens.Length != 0)
             {
                 bool error = false;
-                int codePostal;
 
                 // Try parse en numérique
-                if (!Int32.TryParse(cp, out codePostal))
+                if (!int.TryParse(cp, out int codePostal))
                 {
                     lbl_error_cp.Text = "Veuillez renseigner une valeur numérique";
                     error = true;
@@ -158,9 +159,8 @@ namespace PPEClientLourd
         }
 
         //Affichage des erreurs
-        private void dispatchErrors(string numero, string nom, string prenom, string adresse, string ville, string cp, string coefnot, string lieu)
+        private void dispatchErrors( string numero, string nom, string prenom, string adresse, string ville, string cp, string coefnot, string lieu )
         {
-
             // Ternaires affichant les erreurs
             lbl_error_num.Text = nom.Length == 0 ? "Veuillez renseigner un numéro" : "";
             lbl_error_nom.Text = nom.Length == 0 ? "Veuillez renseigner un nom" : "";

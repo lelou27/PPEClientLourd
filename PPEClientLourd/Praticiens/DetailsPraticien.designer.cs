@@ -259,7 +259,7 @@
             // 
             this.btn_maj.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_maj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
-            this.btn_maj.Location = new System.Drawing.Point(365, 372);
+            this.btn_maj.Location = new System.Drawing.Point(240, 372);
             this.btn_maj.Margin = new System.Windows.Forms.Padding(2);
             this.btn_maj.Name = "btn_maj";
             this.btn_maj.Size = new System.Drawing.Size(90, 30);

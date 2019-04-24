@@ -6,7 +6,7 @@ namespace PPEClientLourd
     public partial class Connexion : Form
     {
         // Initialisation de la chaine de connexion à la base de données
-        string chaineConnexion = ConnexionDb.chaineConnexion;
+        private string chaineConnexion = ConnexionDb.chaineConnexion;
 
         // getter setter de la chaine de connexion
         public string ChaineConnexion
@@ -18,16 +18,16 @@ namespace PPEClientLourd
         public Connexion()
         {
             InitializeComponent();
-            // Par défaut, on cache les label d'erreurs
+            // Par défaut, on cache les labels d'erreurs
             lbl_error_login.Hide();
             lbl_error_password.Hide();
         }
 
 
         // Au click sur le bouton valider
-        private void Btn_send_Click(object sender, EventArgs e)
+        private void Btn_send_Click( object sender, EventArgs e )
         {
-            // Récupération des donées
+            // Récupération des données
             string username = txb_login.Text.ToString();
             string password = txb_password.Text.ToString();
 
@@ -39,8 +39,8 @@ namespace PPEClientLourd
                     lbl_error_password.Hide();
 
                     // Sélection de l'utilisateur en base pour savoir si il existe bien
-                    Curs cs = new Curs(this.chaineConnexion);
-                    
+                    Curs cs = new Curs(chaineConnexion);
+
                     cs.ReqSelect("" +
                         "SELECT v.COL_MATRICULE, c.COL_NOM FROM visiteur v " +
                            " INNER JOIN collaborateur c ON v.COL_MATRICULE = c.COL_MATRICULE " +
@@ -54,9 +54,9 @@ namespace PPEClientLourd
                     {
                         matricule = cs.Champ("COL_MATRICULE").ToString();
                         nom = cs.Champ("COL_NOM").ToString();
-                        
+
                         // Vérification de l'utilisateur
-                        if(matricule.Length != 0 && nom.Length != 0)
+                        if (matricule.Length != 0 && nom.Length != 0)
                         {
                             Home homeForm = new Home(matricule, nom);
                             Hide();

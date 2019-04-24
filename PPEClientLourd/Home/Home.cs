@@ -67,7 +67,6 @@ namespace PPEClientLourd
         private void seDéconnecterToolStripMenuItem_Click( object sender, EventArgs e )
         {
             Close();
-
             Connexion c = new Connexion();
             c.Show();
         }
@@ -111,6 +110,7 @@ namespace PPEClientLourd
             Consulter_Tous_Medicaments ctm = new Consulter_Tous_Medicaments();
             ctm.Show();
         }
+
         private void ajouterUnVisiteurToolStripMenuItem_Click( object sender, EventArgs e )
         {
             CreerVisiteur cv = new CreerVisiteur();
